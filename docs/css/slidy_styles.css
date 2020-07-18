@@ -1,0 +1,495 @@
+/* Additional styles for the slidy html presentations */
+
+/* --------------
+I tried to avoid the dependent selector syntax because I read its inefficient, without success.
+Selectors that didn't work
+  pre.compact
+  .compact > pre
+------------ */
+
+/* Dependent selectors here */
+
+.compact pre {
+  font-weight: normal;
+  font-size: 70%;
+  line-height: 110%;
+}
+.compact li {
+  line-height: 80%;
+  margin-left: 2em;
+}
+
+.centerblock {
+  text-align:center;
+  margin: 0 auto;
+}
+div.colleft {
+  float:left;
+  width:48%;
+  border: 0px;
+}
+div.colright {
+  float:right;
+  width:48%;
+  border: 0px;
+}
+div.colclear {
+  clear: both;
+}
+div.hrleft {
+  border:thin solid lightgray;
+  width: 25%;
+  margin: 2em 0 0;
+}
+.titlefix {
+  color: blue;
+}
+.copy-button {
+  text-align:center;
+  margin:1em 0em;
+}
+.hrdivider {
+  background-color: #008040;
+  border: 0 none;
+  color: #008040;
+  height: 3px;
+  width:70%;
+  margin-top:1em;
+  margin-bottom:0.5em;
+}
+.indented1 {
+  margin-left:1em;
+}
+.indented1-r {
+  margin-right:1em;
+}
+.indented2 {
+  margin-left:2em;
+}
+.indented3 {
+  margin-left:3em;
+}
+.indented4 {
+  margin-left:4em;
+}
+div.bigcheck {
+  font-size:180%;
+  color:#32CD32;
+  margin-left:0.2em;
+}
+div.bigx {
+  font-size:180%;
+  color:red;
+  margin-left:0.2em;
+}
+div.textbox {
+  margin-left:2.5em;
+  margin-right:2.5em;
+  font-size:85%;
+  border: 3px solid red;
+  padding:0.2em;
+  background-color: white;
+}
+div.quiz {
+  padding: 1em 0 0.5em;
+  margin: 1.5em 4em;
+  background-color: white;
+  border: 2.5px dashed DarkKhaki;
+  border-radius: 6px;
+}
+div.quiz::before {
+  content: "Quiz Question \2611";
+  color: DarkKhaki;
+  display: block;
+  width: 8em;
+  font-size: 100%;
+  margin: -1.6em 0.8em 1em;
+  padding-left: 0.2em;
+  background-color: white;
+}
+div.tryit {
+  padding: 1em 0 0.5em;
+  margin: 1.5em 4em;
+  background-color: white;
+  border: 1.5px dashed #007020;
+  border-radius: 6px;
+}
+div.tryit::before {
+  content: "Try It \00a0\1F5AE";
+  color: #007020;
+  display: block;
+  width: 5em;
+  font-size: 100%;
+  font-style: italic;
+  margin: -1.6em 0.8em 1em;
+  padding-left: 0.2em;
+  background-color: white;
+}
+div.preview {
+  padding: 1em 0 0.5em;
+  margin: 1.5em 4em;
+  background-color: white;
+  border: 1.5px dashed GoldenRod;
+  border-radius: 6px;
+}
+div.preview::before {
+  content: "Preview \1F50E";
+  color: GoldenRod;
+  display: block;
+  width: 5.5em;
+  font-size: 100%;
+  font-style: normal;
+  margin: -1.6em 0.8em 1em;
+  padding-left: 0.2em;
+  background-color: white;
+}
+div.infobox {
+  padding: 1em 0 0.5em;
+  margin: 2.5em 4em;
+  background-color: white;
+  border: 1.5px dashed #72A7CF;
+  border-radius: 6px;
+}
+div.infobox::before {
+  color: #72A7CF;
+  content: url(info_50x50.png);
+  display: block;
+  width: 2em;
+  font-size: 120%;
+  font-style: normal;
+  margin: -1.7em 0.8em 0.8em;
+  padding-left: 0.3em;
+  background-color: white;
+}
+div.challenge {
+  padding: 1em 0 0.5em;
+  margin: 2em 4em;
+  background-color: white;
+  border: 1.5px dashed Brown;
+  border-radius: 6px;
+}
+div.challenge::before {
+  content: "Challenge";
+  color: Brown;
+  display: block;
+  width: 4.1em;
+  font-size: 100%;
+  font-style: italic;
+  margin: -1.6em 0.8em 1em;
+  padding-left: 0.2em;
+  background-color: white;
+}
+div.tip {
+  padding: 1em 0 0.5em;
+  margin: 1.5em 4em;
+  background-color: white;
+  border: 1.5px dashed Navy;
+  border-radius: 6px;
+}
+div.tip::before {
+  content: "Tip";
+  color: Navy;
+  display: block;
+  width: 1.5em;
+  font-size: 100%;
+  font-style: italic;
+  margin: -1.6em 0.8em 1em;
+  padding-left: 0.2em;
+  background-color: white;
+}
+.pres-title {
+  font-size:52px;;
+  font-weight:bold;
+  line-height: normal;
+  color:#008040;
+}
+p.author {
+  font-size: 52px;;
+  font-weight: bold;
+  line-height: 150px;
+  color: #008040;
+}
+
+.pres-subtitle {
+  font-size:40px;
+  font-weight:bold;
+  color:navy;
+}
+.pres-date {
+  font-size: 32px;
+  font-weight:normal;
+  color:black;
+}
+div.ex-qtn {
+  font-family:monospace;
+}
+.course-title {
+  font-weight: bold;
+  color: dimgray;
+}
+.course-subtitle {
+  font-size:70%;
+  font-weight:normal;
+  color: black;
+}
+.mod-subtitle {
+  font-size:75%;
+  font-weight:bold;
+  color: dimgray;
+}
+.mod-title {
+  font-weight:bold;
+}
+.ex-title {
+  font-size:75%;
+  font-weight:bold;
+  color:#008040;
+}
+.ex-subtitle {
+  font-weight:bold;
+}
+.ex-course-title {
+  font-size:75%;
+  font-weight:bold;
+  color:dimgray;
+  
+}
+
+.answer-code {
+  display: none;
+}
+.answer-code > p {
+  color: MidnightBlue;
+}
+.billboard {
+  margin: 1em 0em;
+  background-color: #fbfe92; 
+  padding: 0.5em;
+  border: 4px solid Crimson;
+  font-size: 200%;
+  font-weight: bold;
+}
+.hint {
+  display: none;
+  margin: 1em 2em;
+  background-color: whiteSmoke;
+  padding: 0 0.5em;
+  border: 2px solid DarkSeaGreen;
+}
+span.tritoggle {
+  font-size: 120%;
+  text-decoration: none;
+  color: DarkBlue;
+  cursor: pointer;
+}
+span.sessiontitle {
+  color: DarkBlue;
+  cursor: pointer;
+}
+span.textlink {
+  font-weight: lighter;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  color:#008040;
+  font-size: 90%;
+  cursor: pointer;
+}
+
+a.showhidelink {
+  font-weight:bold;
+  text-decoration: none;
+}
+a.showhidehint {
+  font-weight: lighter;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  color:#008040;
+  font-size: 90%;
+  margin-left: 0.2em;
+}
+a.showhidehint::before {
+  content: "[hint]";
+  text-decoration: none;
+  color:#008040;
+}
+span.showhidesoln {
+  font-weight: lighter;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  color:#008040;
+  font-size: 90%;
+  cursor: pointer;
+}
+a.closediv {
+  margin-left:2em;
+}
+.easy-read-url {
+  font-size:110%;
+  font-weight:bold;
+  color:darkblue;
+  font-family:monospace;
+}
+h1 {
+  font-size:180%;
+  font-weight: bold;
+  color: #007020;
+}
+h1.break {
+  color: dimgray;
+  font-weight: normal;
+}
+div.slide.titlepage h1 {
+  padding-top:30px;
+}
+.faux-h1 {
+  font-size: 160%;
+  font-weight: bold;
+  margin-top: 2em;
+  margin-bottom: 14.933px;
+  line-height: 35.84px;
+}
+
+
+h2 {
+  margin-left: 28px;
+  font-size:130%;
+  font-weight: bold;
+  color: Navy;
+}
+h3 {
+  font-size:110%;
+  font-weight: bold;
+  color: brown;
+}
+pre > code {
+  font-weight: normal;
+  font-size: 80%;
+}
+.footer-right {
+  margin:0 2em;
+  float:right;
+}
+.footer-subtitle {
+  color:#008040;
+  margin-left: 1em;
+}
+pre.nofrills {
+  font-weight: normal;
+  border: none;
+  background-color: white;
+  color: black;
+
+}
+pre.scrolling-code {
+  margin:1em 2em;
+  font-size:75%;
+  font-weight: normal;
+  overflow:scroll;
+  border: 1px solid black;
+  background-color: WhiteSmoke;
+  color: black;
+}
+.argument {
+  color: #902000;
+  font-family: monospace;
+  font-weight: normal;
+}
+
+.tbl_compact {
+  border-collapse: collapse;
+}
+.tbl_compact td, .tbl_compact th {
+  padding: 10px 50px;
+  border-bottom:1px solid gray;
+  color: black;
+}
+.tbl_compact td {
+  font-size: 100%;
+}
+.tbl_compact th {
+  background-color: #dddddd;
+}
+.tbl_compact tr:nth-child(even) {
+  background-color: #dddddd;
+}
+li.slides {
+  margin-top: 1em;
+  margin-left: 30px;
+  list-style: none;
+  font-size: 120%;
+}
+li.bonus:after {
+  content: '\1F31F';
+  color: red;
+  font-size: 100%;
+}
+li.exercises {
+  margin-top: 1em;
+  margin-left: 60px;
+  list-style: none;
+  font-size: 120%;
+}
+a.exercises {
+  font-weight:normal;
+  font-family:monospace;
+}
+li.slides:before {
+  content: url(screen-20x22.png);
+  text-decoration: none;
+  display: inline-block;
+  text-align: left;
+  width: 26px;
+}
+li.exercises:before {
+  content: url(keyboard_24x24c.png);
+  text-decoration: none;
+  display: inline-block;
+  width: 28px;
+}
+p.slides_desc {
+  margin-left: 60px;
+  font-style:italic;
+  font-size:90%;
+}
+p.exercises_desc {
+  margin-left: 92px;
+  font-style:italic;
+  font-size:90%;
+}
+
+.copyme {
+  background-color:#e6fee6;
+}
+
+.sample_code {
+  background-color:transparent;
+  margin-left: 2em;
+  border: 2px solid lightgray;
+}
+
+/* ======== No longer used ==============
+td {
+  border: 1px dotted grey;
+  border-top:1px solid #e5eff8;
+  border-right:1px solid #e5eff8;
+  border-collapse:collapse;
+}
+a.showhidelink::before {
+  content: "[";
+}
+a.showhidelink::after {
+  content: ".";
+}
+.pasteboard {
+  color: DarkBlue;
+  display: none;
+  margin-left: 2em;
+  font-family: monospace;
+  border-bottom: 1px dotted;
+}
+span.showhidesoln::after {
+  content: "[Solution]";
+  text-decoration: none;
+  color:#008040;
+}
+======================================= */

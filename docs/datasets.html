@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Spatial Data Analysis with R. Society for Conservation GIS, July 2020 Data for Exercises</title>
+
+<script src="slides/lib/header-attrs-2.3/header-attrs.js"></script>
+<script src="slides/lib/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="slides/lib/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="slides/lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="slides/lib/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="slides/lib/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="slides/lib/navigation-1.1/tabsets.js"></script>
+<link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACkUlEQVQ4jX2SW0jTcRTHTzNyeZlh6lqmm3POdNPC6SxSEzaqafkykOFoIxTDWpKRFV6iQMNLFyMSsQvUW0WORc2WWBmGKEGZXUyz0NrmNmfa1PYgfHsQ1v5oHjgvX875/M45vy/R8mDJ9caxrFIL5CUWJB00Q9n+7Q+l1BetUMuMTL3JpTB0QVnejd1Hu9DQ60G5eQbqB7PIvj0L2bUZ0KZzghWbs0o7Fx3Tc/B6vStm6+g0wrQvIKh2gKKyUxnNSZoO685SC1YDeL1e9Ll+Ia7WCd5pJ4hojQ8g1nViezETYBqZx93BOdwa9jAgsdUT4J6ZQqC6f4GIiLYU9/RzNWYIdU9hd/8rLjN7UGT8DbWROVVMlQsBBWas142DiIikdfbFMF0POIVm2NzM1zwLS+mvcSsnEajpBSv/8RIgucGJ1EYXEs+NwjrlWfUGMee/Y2PFJIJLrFibex8kOsahhCYnUlpnIL1kh9X9/yMKG2yIOOlAsPYnAveZsE75EEQUQLwTwy5Rsxvx9UxApKEPEYY+BiSizA623oaggkdgq4xLKwRLq7i8sy6EFlpg8wNEVwyAd3wAbZ8cPu3CazeCC/sRojYjaL8Jvm8MPWLDBm03A8CveQ9+7RBia4cYU4QfeokwzTOwc6/4OzKXHap/C5ufD0RNo0i4OAZR81dcnnD69Mp3PxBe9GRkuZdFKk7sqTcQ132EpGUMydetSLnpgOSGHVtbxpHU9AX8mkFEG55/ZrjQL1h82V6esPLVh8Sr40i940J6xzzS7s1C0m6HqHEEiTnatgT5gcPijHxltFwhjpRIQpZjBAJ2lFTBFW5TiOPT8mXx6apdcRl5OaJM1Q6hLC9ls3RPTLgok0NELCKiv02kPqt/O1MZAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
+<script language="javascript" type="text/javascript">
+function TriShowHide(shID) {
+  shIDspan = shID + "span";
+  shIDdiv = shID + "div";
+  if (document.getElementById(shIDdiv).style.display != 'block') {
+    document.getElementById(shIDdiv).style.display = 'block';
+    txtSpan = "&#9660;";
+  } else {
+    document.getElementById(shIDdiv).style.display = 'none';
+    txtSpan = "&#9654;";
+  }
+  document.getElementById(shIDspan).innerHTML = txtSpan + " ";
+}
+function showHide(shID) {
+  if (shID=="soln-show-all") {
+    var allAnswerCode = document.getElementsByClassName("answer-code");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'block';
+    }
+  } else if (shID=="soln-hide-all") {
+    var allAnswerCode = document.getElementsByClassName("answer-code");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'none';
+    }
+  } else if (shID=="hints-show-all") {
+    var allAnswerCode = document.getElementsByClassName("hint");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'block';
+    }
+  } else if (shID=="hints-hide-all") {
+    var allAnswerCode = document.getElementsByClassName("hint");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'none';
+    }
+  } else {
+    if (document.getElementById(shID)) {
+      if (document.getElementById(shID).style.display != 'block') {
+        document.getElementById(shID).style.display = 'block';
+      } else {
+        document.getElementById(shID).style.display = 'none';
+      }
+    }
+  }
+}
+function CopyToClipboard(containerid) {
+if (document.selection) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(document.getElementById(containerid));
+    range.select().createTextRange();
+    document.execCommand("copy");
+} else if (window.getSelection) {
+    var range = document.createRange();
+    range.selectNode(document.getElementById(containerid));
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
+    // alert("text copied")
+}}
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163964617-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-163964617-1');
+</script>
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="css\slidy_styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore"><span class="course-subtitle">Spatial Data Analysis with R. <span style="font-size:75%; color:dimgray;">Society for Conservation GIS, July 2020</span></span><br/><span class="mod-title">Data for Exercises</span></h1>
+
+</div>
+
+
+<style type="text/css">
+ul {
+  margin-left: 2em;
+}
+h2 {
+  font-weight: bold;
+  color: black;
+  margin-left: 1em;
+  margin-bottom: 0.2em;
+  font-style: italic;
+}
+p {
+  font-size: 120%;
+}
+</style>
+<p>The following data are available in the workshop ‘data’ folder, which you can download <a href="https://github.com/ucanr-igis/rspatial_data" target="_blank" rel="noopener">here</a> (click the <img src="images/clone_download_btn_76x24x256.png" /> button).</p>
+<div id="yosemite-data" class="section level1">
+<h1>Yosemite Data</h1>
+<h2 id="yose_boundary">yose_boundary.shp</h2>
+<ul>
+<li>Yosemite National Park Boundary<br />
+</li>
+<li>Source: <a href="https://irma.nps.gov/DataStore/Reference/Profile/2180706" class="uri">https://irma.nps.gov/DataStore/Reference/Profile/2180706</a></li>
+</ul>
+<h2 id="yose_firehistory">yose_firehistory.gdb</h2>
+<ul>
+<li>Fire History for Yosemite National Park, 1930-2016<br />
+</li>
+<li>Layers: <em>YNP_FireHistoryPoints</em>, <em>YNP_FireHistoryPolys</em><br />
+</li>
+<li>Source: <a href="https://irma.nps.gov/DataStore/Reference/Profile/2237598" class="uri">https://irma.nps.gov/DataStore/Reference/Profile/2237598</a></li>
+</ul>
+<h2 id="yose_communications">yose_communications.gdb</h2>
+<ul>
+<li>Yosemite Communications Infrastructure<br />
+</li>
+<li>Layers: <em>Cell_Towers</em>, <em>Radio_Repeaters</em><br />
+</li>
+<li>Source: <a href="https://irma.nps.gov/DataStore/Reference/Profile/2170445" class="uri">https://irma.nps.gov/DataStore/Reference/Profile/2170445</a></li>
+</ul>
+<h2 id="yose_roads">yose_roads.gdb</h2>
+<ul>
+<li>A geodatabase of all the roads within the Yosemite area. Includes paved and unpaved roads. Roads are categorized by type and access.<br />
+</li>
+<li>Layers: <em>Yosemite_Roads</em></li>
+<li>Source: <a href="https://irma.nps.gov/DataStore/Reference/Profile/2180725" class="uri">https://irma.nps.gov/DataStore/Reference/Profile/2180725</a></li>
+</ul>
+<h2 id="yose_trails">yose_trails.gdb</h2>
+<ul>
+<li>Trails system for Yosemite National Park<br />
+</li>
+<li>Layers: <em>Trails</em>, <em>Trailheads</em>, <em>Winter_trails</em><br />
+</li>
+<li>Source: <a href="https://irma.nps.gov/DataStore/Reference/Profile/2180706" class="uri">https://irma.nps.gov/DataStore/Reference/Profile/2180706</a></li>
+</ul>
+<h2 id="Yosemite_POI">yose_poi.shp</h2>
+<ul>
+<li>Points of Interest (POIs) in Yosemite National Park<br />
+</li>
+<li>Source: <a href="https://irma.nps.gov/DataStore/Reference/Profile/2225064" class="uri">https://irma.nps.gov/DataStore/Reference/Profile/2225064</a></li>
+</ul>
+<h2 id="yosemite_missing_people">yosemite_missing_people.csv</h2>
+<ul>
+<li>Lost person incident data from years 2000 to 2010 for Yosemite National Park<br />
+</li>
+<li>Source: <a href="https://hub.arcgis.com/datasets/pjdohertymaps::missing" class="uri">https://hub.arcgis.com/datasets/pjdohertymaps::missing</a></li>
+</ul>
+<h2 id="yose_historic_pts">yose_historic_pts.kml</h2>
+<ul>
+<li>National Register of Historic Places for Yosemite National Park<br />
+</li>
+<li>Source: <a href="https://irma.nps.gov/DataStore/Reference/Profile/2190361" class="uri">https://irma.nps.gov/DataStore/Reference/Profile/2190361</a></li>
+</ul>
+<h2 id="veg37">veg37.shp</h2>
+<ul>
+<li>Weislander 1937 Yosemite vegetation map</li>
+<li>Source: <a href="https://irma.nps.gov/DataStore/Reference/Profile/1047792" class="uri">https://irma.nps.gov/DataStore/Reference/Profile/1047792</a></li>
+<li>see <em>veg37_alliances.dbf</em> for legend (~30 classes)</li>
+</ul>
+<h2 id="yose_hydrology">yose_hydrology.gdb</h2>
+<ul>
+<li>A geodatabase of hydrological features for Yosemite National Park, including rivers and streams, lakes and ponds, reservoirs, springs and seeps, and locations of stream gauges and water quality monitoring sites in the park.</li>
+<li>Layers: <em>Rivers, Springs, Waterbodies, Water_Data_Stations, Lakes_Marshes, Gaging_Stations</em></li>
+<li>Source: <a href="https://irma.nps.gov/DataStore/Reference/Profile/2170437" class="uri">https://irma.nps.gov/DataStore/Reference/Profile/2170437</a></li>
+</ul>
+<h2 id="yose_watersheds">yose_watersheds.shp</h2>
+<ul>
+<li>CALWATER 2.2.1 (watersheds)</li>
+<li>Source: <a href="https://frap.fire.ca.gov/mapping/gis-data/" class="uri">https://frap.fire.ca.gov/mapping/gis-data/</a></li>
+<li>Metadata: <a href="https://map.dfg.ca.gov/metadata/calw221_polygon_20131205_wm.html" class="uri">https://map.dfg.ca.gov/metadata/calw221_polygon_20131205_wm.html</a></li>
+</ul>
+<h2 id="srtm_13_05">srtm_13_05.tif</h2>
+<ul>
+<li>DEM for a 5-degree tile enclosing Yosemite National park<br />
+</li>
+<li>Source: Consortium for Spatial Information (CGIAR-CSI) (downloaded using <tt>raster::getData()</tt>)</li>
+</ul>
+<h2 id="l8_20180822">yose_l8_20180822_b2345.tif</h2>
+<ul>
+<li>Landsat 8 Image from Aug 22, 2018. Bands 2-5</li>
+<li>Source: <a href="https://earthexplorer.usgs.gov/" class="uri">https://earthexplorer.usgs.gov/</a></li>
+<li>Metadata: <a href="https://www.usgs.gov/land-resources/nli/landsat/landsat-8" class="uri">https://www.usgs.gov/land-resources/nli/landsat/landsat-8</a></li>
+</ul>
+</div>
+<div id="san-francsico" class="section level1">
+<h1>San Francsico</h1>
+<h2 id="sf_nb">sf_nb.geojson</h2>
+<ul>
+<li>San Francisco Neighborhoods</li>
+<li>Source: <a href="https://datasf.org" class="uri">https://datasf.org</a></li>
+</ul>
+<h2 id="sf_schools">sf_schools.shp</h2>
+<ul>
+<li>San Francisco Schools</li>
+<li>Source: <a href="https://datasf.org" class="uri">https://datasf.org</a></li>
+</ul>
+<h2 id="sf_libraries">sf_libraries.csv &amp; sf_libraries_latlon.csv</h2>
+<ul>
+<li>Addresses of public libraries in San Francisco</li>
+<li>Source: <a href="https://datasf.org" class="uri">https://datasf.org</a></li>
+</ul>
+<h2 id="sf_cannabis">sf_cannabis_2014.kml</h2>
+<ul>
+<li>San Francisco Permitted Medical Cannabis Dispensaries (2014)</li>
+<li>Source: <a href="https://datasf.org" class="uri">https://datasf.org</a></li>
+</ul>
+</div>
+<div id="california" class="section level1">
+<h1>California</h1>
+<h2 id="ca_counties">ca_counties.geojson</h2>
+<ul>
+<li>County Boundaries in California</li>
+<li>Source: US Census Bureau</li>
+</ul>
+<h2 id="ca_breweries">ca_breweries.csv</h2>
+<ul>
+<li>Addresses of Breweries in California</li>
+</ul>
+<p><br />
+<br />
+</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+</body>
+</html>

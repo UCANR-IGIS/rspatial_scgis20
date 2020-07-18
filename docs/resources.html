@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Spatial Data Analysis with R. Society for Conservation GIS, July 2020 Resources</title>
+
+<script src="slides/lib/header-attrs-2.3/header-attrs.js"></script>
+<script src="slides/lib/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="slides/lib/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="slides/lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="slides/lib/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="slides/lib/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="slides/lib/navigation-1.1/tabsets.js"></script>
+<link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACkUlEQVQ4jX2SW0jTcRTHTzNyeZlh6lqmm3POdNPC6SxSEzaqafkykOFoIxTDWpKRFV6iQMNLFyMSsQvUW0WORc2WWBmGKEGZXUyz0NrmNmfa1PYgfHsQ1v5oHjgvX875/M45vy/R8mDJ9caxrFIL5CUWJB00Q9n+7Q+l1BetUMuMTL3JpTB0QVnejd1Hu9DQ60G5eQbqB7PIvj0L2bUZ0KZzghWbs0o7Fx3Tc/B6vStm6+g0wrQvIKh2gKKyUxnNSZoO685SC1YDeL1e9Ll+Ia7WCd5pJ4hojQ8g1nViezETYBqZx93BOdwa9jAgsdUT4J6ZQqC6f4GIiLYU9/RzNWYIdU9hd/8rLjN7UGT8DbWROVVMlQsBBWas142DiIikdfbFMF0POIVm2NzM1zwLS+mvcSsnEajpBSv/8RIgucGJ1EYXEs+NwjrlWfUGMee/Y2PFJIJLrFibex8kOsahhCYnUlpnIL1kh9X9/yMKG2yIOOlAsPYnAveZsE75EEQUQLwTwy5Rsxvx9UxApKEPEYY+BiSizA623oaggkdgq4xLKwRLq7i8sy6EFlpg8wNEVwyAd3wAbZ8cPu3CazeCC/sRojYjaL8Jvm8MPWLDBm03A8CveQ9+7RBia4cYU4QfeokwzTOwc6/4OzKXHap/C5ufD0RNo0i4OAZR81dcnnD69Mp3PxBe9GRkuZdFKk7sqTcQ132EpGUMydetSLnpgOSGHVtbxpHU9AX8mkFEG55/ZrjQL1h82V6esPLVh8Sr40i940J6xzzS7s1C0m6HqHEEiTnatgT5gcPijHxltFwhjpRIQpZjBAJ2lFTBFW5TiOPT8mXx6apdcRl5OaJM1Q6hLC9ls3RPTLgok0NELCKiv02kPqt/O1MZAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
+<script language="javascript" type="text/javascript">
+function TriShowHide(shID) {
+  shIDspan = shID + "span";
+  shIDdiv = shID + "div";
+  if (document.getElementById(shIDdiv).style.display != 'block') {
+    document.getElementById(shIDdiv).style.display = 'block';
+    txtSpan = "&#9660;";
+  } else {
+    document.getElementById(shIDdiv).style.display = 'none';
+    txtSpan = "&#9654;";
+  }
+  document.getElementById(shIDspan).innerHTML = txtSpan + " ";
+}
+function showHide(shID) {
+  if (shID=="soln-show-all") {
+    var allAnswerCode = document.getElementsByClassName("answer-code");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'block';
+    }
+  } else if (shID=="soln-hide-all") {
+    var allAnswerCode = document.getElementsByClassName("answer-code");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'none';
+    }
+  } else if (shID=="hints-show-all") {
+    var allAnswerCode = document.getElementsByClassName("hint");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'block';
+    }
+  } else if (shID=="hints-hide-all") {
+    var allAnswerCode = document.getElementsByClassName("hint");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'none';
+    }
+  } else {
+    if (document.getElementById(shID)) {
+      if (document.getElementById(shID).style.display != 'block') {
+        document.getElementById(shID).style.display = 'block';
+      } else {
+        document.getElementById(shID).style.display = 'none';
+      }
+    }
+  }
+}
+function CopyToClipboard(containerid) {
+if (document.selection) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(document.getElementById(containerid));
+    range.select().createTextRange();
+    document.execCommand("copy");
+} else if (window.getSelection) {
+    var range = document.createRange();
+    range.selectNode(document.getElementById(containerid));
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
+    // alert("text copied")
+}}
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163964617-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-163964617-1');
+</script>
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="css\slidy_styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore"><span class="course-subtitle">Spatial Data Analysis with R. <span style="font-size:75%; color:dimgray;">Society for Conservation GIS, July 2020</span></span><br/><span class="mod-title">Resources</span></h1>
+
+</div>
+
+
+<style type="text/css">
+ul {
+  margin-left: 1em;
+}
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+p {
+  font-size: 120%;
+}
+
+</style>
+<div style="margin-bottom:3em;">
+
+</div>
+<p><span style="color:darkred">Do you know of other resources? If so please add them to our <a href="https://tinyurl.com/rspatial-scgis20" target="_blank">workshop forum</a> so we can add them to the list.</span></p>
+<div id="general-r-tutorials" class="section level2">
+<h2>General R Tutorials</h2>
+<ul>
+<li><p><a href="https://www.datacamp.com/courses/free-introduction-to-r" target="_blank">Introduction to R</a> (first section free). DataCamp <span style="color:DarkGreen">**</span></p></li>
+<li><p><a href="https://www.edx.org/course/introduction-to-r-for-data-science" target="_blank">Introduction to R for Data Science</a>. edX (free to audit) <span style="color:DarkGreen">**</span></p></li>
+<li><p><a href="https://cengel.github.io/R-intro/" target="_blank">Introduction to R</a>. Claudia Engel <span style="color:DarkGreen">**</span></p></li>
+<li><p><a href="https://rstudio.cloud/learn/primers" target="_blank">RStudio Primers</a>. RStudio Cloud</p></li>
+<li><p>A beginner’s guide to R: <a href="https://images.techhive.com/assets/2015/02/20/r4beginners_v3.pdf" target="_blank">Part I</a> &amp; <a href="https://images.techhive.com/assets/media-resource/106345/r_advbeginner_v5.pdf" target="_blank">Part II</a>. Sharon Machlis, Computerworld.</p></li>
+<li><p><a href="https://sejdemyr.github.io/r-tutorials/basics/" target="_blank">R Basics</a>. Simon Ejdemyr</p></li>
+<li><p><em><strong>swirl</strong></em>. swirl is a R package that provides tutorials right within RStudio. Install <em>swirl</em> from the ‘Packages’ tab in RStudio, then type <em>swirl()</em> at the console.</p></li>
+<li><p><a href="http://r4ds.had.co.nz/" target="_blank">R for Data Science</a>. Garrett Grolemund and Hadley Wickham</p></li>
+</ul>
+<div style="margin-left:3em; color:DarkGreen; font-style:italic;">
+<p>** recommended for complete beginners</p>
+</div>
+</div>
+<div id="spatial-data-in-r-tutorials" class="section level2">
+<h2>Spatial Data in R Tutorials</h2>
+<ul>
+<li><p><a href="https://cengel.github.io/R-spatial/" target="_blank">Using Spatial Data with R</a>. Claudia Engel</p></li>
+<li><p><a href="https://github.com/dlab-berkeley/Geospatial-Fundamentals-in-R-with-sf" target="_blank">Geospatial Fundamentals in R with sf</a>. Patty Frontiera and Drew Hart</p></li>
+<li><p><a href="https://www.neonscience.org/vector-data-series/" target="_blank">Introduction to Working With Vector Data in R</a>. NEON</p></li>
+<li><p><a href="http://www.nickeubank.com/gis-in-r/" target="_blank">GIS in R Tutorial</a>. Nick Eubank</p></li>
+<li><p><a href="http://www.rspatial.org/spatial/rst/3-vectordata.html" target="_blank">Spatial data manipulation</a>. Robert Hijmans</p></li>
+<li><p><a href="https://data.cdrc.ac.uk/tutorial/an-introduction-to-spatial-data-analysis-and-visualisation-in-r" target="_blank">An Introduction to Spatial Data Analysis and Visualization in R</a>. Consumer Data Research Center</p></li>
+<li><p><a href="https://mgimond.github.io/Spatial/index.html" target="_blank">Introduction to GIS and Spatial Analysis</a>. Manuel Gimond</p></li>
+<li><p><a href="https://www.datacamp.com/courses/working-with-geospatial-data-in-r" target="_blank">Working with Geospatial Data in R</a>. DataCamp ($)</p></li>
+</ul>
+</div>
+<div id="spatial-data-analysis" class="section level2">
+<h2>Spatial Data Analysis</h2>
+<ul>
+<li><p><a href="http://www.asdar-book.org/" target="_blank">Applied Spatial Data Analysis with R</a>. Roger S. Bivand, Edzer Pebesma and V. Gómez-Rubio. UseR! Series, Springer</p></li>
+<li><p><a href="http://robinlovelace.net/geocompr/" target="_blank">Geocomputation with R</a>. Robin Lovelace, Jakub Nowosad, and Jannes Muenchow</p></li>
+</ul>
+</div>
+<div id="r-package-reviews" class="section level2">
+<h2>R Package Reviews</h2>
+<ul>
+<li><p>
+<a href="https://cran.r-project.org/web/views/Spatial.html" target="_blank">Analysis of Spatial Data</a>. CRAN Task View
+</p></li>
+</ul>
+</div>
+<div id="visualization" class="section level2">
+<h2>Visualization</h2>
+<ul>
+<li><p><a href="https://cengel.github.io/rspatial/4_Mapping.nb.html" target="_blank">Making maps in R tutorial</a>. Claudia Engel</p></li>
+<li><p><a href="https://github.com/Robinlovelace/Creating-maps-in-R" target="_blank">Introduction to visualising spatial data in R</a>. Robin Lovelace</p></li>
+<li><p><a href="http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html" target="_blank">Making Maps with ggplot and ggmap</a>. Eric Anderson</p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html" target="_blank">tmap</a></p></li>
+<li><p><a href="https://rstudio.github.io/leaflet" target="_blank">Leaflet for R</a>. RStudio</p></li>
+</ul>
+</div>
+<div id="rstudio" class="section level2">
+<h2>RStudio</h2>
+<ul>
+<li><p>
+<a href="https://www.rstudio.com/resources/webinars/" target="_blank">Webinars</a>. RStudio
+</p></li>
+</ul>
+</div>
+<div id="r-and-arcgis" class="section level2">
+<h2>R and ArcGIS</h2>
+<ul>
+<li><p><a href="https://www.youtube.com/watch?v=9lpPuCmVmxc" target="_blank">R-ArcGIS Bridge Tutorial</a>. ESRI</p></li>
+<li><p><a href="https://r-arcgis.github.io/assets/arcgisbinding-vignette.html" target="_blank">arcgisbinding R Package</a> ESRI</p></li>
+</ul>
+</div>
+<div id="specific-datasets" class="section level2">
+<h2>Specific Datasets</h2>
+<ul>
+<li><p><a href="http://zevross.com/blog/2015/10/14/manipulating-and-mapping-us-census-data-in-r-using-the-acs-tigris-and-leaflet-packages-3/" target="_blank">Mapping US Census Data</a>. Zevross</p></li>
+<li><p><a href="http://portal.gis.ca.gov/geoportal/catalog/search/browse/browse.page" target="_blank">State of CA Geoportal</a></p></li>
+</ul>
+</div>
+<div id="ecology-and-natural-resources" class="section level2">
+<h2>Ecology and Natural Resources</h2>
+<ul>
+<li><p><a href="https://sites.google.com/site/r4naturalresources/" target="_blank" rel="noopener">R for Natural Resources</a></p></li>
+<li><p>Landscape Metrics: <a href="https://doi.org/10.1111/ecog.04617" target="_blank" rel="noopener">Paper</a>, IALE-2020 Workshop <a href="https://r-spatialecology.github.io/ialena-2020/" target="_blank" rel="noopener">Slides</a> &amp; <a href="https://nowosad.github.io/post/intro-to-landscape-ecology/" target="_blank" rel="noopener">Recordings</a>, Hesselbarth and Nowosad</p></li>
+</ul>
+</div>
+<div id="cheatsheets" class="section level2">
+<h2>Cheatsheets</h2>
+<p style="margin-left:28px;">
+🖿 <em>= copy in our workshop ‘Extras’ folder</em>
+</p>
+<ul>
+<li><p><a href="https://rstudio.com/wp-content/uploads/2016/05/base-r.pdf" target="_blank">Base R</a> <a href="extras/base-r_cheatsheet.pdf" target="_blank">🖿</a></p></li>
+<li><p><a href="extras/general-r_cheatsheet_animove.pdf">General R</a> <a href="extras/general-r_cheatsheet_animove.pdf">🖿</a></p></li>
+<li><p><a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf" target="_blank">Data Transformation with dplyr</a> <a href="extras/data-transformation.pdf" target="_blank">🖿</a>, RStudio</p></li>
+<li><p><a href="https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/colorPaletteCheatsheet.pdf">R color cheatsheet</a> <a href="extras/color-palette_cheatsheet.pdf">🖿</a>, Melanie Frazier</p></li>
+<li><p><a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">Named Colors in R</a> <a href="extras/rcolors-named.pdf">🖿</a>, Tian Zheng</p></li>
+<li><p><a href="https://sites.ualberta.ca/~ahamann/teaching/renr690/R_Cheat_Data.pdf">Data Management Ultimate Cheatsheet</a> <a href="extras/data-management_cheatsheet.pdf">🖿</a>, Andreas Hamann</p></li>
+<li><p><a href="https://github.com/rstudio/cheatsheets/raw/master/sf.pdf" target="_blank">sf package</a> <a href="extras/sf_cheatsheet.pdf" target="_blank">🖿</a>, Ryan Garnett</p></li>
+<li><p><a href="https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/OverviewCoordinateReferenceSystems.pdf">Overview of Coordinate Reference Systems in R</a> <a href="extras/coordinate-ref-systems_overview.pdf">🖿</a>, Melanie Frazier</p></li>
+<li><p><a href="https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf">ggmap Quick Start</a> <a href="extras/ggmap_cheatsheet.pdf">🖿</a>, Melanie Frazier</p></li>
+<li><p><a href="http://www.seascapemodels.org/data/ArcGIS_to_R_Spatial_CheatSheet.pdf" target="_blank">ArcGIS equivalent R functions</a> <a href="extras/arcgis_to_r_spatial_cheatsheet.pdf">🖿</a>, SeaScapeModels.org</p></li>
+<li><p><a href="https://github.com/wegmann/RSdocs/raw/master/RSecology_cheatsheet/RS_ecology_refcard.pdf">Spatial R Remote Sensing and GIS functions</a> <a href="extras/RS_ecology_refcard.pdf">🖿</a>, <a href="http://book.ecosens.org/">Remote Sensing and GIS for Ecologists</a></p></li>
+<li><p><a href="https://github.com/wegmann/RSdocs/raw/master/Cheatsheet/AniMove_refcard.pdf">Movement Analysis</a> <a href="extras/animove_refcard.pdf">🖿</a>, <a href="http://animove.org/">AniMove</a></p></li>
+<li><p><a href="https://www.rstudio.com/resources/cheatsheets/">RStudio Cheatsheets</a>, RStudio</p></li>
+<li><p><a href="http://www.nickeubank.com/wp-content/uploads/2015/10/gis_in_r_vector_cheatsheet.pdf">GIS in R Vector Functions</a>, Nick Eubank</p></li>
+</ul>
+<p><br />
+<br />
+</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+</body>
+</html>
