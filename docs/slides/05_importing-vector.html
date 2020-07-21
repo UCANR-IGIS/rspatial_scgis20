@@ -163,17 +163,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Importing and Basic Plotting of Vector Data <br/><img src='images/points-lines-polygons256_200x218.png'/>
   </p>
 </div>
-<div id="geospatial-data" class="slide section level1">
-<h1>Geospatial Data</h1>
+<div id="r.-vs.-desktop-gis" class="slide section level1">
+<h1>R. vs. Desktop GIS</h1>
 <script language="javascript" type="text/javascript">w3c_slidy.mouse_click_enabled = false;</script>
 <script>
   addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
 </script>
-<h2 id="physical-world-gis-world">Physical World → GIS World</h2>
-<p><img src="./images/geospatial_layers_490x456.png" /></p>
-</div>
-<div id="r.-vs.-desktop-gis" class="slide section level1">
-<h1>R. vs. Desktop GIS</h1>
 <div class="colleft">
 <img src="images/rlogo_120x120.png">
 <ul class="incremental">
@@ -220,6 +215,11 @@ your data live in a geodatabase (and you don’t have ArcGIS Desktop)
 <div class="colclear">
 
 </div>
+</div>
+<div id="geospatial-data" class="slide section level1">
+<h1>Geospatial Data</h1>
+<h2 id="physical-world-gis-world">Physical World → GIS World</h2>
+<p><img src="./images/geospatial_layers_490x456.png" /></p>
 </div>
 <div id="projections" class="slide section level1">
 <h1>Projections</h1>
@@ -269,17 +269,21 @@ Your browser does not support iframes.
 <h1>Importing Vector Data</h1>
 <h2 id="sources-and-layers">Sources and Layers</h2>
 <p>To import spatial data, you have to specify the <strong>source</strong> and <strong>layer</strong>.</p>
-<p>Sources can be a:</p>
+<p><br />
+</p>
+<p>The <span style="color:green; font-weight:bold;">Source</span> can be a:</p>
 <div class="indented1">
-<p><strong>folder</strong>: <code>*\"./gis_data\"*</code></p>
-<p><strong>geodatabase</strong> (which is really a folder): <code>*\"./gis_data/yose_roads.gdb\"*</code></p>
-<p><strong>file</strong>: <code>*\"trail_heads.kml\"*</code></p>
-<p><strong>database connection</strong>: <code>*\"PG:dbname=postgis\"*</code></p>
+<p><strong>folder</strong>: <em><code>"./gis_data"</code></em></p>
+<p><strong>geodatabase</strong> (which is really a folder): <em><code>"./gis_data/yose_roads.gdb"</code></em></p>
+<p><strong>file</strong>: <em><code>"trail_heads.kml"</code></em></p>
+<p><strong>database connection</strong>: <em><code>"PG:dbname=postgis"</code></em></p>
 </div>
 <div class="infobox">
 <p>In functions, the argument for the source is often named <strong><code>dsn</code></strong> (data source name)</p>
 </div>
-<p>Layers can be a:</p>
+<p><br />
+</p>
+<p>The <span style="color:green; font-weight:bold;">Layer</span> can be a:</p>
 <div class="indented1">
 <p><strong>Shapefile name</strong> (minus the shp extension)</p>
 <p><strong>layer</strong> name in a database</p>

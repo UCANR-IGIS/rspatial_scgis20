@@ -11,7 +11,7 @@
 
 
 
-<title>Spatial Data Analysis with R. Society for Conservation GIS, July 2020 Setup</title>
+<title>Spatial Data Analysis with R. Society for Conservation GIS, July 2020 Computer Setup</title>
 
 <script src="slides/lib/header-attrs-2.3/header-attrs.js"></script>
 <script src="slides/lib/jquery-1.11.3/jquery.min.js"></script>
@@ -234,7 +234,7 @@ summary {
 
 
 
-<h1 class="title toc-ignore"><span class="course-subtitle">Spatial Data Analysis with R. <span style="font-size:75%; color:dimgray;">Society for Conservation GIS, July 2020</span></span><br/><span class="mod-title">Setup</span></h1>
+<h1 class="title toc-ignore"><span class="course-subtitle">Spatial Data Analysis with R. <span style="font-size:75%; color:dimgray;">Society for Conservation GIS, July 2020</span></span><br/><span class="mod-title">Computer Setup</span></h1>
 
 </div>
 
@@ -291,17 +291,13 @@ pre {
 <p>Alternately, you can install R and RStudio Desktop on your own computer. R is cross-platform, so Windows, Mac, or Linux should all work. R and RStudio Desktop are not large programs, but you should have 2Gb or more of free HD space (if your laptop is not sufficient consider using the RStudio Cloud option instead). Please install R, RStudio, and a number of packages as described below.</p>
 <div class="indented2">
 <p>1. <strong>Download and Install R</strong> (64-bit):</p>
-<div class="indented1">
 <p><a href="https://cran.r-project.org/" target="_blank">https://cran.r-project.org/</a></p>
 <p><em>Note</em>: If you already have R installed, please make sure you have version <strong>4.0</strong> or later (actually 3.6.x should work also if you don’t want to update, but be prepared for potential error messages). If needed, you can update R by downloading the latest version from CRAN and (re)installing it.</p>
-</div>
 <p><br />
 </p>
 <p>2. <strong>Download and Install RStudio Desktop</strong></p>
 <p>Download and install RStudio Desktop for your operating system. The free version is fine.</p>
-<div class="indented1">
 <p><a href="https://www.rstudio.com/products/rstudio/download/" target="_blank">https://www.rstudio.com/products/rstudio/download/</a></p>
-</div>
 <p><br />
 </p>
 <p>3. <strong>Install Packages</strong></p>
@@ -310,7 +306,8 @@ pre {
 pkgs_req &lt;- c(&quot;sp&quot;, &quot;sf&quot;, &quot;tmap&quot;, &quot;tmaptools&quot;, &quot;leaflet&quot;, &quot;ggmap&quot;, &quot;maptools&quot;, 
               &quot;RColorBrewer&quot;, &quot;raster&quot;, &quot;maps&quot;, &quot;tidyverse&quot;,  &quot;jsonlite&quot;, 
               &quot;rasterVis&quot;, &quot;GISTools&quot;, &quot;nngeo&quot;, &quot;lwgeom&quot;, &quot;devtools&quot;, 
-              &quot;conflicted&quot;, &quot;tigris&quot;, &quot;tidycensus&quot;, &quot;stars&quot;)
+              &quot;conflicted&quot;, &quot;tigris&quot;, &quot;tidycensus&quot;, &quot;stars&quot;,
+              &quot;googlesheets4&quot;, &quot;httr&quot;, &quot;rjson&quot;)
 
 pkgs_missing &lt;- pkgs_req[!(pkgs_req %in% installed.packages()[,&quot;Package&quot;])]
 

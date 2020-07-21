@@ -425,7 +425,8 @@ demo(webmap)
 </div>
 <p><br />
 </p>
-<h2 id="resolving-name-conflicts-with-the-conflicted-package">Resolving Name Conflicts with the <code>conflicted</code> Package</h2>
+<div class="tip">
+<p><strong>Resolving Name Conflicts with the <code>conflicted</code> Package</strong></p>
 <p>When you call a function that exists in multiple packages, R uses whichever package was loaded first.</p>
 <p>The <code>conflicted</code> package helps you avoid problems with duplicate function names, by specifying which one to prioritize <em>no matter what order</em> they were loaded.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">library</span>(conflicted)</span>
@@ -437,6 +438,7 @@ demo(webmap)
 <span id="cb14-7"><a href="#cb14-7"></a></span>
 <span id="cb14-8"><a href="#cb14-8"></a><span class="co"># From here on out, anytime we call select() or filter(), R will</span></span>
 <span id="cb14-9"><a href="#cb14-9"></a><span class="co"># always use the dplyr version.</span></span></code></pre></div>
+</div>
 </div>
 <div id="summary" class="slide section level1">
 <h1>Summary</h1>
