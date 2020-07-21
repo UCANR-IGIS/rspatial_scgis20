@@ -2,7 +2,8 @@
 pkgs_req <- c("sp", "sf", "tmap", "tmaptools", "leaflet", "ggmap", "maptools", 
               "RColorBrewer", "raster", "maps", "tidyverse",  "jsonlite", 
               "rasterVis", "GISTools", "nngeo", "lwgeom", "devtools", 
-              "conflicted", "tigris", "tidycensus", "stars")
+              "conflicted", "tigris", "tidycensus", "stars", 
+              "googlesheets4", "httr", "rjson")
 
 pkgs_req <- c("sp", "sf", "lidR")
 
