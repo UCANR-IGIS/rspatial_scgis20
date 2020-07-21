@@ -1,6 +1,6 @@
 # This script provides an example of accessing the ESRI world geocoding service.
 
-# This code borrows HEAVILY (almost completely) and with thanks from
+# This code borrows with minor edits from
 # Claudia Engel: https://github.com/cengel/ArcGIS_geocoding
 # See her repo for more details and other examples
 
