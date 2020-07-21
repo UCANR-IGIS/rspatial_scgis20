@@ -286,27 +286,29 @@ no
 <br />
 
 <div class="tryit">
+<p><strong>Example: Compute Stable Age Distribution with a Leslie Matrix</strong></p>
+<p>Here we compute the growth rate and stable age population using a <a href="https://en.wikipedia.org/wiki/Leslie_matrix" target="_blank" rel="noopener">Leslie Matrix</a> model. A Leslie Matrix model is similar to a life table for a population structured by age or class. The first row stores the fecundity rate (number of offspring per female of different age classes) while the subsequent rows store the fraction of individuals that survive to the next age class.</p>
 <p>Create a matrix from scratch use the <tt>matrix()</tt> function.</p>
 <div class="indented1 indented1-r">
-<div class="sourceCode" id="cb2"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">## Create a 3x3 matrix</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data=</span><span class="kw">rnorm</span>(<span class="dv">9</span>), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a>mat </span>
-<span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co">## Compute the Eigenvalues</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="kw">eigen</span>(mat)</span></code></pre></div>
-<pre><code>##            [,1]         [,2]       [,3]
-## [1,]  1.0983256 -0.020747730 -0.7954938
-## [2,] -1.1347369 -0.005431298 -1.5659096
-## [3,] -0.7525096 -2.375889471  0.7311026</code></pre>
-<pre><code>## eigen() decomposition
-## $values
-## [1]  2.080970 -1.869547  1.612574
-## 
-## $vectors
-##            [,1]      [,2]        [,3]
-## [1,] -0.6081353 0.1902448  0.83879352
-## [2,] -0.2377096 0.6967729 -0.06512476
-## [3,]  0.7574072 0.6916028 -0.54054065</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">## Create a Leslie matrix for a Burpie population with three age classes</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>matrix_values &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="fl">0.6</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">0</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>b_lesmat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data=</span>matrix_values, <span class="dt">ncol=</span><span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>b_lesmat</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">## Compute the Eigenvalues and Eigenvectors</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>b_eig &lt;-<span class="st"> </span><span class="kw">eigen</span>(b_lesmat)</span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">## The dominant Eigenvalue is the population growth rate</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>b_eig<span class="op">$</span>values[<span class="dv">1</span>]</span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co">## The dominant Eigenvector represents the stable age distribution</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>b_eig<span class="op">$</span>vectors[,<span class="dv">1</span>] <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(b_eig<span class="op">$</span>vectors[,<span class="dv">1</span>])</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]  0.0  2.0    1
+## [2,]  0.6  0.0    0
+## [3,]  0.0  0.5    0
+## [1] 1.203829
+## [1] 0.5863659 0.2922504 0.1213837</code></pre>
 </div>
 </div>
 </div>
@@ -314,11 +316,11 @@ no
 <h1>Importing a CSV File</h1>
 <p>An easy way to import a csv file is the ‘Import Dataset’ button in RStudio. This tool generates all the arguments for the <tt><strong>read.csv()</strong></tt> function.</p>
 <p>Let’s import a csv file containing the stopping distance of cars.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>csv_fn &lt;-<span class="st"> &quot;./data/stopping_dist_cars.csv&quot;</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">file.exists</span>(csv_fn)</span>
-<span id="cb5-3"><a href="#cb5-3"></a>stop_dist_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(csv_fn)</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="kw">glimpse</span>(stop_dist_df)</span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="kw">plot</span>(<span class="dt">x=</span>stop_dist_df<span class="op">$</span>speed, <span class="dt">y=</span>stop_dist_df<span class="op">$</span>breaking_dist)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>csv_fn &lt;-<span class="st"> &quot;./data/stopping_dist_cars.csv&quot;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">file.exists</span>(csv_fn)</span>
+<span id="cb4-3"><a href="#cb4-3"></a>stop_dist_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(csv_fn)</span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="kw">glimpse</span>(stop_dist_df)</span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="kw">plot</span>(<span class="dt">x=</span>stop_dist_df<span class="op">$</span>speed, <span class="dt">y=</span>stop_dist_df<span class="op">$</span>breaking_dist)</span></code></pre></div>
 <pre><code>## [1] TRUE
 ## Rows: 16
 ## Columns: 5
@@ -327,12 +329,12 @@ no
 ## $ reaction_dist &lt;int&gt; 17, 21, 25, 29, 33, 38, 42, 46, 17, 21, 25, 29, 33, 38, 42, 46
 ## $ breaking_dist &lt;int&gt; 9, 14, 20, 27, 36, 45, 56, 67, 13, 20, 29, 40, 52, 65, 80, 97
 ## $ total_dist    &lt;int&gt; 26, 35, 45, 56, 69, 83, 98, 113, 30, 41, 54, 69, 85, 103, 122, 143</code></pre>
-<p><img src="06_2d-data_files/figure-slidy/import_csv_klippy-1.png" width="768" /></p>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_2d-data_files/figure-slidy/import_csv_klippy-1.png" width="768" /></p>
 <div class="infobox">
 <p><img src="images/readr_logo_121x140.png" style="width:121px; height:140px; float:right;"> <tt><a href="https://readr.tidyverse.org" target="_blank"><strong>readr</strong></a></tt> is a tidyverse package with more options for importing tabular data from text files.</p>
 <p><a href="https://readxl.tidyverse.org/" target="_blank"><strong>readxl</strong></a> is the go-to package for importing data from Excel.</p>
-<p>If your tabular data live in a Google Sheet, you can use <a href="https://cran.r-project.org/package=googlesheets" target="_blank"><strong>googlesheets</strong></a>.</p>
-<p>To <em>reshape</em> data (e.g., turn columns into rows, create pivot tables, cross-tab queries, etc), use <tt>gather()</tt> and <tt>spread()</tt> from <a href="https://tidyr.tidyverse.org" target="_blank"><tt><strong>tidyr</strong></tt></a> (see <a href="https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf" target="_blank"><strong>Data Import Cheatsheet</strong></a>)</p>
+<p>If your tabular data live in a Google Sheet, you can use <a href="https://cran.r-project.org/package=googlesheets" target="_blank"><strong>googlesheets4</strong></a>.</p>
+<p>To <em>reshape</em> data (e.g., turn columns into rows, create pivot tables, cross-tab queries, etc), use <tt>pivot_longer()</tt> and <tt>pivot_wider()</tt> from <a href="https://tidyr.tidyverse.org" target="_blank"><tt><strong>tidyr</strong></tt></a> (see <a href="https://rawgit.com/rstudio/cheatsheets/master/data-import.pdf" target="_blank"><strong>Data Import Cheatsheet</strong></a>)</p>
 </div>
 <!--- info-box --->
 </div>
@@ -352,8 +354,8 @@ faithful</tt></p>
 <p>You can generally start using a bundled dataset by just typing its name in an expression. R will load it on-the-fly.</p>
 <p>To explicitly load a dataset into memory, execute <tt>data()</tt></tt></p>
 <div class="indented1 indented1-r">
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## Load the quakes data set into memory</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">data</span>(quakes)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">## Load the quakes data set into memory</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw">data</span>(quakes)</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -373,29 +375,29 @@ faithful</tt></p>
 </div>
 <p>Explore the <tt><strong>iris</strong></tt> built-in dataset.</p>
 <div class="indented1 indented1-r">
-<div class="sourceCode" id="cb8"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## View the column names</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="kw">names</span>(iris)</span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co">## View the first few rows</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="kw">head</span>(iris)</span>
-<span id="cb8-6"><a href="#cb8-6"></a></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="co">## Read about the data</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="kw">help</span>(iris)</span>
-<span id="cb8-9"><a href="#cb8-9"></a></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="co">## Get the number of rows</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="kw">nrow</span>(iris)</span>
-<span id="cb8-12"><a href="#cb8-12"></a></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="co">## Get the number of columns</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="kw">ncol</span>(iris)</span>
-<span id="cb8-15"><a href="#cb8-15"></a></span>
-<span id="cb8-16"><a href="#cb8-16"></a><span class="co">## Basic stats for each column</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a><span class="kw">summary</span>(iris)</span>
-<span id="cb8-18"><a href="#cb8-18"></a></span>
-<span id="cb8-19"><a href="#cb8-19"></a><span class="co">## View the data in a tab</span></span>
-<span id="cb8-20"><a href="#cb8-20"></a><span class="kw">View</span>(iris)</span>
-<span id="cb8-21"><a href="#cb8-21"></a></span>
-<span id="cb8-22"><a href="#cb8-22"></a><span class="co">## Make a scatterplot</span></span>
-<span id="cb8-23"><a href="#cb8-23"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Petal.Length)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## View the column names</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">names</span>(iris)</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">## View the first few rows</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="kw">head</span>(iris)</span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">## Read about the data</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="kw">help</span>(iris)</span>
+<span id="cb7-9"><a href="#cb7-9"></a></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">## Get the number of rows</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="kw">nrow</span>(iris)</span>
+<span id="cb7-12"><a href="#cb7-12"></a></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">## Get the number of columns</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="kw">ncol</span>(iris)</span>
+<span id="cb7-15"><a href="#cb7-15"></a></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="co">## Basic stats for each column</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="kw">summary</span>(iris)</span>
+<span id="cb7-18"><a href="#cb7-18"></a></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="co">## View the data in a tab</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="kw">View</span>(iris)</span>
+<span id="cb7-21"><a href="#cb7-21"></a></span>
+<span id="cb7-22"><a href="#cb7-22"></a><span class="co">## Make a scatterplot</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a><span class="kw">plot</span>(iris<span class="op">$</span>Sepal.Length, iris<span class="op">$</span>Petal.Length)</span></code></pre></div>
 </div>
 <div class="tryit">
 <p>Explore the ‘quakes’ data frame:</p>
@@ -405,9 +407,9 @@ faithful</tt></p>
 </div>
 <!--- soln_tbqaic --->
 <div id="wbtmai" class="hint">
-<div class="sourceCode" id="cb9"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">## Plot the quakes data frame</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="kw">plot</span>(<span class="dt">x=</span>quakes<span class="op">$</span>long, <span class="dt">y=</span>quakes<span class="op">$</span>lat, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">cex=</span><span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="06_2d-data_files/figure-slidy/plot_quakes-1.png" width="768" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## Plot the quakes data frame</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="kw">plot</span>(<span class="dt">x=</span>quakes<span class="op">$</span>long, <span class="dt">y=</span>quakes<span class="op">$</span>lat, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">cex=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_2d-data_files/figure-slidy/plot_quakes-1.png" width="768" /></p>
 </div>
 <!--- soln_wbtmai --->
 <p>2. What part of the world are these data from? [<span id="soln_vpxobo" class="showhidesoln" onclick="showHide(&#39;vpxobo&#39;);return false;">Hint</span>] [<span id="soln_tdmfll" class="showhidesoln" onclick="showHide(&#39;tdmfll&#39;);return false;">Answer</span>]</p>
@@ -446,26 +448,26 @@ faithful</tt></p>
 <p>Two approaches: <strong>Base R</strong> functions &amp; packages from the <strong>tidyverse</strong>.</p>
 <p>What’s the difference? Much of it is readabilty. See for example the following chunks of <strong>equivalent</strong> code:</p>
 <p><strong>Base R</strong></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>setosa_recs &lt;-<span class="st"> </span>iris[iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;Sepal.Length&quot;</span>, drop=<span class="ot">FALSE</span>]</span>
-<span id="cb10-2"><a href="#cb10-2"></a>setosa_sepal_ord &lt;-<span class="st"> </span><span class="kw">order</span>(setosa_recs<span class="op">$</span>Sepal.Length)</span>
-<span id="cb10-3"><a href="#cb10-3"></a>seplen_csum &lt;-<span class="st"> </span><span class="kw">cumsum</span>(setosa_recs[setosa_sepal_ord, <span class="st">&quot;Sepal.Length&quot;</span>])</span>
-<span id="cb10-4"><a href="#cb10-4"></a>setosa_runsum &lt;-<span class="st"> </span><span class="kw">cbind</span>(setosa_recs[setosa_sepal_ord,], <span class="dt">running_sum =</span> seplen_csum)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>setosa_recs &lt;-<span class="st"> </span>iris[iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;Sepal.Length&quot;</span>, drop=<span class="ot">FALSE</span>]</span>
+<span id="cb9-2"><a href="#cb9-2"></a>setosa_sepal_ord &lt;-<span class="st"> </span><span class="kw">order</span>(setosa_recs<span class="op">$</span>Sepal.Length)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>seplen_csum &lt;-<span class="st"> </span><span class="kw">cumsum</span>(setosa_recs[setosa_sepal_ord, <span class="st">&quot;Sepal.Length&quot;</span>])</span>
+<span id="cb9-4"><a href="#cb9-4"></a>setosa_runsum &lt;-<span class="st"> </span><span class="kw">cbind</span>(setosa_recs[setosa_sepal_ord,], <span class="dt">running_sum =</span> seplen_csum)</span></code></pre></div>
 <p><tt><strong>tidyverse</strong></tt></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb11-2"><a href="#cb11-2"></a>setosa_runsum &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="st">  </span><span class="kw">filter</span>(Species <span class="op">==</span><span class="st"> &quot;setosa&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="st">  </span><span class="kw">select</span>(Sepal.Length) <span class="op">%&gt;%</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="st">  </span><span class="kw">arrange</span>(Sepal.Length) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">running_sum =</span> <span class="kw">cumsum</span>(Sepal.Length))</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>setosa_runsum &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="st">  </span><span class="kw">filter</span>(Species <span class="op">==</span><span class="st"> &quot;setosa&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="st">  </span><span class="kw">select</span>(Sepal.Length) <span class="op">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="st">  </span><span class="kw">arrange</span>(Sepal.Length) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">running_sum =</span> <span class="kw">cumsum</span>(Sepal.Length))</span></code></pre></div>
 </div>
 <div id="working-with-columns-base-r" class="slide section level1">
 <h1>Working with Columns {base R}</h1>
 <p>You can grab an individual column by name with the <tt>$</tt> selector.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">summary</span>(mtcars<span class="op">$</span>wt)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">summary</span>(mtcars<span class="op">$</span>wt)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   1.513   2.581   3.325   3.217   3.610   5.424</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">plot</span>(<span class="dt">x=</span>mtcars<span class="op">$</span>wt, <span class="dt">y=</span>mtcars<span class="op">$</span>mpg, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">main=</span><span class="st">&quot;Gas Mileage vs Weight&quot;</span>)</span></code></pre></div>
-<p><img src="06_2d-data_files/figure-slidy/plot_wt_mpg-1.png" width="768" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">plot</span>(<span class="dt">x=</span>mtcars<span class="op">$</span>wt, <span class="dt">y=</span>mtcars<span class="op">$</span>mpg, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">main=</span><span class="st">&quot;Gas Mileage vs Weight&quot;</span>)</span></code></pre></div>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_2d-data_files/figure-slidy/plot_wt_mpg-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
 <div id="working-with-rows-base-r" class="slide section level1">
 <h1>Working with Rows {base R}</h1>
@@ -477,19 +479,19 @@ faithful</tt></p>
 <p>Where <em>rows</em> is a <strong>vector of integers</strong> of the row numbers you want, or a vector of <strong>logical values</strong> (TRUE / FALSE) for the rows. <em>columns</em> can be a vector of <strong>integers</strong>, <strong>logicals</strong>, or <strong>column names</strong>.</p>
 <div class="tryit">
 <div class="indented1 indented1-r">
-<div class="sourceCode" id="cb15"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">## Get the first three rows and all columns</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>iris[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ]</span>
-<span id="cb15-3"><a href="#cb15-3"></a></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="co">## Get the odd rows from 1 to 20 and just the Sepal measurements</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a>i &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>, <span class="dt">to=</span><span class="dv">20</span>, <span class="dt">by=</span><span class="dv">2</span>)</span>
-<span id="cb15-6"><a href="#cb15-6"></a>i</span>
-<span id="cb15-7"><a href="#cb15-7"></a>iris[i, <span class="kw">c</span>(<span class="st">&quot;Sepal.Width&quot;</span>, <span class="st">&quot;Sepal.Length&quot;</span>)]</span>
-<span id="cb15-8"><a href="#cb15-8"></a></span>
-<span id="cb15-9"><a href="#cb15-9"></a><span class="co">## Get just the rows for Setosa</span></span>
-<span id="cb15-10"><a href="#cb15-10"></a>iris[ iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span> , ]</span>
-<span id="cb15-11"><a href="#cb15-11"></a></span>
-<span id="cb15-12"><a href="#cb15-12"></a><span class="co">## Compute the average petal length for setosa</span></span>
-<span id="cb15-13"><a href="#cb15-13"></a><span class="kw">mean</span>(iris[ iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span> , <span class="st">&quot;Petal.Length&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">## Get the first three rows and all columns</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>iris[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ]</span>
+<span id="cb14-3"><a href="#cb14-3"></a></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="co">## Get the odd rows from 1 to 20 and just the Sepal measurements</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>i &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>, <span class="dt">to=</span><span class="dv">20</span>, <span class="dt">by=</span><span class="dv">2</span>)</span>
+<span id="cb14-6"><a href="#cb14-6"></a>i</span>
+<span id="cb14-7"><a href="#cb14-7"></a>iris[i, <span class="kw">c</span>(<span class="st">&quot;Sepal.Width&quot;</span>, <span class="st">&quot;Sepal.Length&quot;</span>)]</span>
+<span id="cb14-8"><a href="#cb14-8"></a></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="co">## Get just the rows for Setosa</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a>iris[ iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span> , ]</span>
+<span id="cb14-11"><a href="#cb14-11"></a></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="co">## Compute the average petal length for setosa</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a><span class="kw">mean</span>(iris[ iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span> , <span class="st">&quot;Petal.Length&quot;</span>])</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -611,13 +613,13 @@ left_join(), right_join(), inner_join()
 <p>or</p>
 <p>Set your preferences using the conflicted package:</p>
 <div class="indented1 indented1-r">
-<div class="sourceCode" id="cb16"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">## Load the conflicted package</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="kw">library</span>(conflicted)</span>
-<span id="cb16-3"><a href="#cb16-3"></a></span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="co"># Set conflict preferences</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb16-6"><a href="#cb16-6"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;count&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb16-7"><a href="#cb16-7"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;select&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">## Load the conflicted package</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="kw">library</span>(conflicted)</span>
+<span id="cb15-3"><a href="#cb15-3"></a></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="co"># Set conflict preferences</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;count&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;select&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 </div>
 </div>
 <!--- tip --->
@@ -653,13 +655,13 @@ iris %>% filter(Sepal.Length > 7) %>% mutate(width_length = Sepal.Width * Sepal.
 ## 12          7.7         3.0          6.1         2.3 virginica        23.10</code></pre>
 <div class="tryit">
 <div class="indented1 indented1-r">
-<div class="sourceCode" id="cb18"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb18-2"><a href="#cb18-2"></a></span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="co"># Select rows where Sepal.Length &gt; 7</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span>) </span>
-<span id="cb18-5"><a href="#cb18-5"></a></span>
-<span id="cb18-6"><a href="#cb18-6"></a><span class="co"># Select rows where Sepal.Length &gt; 7 AND Species is virginica</span></span>
-<span id="cb18-7"><a href="#cb18-7"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span>, Species<span class="op">==</span><span class="st">&quot;virginica&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="co"># Select rows where Sepal.Length &gt; 7</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span>) </span>
+<span id="cb17-5"><a href="#cb17-5"></a></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="co"># Select rows where Sepal.Length &gt; 7 AND Species is virginica</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span>, Species<span class="op">==</span><span class="st">&quot;virginica&quot;</span>)</span></code></pre></div>
 <pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
 ## 1           7.1         3.0          5.9         2.1 virginica
 ## 2           7.6         3.0          6.6         2.1 virginica
@@ -693,7 +695,7 @@ iris %>% filter(Sepal.Length > 7) %>% mutate(width_length = Sepal.Width * Sepal.
 <p>You can also construct a compound filter expression using ‘&amp;’ (and) and ‘|’ (or) operators.</p>
 <p>Example:</p>
 <div class="indented1 indented1-r">
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="fl">5.6</span> <span class="op">&amp;</span><span class="st"> </span>(Species<span class="op">==</span><span class="st">&quot;virginica&quot;</span> <span class="op">|</span><span class="st"> </span>Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="fl">5.6</span> <span class="op">&amp;</span><span class="st"> </span>(Species<span class="op">==</span><span class="st">&quot;virginica&quot;</span> <span class="op">|</span><span class="st"> </span>Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>))</span></code></pre></div>
 </div>
 <p>This expression returns rows where Sepal.Length &gt; 5.6 <strong>AND</strong> the Species is <em>virginica</em> <strong>OR</strong> <em>setosa</em>.</p>
 </div>
@@ -706,15 +708,15 @@ iris %>% filter(Sepal.Length > 7) %>% mutate(width_length = Sepal.Width * Sepal.
 <div id="add-more-functions-to-the-expression" class="slide section level1">
 <h1>Add more functions to the expression</h1>
 <p>Let’s add some more functions to our dplyr expression to i) select only <strong>specific columns</strong>, and then ii) <strong>order the rows</strong>.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Select rows where Sepal.Length &gt; 7 AND Species is virginica, and just the columns</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="co"># for Species, Sepal.Lenth, and Sepal.Width</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span>, Species<span class="op">==</span><span class="st">&quot;virginica&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="st">  </span><span class="kw">select</span>(Species, Sepal.Length, Sepal.Width)</span>
-<span id="cb21-5"><a href="#cb21-5"></a></span>
-<span id="cb21-6"><a href="#cb21-6"></a><span class="co"># Finally, sort rows by Sepal.Length followed by Sepal.Width</span></span>
-<span id="cb21-7"><a href="#cb21-7"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span>, Species<span class="op">==</span><span class="st">&quot;virginica&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb21-8"><a href="#cb21-8"></a><span class="st">  </span><span class="kw">select</span>(Species, Sepal.Length, Sepal.Width) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb21-9"><a href="#cb21-9"></a><span class="st">  </span><span class="kw">arrange</span>(Sepal.Length, Sepal.Width)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Select rows where Sepal.Length &gt; 7 AND Species is virginica, and just the columns</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="co"># for Species, Sepal.Lenth, and Sepal.Width</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span>, Species<span class="op">==</span><span class="st">&quot;virginica&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="st">  </span><span class="kw">select</span>(Species, Sepal.Length, Sepal.Width)</span>
+<span id="cb20-5"><a href="#cb20-5"></a></span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="co"># Finally, sort rows by Sepal.Length followed by Sepal.Width</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span>, Species<span class="op">==</span><span class="st">&quot;virginica&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb20-8"><a href="#cb20-8"></a><span class="st">  </span><span class="kw">select</span>(Species, Sepal.Length, Sepal.Width) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb20-9"><a href="#cb20-9"></a><span class="st">  </span><span class="kw">arrange</span>(Sepal.Length, Sepal.Width)</span></code></pre></div>
 <pre><code>##      Species Sepal.Length Sepal.Width
 ## 1  virginica          7.1         3.0
 ## 2  virginica          7.6         3.0
@@ -747,9 +749,9 @@ iris %>% filter(Sepal.Length > 7) %>% mutate(width_length = Sepal.Width * Sepal.
 </ol>
 <p>[<span id="soln_oynbpd" class="showhidesoln" onclick="showHide(&#39;oynbpd&#39;);return false;">Solution</span>]</p>
 <div id="oynbpd" class="hint">
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species <span class="op">==</span><span class="st"> &quot;versicolor&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="st">  </span><span class="kw">select</span>(Species, Petal.Width) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="st">  </span><span class="kw">arrange</span>(Petal.Width) </span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species <span class="op">==</span><span class="st"> &quot;versicolor&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="st">  </span><span class="kw">select</span>(Species, Petal.Width) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="st">  </span><span class="kw">arrange</span>(Petal.Width) </span></code></pre></div>
 <pre><code>##       Species Petal.Width
 ## 1  versicolor         1.0
 ## 2  versicolor         1.0
@@ -811,10 +813,10 @@ iris %>% filter(Sepal.Length > 7) %>% mutate(width_length = Sepal.Width * Sepal.
 </div>
 <!--- soln_hjtzkl --->
 <div id="bboynbpd" class="hint">
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species <span class="op">==</span><span class="st"> &quot;versicolor&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="st">  </span><span class="kw">select</span>(Species, Petal.Width) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="st">  </span><span class="kw">arrange</span>(Petal.Width) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb25-4"><a href="#cb25-4"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species <span class="op">==</span><span class="st"> &quot;versicolor&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="st">  </span><span class="kw">select</span>(Species, Petal.Width) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="st">  </span><span class="kw">arrange</span>(Petal.Width) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## Selecting by Petal.Width</code></pre>
 <pre><code>##      Species Petal.Width
 ## 1 versicolor         1.6
@@ -836,9 +838,9 @@ iris %>% filter(Sepal.Length > 7) %>% mutate(width_length = Sepal.Width * Sepal.
 <h1>Group and Summarize</h1>
 <p>A common task in analysis is to <strong>group rows</strong> according to the values in a column, and then for each group of rows <strong>compute a statistic</strong> like mean, max, or count.</p>
 <p>To do this in dplyr, use <tt><strong>group_by()</strong></tt> followed by <tt><strong>summarise()</strong></tt> or <tt><strong>count()</strong></tt>.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># For each Species, compute the mean petal length and width</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb28-3"><a href="#cb28-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avg_petal_length =</span> <span class="kw">mean</span>(Petal.Length), <span class="dt">avg_petal_width =</span> <span class="kw">mean</span>(Petal.Width))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># For each Species, compute the mean petal length and width</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avg_petal_length =</span> <span class="kw">mean</span>(Petal.Length), <span class="dt">avg_petal_width =</span> <span class="kw">mean</span>(Petal.Width))</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 3 x 3
 ##   Species    avg_petal_length avg_petal_width
@@ -850,8 +852,8 @@ iris %>% filter(Sepal.Length > 7) %>% mutate(width_length = Sepal.Width * Sepal.
 <p>For each species in <tt>iris</tt>, compute the minimum and maximum sepal length.</p>
 <p><span id="soln_vnsauy" class="showhidesoln" onclick="showHide(&#39;vnsauy&#39;);return false;">[Solution]</span></p>
 <div id="vnsauy" class="hint">
-<div class="sourceCode" id="cb31"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">min_sep_len =</span> <span class="kw">min</span>(Sepal.Length), <span class="dt">max_sep_len =</span> <span class="kw">max</span>(Sepal.Length))</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">min_sep_len =</span> <span class="kw">min</span>(Sepal.Length), <span class="dt">max_sep_len =</span> <span class="kw">max</span>(Sepal.Length))</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 3 x 3
 ##   Species    min_sep_len max_sep_len
@@ -871,17 +873,17 @@ iris %>% filter(Sepal.Length > 7) %>% mutate(width_length = Sepal.Width * Sepal.
 <p>where <em>x</em> and <em>y</em> are data frames.</p>
 <p>If the common column <strong>has the same name</strong> in both tables, that’s all you need. If not, you can add <tt><strong>by</strong></tt> which is a named character vector of the join column(s) (see below).</p>
 <p>To illustrate, create a sample data frame with some additional fields for the different iris species.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co">## Create a data frame with additional info about the three IRIS species</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a>iris_colors &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Species=</span><span class="kw">c</span>(<span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;versicolor&quot;</span>, <span class="st">&quot;virginica&quot;</span>),</span>
-<span id="cb34-3"><a href="#cb34-3"></a>                          <span class="dt">num_genes =</span> <span class="kw">c</span>(<span class="dv">42000</span>, <span class="dv">41000</span>, <span class="dv">43000</span>),</span>
-<span id="cb34-4"><a href="#cb34-4"></a>                          <span class="dt">max_water =</span> <span class="kw">c</span>(<span class="fl">1.2</span>, <span class="fl">1.4</span>, <span class="fl">1.7</span>))</span>
-<span id="cb34-5"><a href="#cb34-5"></a>iris_colors</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co">## Create a data frame with additional info about the three IRIS species</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a>iris_colors &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Species=</span><span class="kw">c</span>(<span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;versicolor&quot;</span>, <span class="st">&quot;virginica&quot;</span>),</span>
+<span id="cb33-3"><a href="#cb33-3"></a>                          <span class="dt">num_genes =</span> <span class="kw">c</span>(<span class="dv">42000</span>, <span class="dv">41000</span>, <span class="dv">43000</span>),</span>
+<span id="cb33-4"><a href="#cb33-4"></a>                          <span class="dt">max_water =</span> <span class="kw">c</span>(<span class="fl">1.2</span>, <span class="fl">1.4</span>, <span class="fl">1.7</span>))</span>
+<span id="cb33-5"><a href="#cb33-5"></a>iris_colors</span></code></pre></div>
 <pre><code>##      Species num_genes max_water
 ## 1     setosa     42000       1.2
 ## 2 versicolor     41000       1.4
 ## 3  virginica     43000       1.7</code></pre>
 <p>We can join these additional columns to the iris data frame (e.g., for a regression) with <tt>left_join()</tt>:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(iris_colors) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(iris_colors) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## Joining, by = &quot;Species&quot;</code></pre>
 <pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species num_genes max_water
 ## 1          5.1         3.5          1.4         0.2  setosa     42000       1.2

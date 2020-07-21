@@ -37,8 +37,8 @@ my_esri_token <- readLines(f, n = 1)
 close(f)
 
 ## Load the script that has the custom functions
-source("./scripts/geocode_esri.R")
-#source("./outputs/rspatial_scgis20/docs/scripts/geocode_esri.R")
+#source("./scripts/geocode_esri.R")
+source("./outputs/rspatial_scgis20/docs/scripts/geocode_esri.R")
 
 ## Run the geocode
 cities_tbl_gc <- geocode_many(cities_tbl$ID, "", cities_tbl$city, cities_tbl$state, cities_tbl$zip, cities_tbl$country, my_esri_token)

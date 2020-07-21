@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="R Markdown  " />
+  <meta name="copyright" content="<span class='footer-right'><a href='../acknowledgements.html'>Acknowledgements</a></span><span class='footer-right'><a href=' https://tinyurl.com/rspatial-scgis20 ' target='_blank'>Forum</a></span><span class='footer-right'><a href=' https://ucanr-igis.github.io/rspatial_scgis20/ '> https://ucanr-igis.github.io/rspatial_scgis20/ </a></span><span class='footer-right'><a href='../index.html'>Home</a></span><span class='footer-subtitle'> Spatial Data Analysis with R </span>"/>
+  <meta name="font-size-adjustment" content="2"/>
+  <title>Spatial Data Analysis with R  Society for Conservation GIS, July 2020</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACkUlEQVQ4jX2SW0jTcRTHTzNyeZlh6lqmm3POdNPC6SxSEzaqafkykOFoIxTDWpKRFV6iQMNLFyMSsQvUW0WORc2WWBmGKEGZXUyz0NrmNmfa1PYgfHsQ1v5oHjgvX875/M45vy/R8mDJ9caxrFIL5CUWJB00Q9n+7Q+l1BetUMuMTL3JpTB0QVnejd1Hu9DQ60G5eQbqB7PIvj0L2bUZ0KZzghWbs0o7Fx3Tc/B6vStm6+g0wrQvIKh2gKKyUxnNSZoO685SC1YDeL1e9Ll+Ia7WCd5pJ4hojQ8g1nViezETYBqZx93BOdwa9jAgsdUT4J6ZQqC6f4GIiLYU9/RzNWYIdU9hd/8rLjN7UGT8DbWROVVMlQsBBWas142DiIikdfbFMF0POIVm2NzM1zwLS+mvcSsnEajpBSv/8RIgucGJ1EYXEs+NwjrlWfUGMee/Y2PFJIJLrFibex8kOsahhCYnUlpnIL1kh9X9/yMKG2yIOOlAsPYnAveZsE75EEQUQLwTwy5Rsxvx9UxApKEPEYY+BiSizA623oaggkdgq4xLKwRLq7i8sy6EFlpg8wNEVwyAd3wAbZ8cPu3CazeCC/sRojYjaL8Jvm8MPWLDBm03A8CveQ9+7RBia4cYU4QfeokwzTOwc6/4OzKXHap/C5ufD0RNo0i4OAZR81dcnnD69Mp3PxBe9GRkuZdFKk7sqTcQ132EpGUMydetSLnpgOSGHVtbxpHU9AX8mkFEG55/ZrjQL1h82V6esPLVh8Sr40i940J6xzzS7s1C0m6HqHEEiTnatgT5gcPijHxltFwhjpRIQpZjBAJ2lFTBFW5TiOPT8mXx6apdcRl5OaJM1Q6hLC9ls3RPTLgok0NELCKiv02kPqt/O1MZAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
+  <script language="javascript" type="text/javascript">
+  function TriShowHide(shID) {
+    shIDspan = shID + "span";
+    shIDdiv = shID + "div";
+    if (document.getElementById(shIDdiv).style.display != 'block') {
+      document.getElementById(shIDdiv).style.display = 'block';
+      txtSpan = "&#9660;";
+    } else {
+      document.getElementById(shIDdiv).style.display = 'none';
+      txtSpan = "&#9654;";
+    }
+    document.getElementById(shIDspan).innerHTML = txtSpan + " ";
+  }
+  function showHide(shID) {
+    if (shID=="soln-show-all") {
+      var allAnswerCode = document.getElementsByClassName("answer-code");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'block';
+      }
+    } else if (shID=="soln-hide-all") {
+      var allAnswerCode = document.getElementsByClassName("answer-code");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'none';
+      }
+    } else if (shID=="hints-show-all") {
+      var allAnswerCode = document.getElementsByClassName("hint");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'block';
+      }
+    } else if (shID=="hints-hide-all") {
+      var allAnswerCode = document.getElementsByClassName("hint");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'none';
+      }
+    } else {
+      if (document.getElementById(shID)) {
+        if (document.getElementById(shID).style.display != 'block') {
+          document.getElementById(shID).style.display = 'block';
+        } else {
+          document.getElementById(shID).style.display = 'none';
+        }
+      }
+    }
+  }
+  function CopyToClipboard(containerid) {
+  if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+  } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      // alert("text copied")
+  }}
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163964617-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-163964617-1');
+  </script>
+  <script src="lib/header-attrs-2.3/header-attrs.js"></script>
+  <link href="lib/slidy-2/styles/slidy.css" rel="stylesheet" />
+  <script src="lib/slidy-2/scripts/slidy.js"></script>
+  <script src="lib/slidy_shiny-1/slidy_shiny.js"></script>
+  <script src="lib/clipboard-1.7.1/clipboard.min.js"></script>
+  <link href="lib/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+  <link href="lib/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+  <script src="lib/klippy-0.0.0.9500/js/klippy.min.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="..\css\slidy_styles.css" />
+  <meta name="duration" content="0" />
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title"><span class="course-title">Spatial Data Analysis with R </span><br/><span class="course-subtitle">Society for Conservation GIS, July 2020</span></h1>
+  <p class="author">
+R Markdown <br/><img src='images/rmarkdown256_250x250.png'/>
+  </p>
+</div>
+<div id="extending-a-generic-document-language" class="slide section level1">
+<h1>Extending a Generic Document Language</h1>
+<script type="text/javascript">w3c_slidy.mouse_click_enabled = false;</script>
+<script>
+  addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<div class="compact">
+<ul>
+<li>Markdown is a simple formatting syntax for authoring dynamic documents</li>
+<li>Simpler to write than LaTeK or HTML</li>
+<li>Tools to convert Markdown files to HTML, PDF, and MS Word document.
+<ul>
+<li>Usually can evaluate expressions from one or more languages (JS, Python)</li>
+</ul></li>
+<li>R Markdown is a flavor of Markdown that allows you to embed and run R code, include plots</li>
+</ul>
+</div>
+<pre class="scrolling-code" style="height:40%">
+---
+title: "Analysis of the Speed and Stopping Distances of Cars"
+author: "Andy Lyons"
+date: "Monday, August 1, 2015"
+output: html_document
+---
+
+## Trailing Distance Safety: Why the Two-Second Rule May Just Kill You
+
+### Elements of Stopping Distance
+
+One aspect of safe driving involves the ability to stop a car readily. This
+ability depends upon the driver's alertness and readiness to stop, the
+conditions of the road, the speed of the car, and the braking characteristics of
+the car. The actual distance that it takes to stop the car can be thought of as
+consisting of two parts: the reaction distance and braking distance. 
+
+When a driver sees an event in his/her field of view that might warrant braking
+(for example, a dog running into the street), a collection of actions must be
+taken before the braking actually begins. First the driver must identify the
+event and decide if braking is necessary. Then the driver must lift his/her foot
+off the gas pedal and move it to the brake pedal. And finally, the driver must
+press the brake down its full distance in order to obtain maximum braking
+acceleration. The time to do all this is known as the reaction time. The
+distance traveled during this time is known as the __reaction distance__. Once
+the brakes are applied, the car begins to slow to a stop. The distance traveled
+by the car during this time is known as the __braking distance__. The braking
+distance is dependent upon the original speed of the car, the road conditions,
+and characteristics of the car such as its profile area, mass and tire
+conditions. 
+
+&#96;``{r}
+library(ggplot2)
+stop_dist <- read.csv("stopping_dist_cars.csv", stringsAsFactors=FALSE, strip.white=TRUE)
+stop_dist <- transform(stop_dist, total_dist=breaking_dist + reaction_dist) 
+ggplot(data=stop_dist, aes(x=speed, y=total_dist, group=surface, colour=surface)) + 
+geom_line() + geom_point() + ggtitle("Total Stopping Distance by Speed") + 
+xlab("Speed (km/h)") + ylab("Total stopping distance (m)")
+&#96;``
+
+### Vehicle Performance and Stopping Distance
+
+The data give the speed of cars and the distances taken to stop. Note that 
+the data were recorded in the 1920s.
+
+&#96;``{r}
+plot(cars)
+&#96;``
+
+Source: Ezekiel, M. (1930) Methods of Correlation Analysis. Wiley.
+
+</pre>
+</div>
+<div id="r-markdown-support-in-rstudio" class="slide section level1">
+<h1>R Markdown: Support in RStudio</h1>
+<div style="margin-left:2em;">
+<img src="images/rstudio_newmarkdown01_515x545.png" />
+<p>
+</p>
+<img src="images/rstudio_newmarkdown02_531x418.png" />
+<p>
+</p>
+<p><img src="images/rstudio_markdown_editor_806x421.png" /></p>
+</div>
+<div class="tryit">
+<ol style="list-style-type: decimal">
+<li>Create a new markdown document
+<ul>
+<li>select HTML output</li>
+</ul></li>
+<li>Change the title, author, date</li>
+<li>Knit to HTML</li>
+<li>Save Rmd file</li>
+</ol>
+</div>
+<div class="tip">
+<p><img src="images/knit_often_400x200.png" /></p>
+</div>
+</div>
+<div id="r-markdown-flavors" class="slide section level1">
+<h1>R Markdown: Flavors</h1>
+<div class="compact">
+<ul>
+<li>All varieties of R Markdown support the majority of R Markdown syntax
+<ul>
+<li>formatting</li>
+<li>styles</li>
+<li>code chunks</li>
+</ul></li>
+<li>Different ‘flavors’ of R Markdown provide additional functionality and customization</li>
+<li>Each flavor generally designed for a specific type of output
+<ul>
+<li>documents</li>
+<li>presentation (RPresentations, ioslides, slidy, slidify, beamer)</li>
+<li>app (Shiny)</li>
+</ul></li>
+</ul>
+</div>
+<p><strong>All R Markdown is Merely A Means to an End</strong></p>
+<p>*.Rmd → <span class="pkgname">knitr</span> → *.md → <span class="pkgname">pandoc</span> → <span style="display:inline-block; margin-left:0.6em; vertical-align:middle; text-align:left;">*.pdf<br/><br/>*.doc<br/><br/>*.html (+ *.css, *.js *.ttf)</span></p>
+<div class="infobox">
+<p>Rendering to PDF requires installing <tt>LaTeK</tt> (not trivial). On Windows, try installing the <tt><strong>tinytex</strong></tt> package then run <tt>tinytex::install_tinytex()</tt>. If that doesn’t work, you can also try installing <a href="http://miktex.org" target="_blank">MiKTeX</a> (download the complete package)</p>
+</div>
+</div>
+<div id="r-markdown-anatomy-of-a-document" class="slide section level1">
+<h1>R Markdown: Anatomy of a Document</h1>
+<div class="colleft" style="width:20%;">
+<p>YAML section</p>
+<p>Paragraph text</p>
+<p>Code chunks</p>
+</div>
+<div class="colright" style="width:75%; height:20%;">
+<pre class="scrolling-code" style="height:450px;">
+---
+title: "Untitled"
+author: "Andy Lyons"
+date: "Monday, August 17, 2015"
+output: html_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for
+authoring HTML, PDF, and MS Word documents. For more details on using R Markdown
+see <http://rmarkdown.rstudio.com>
+
+When you click the **Knit** button a document will be generated that includes
+both content as well as the output of any embedded R code chunks within the
+document. You can embed an R code chunk like this:
+
+&#96;``{r}
+summary(cars)
+&#96;``
+
+You can also embed plots, for example:
+
+&#96;``{r, echo=FALSE}
+plot(cars)
+&#96;``
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent
+printing of the R code that generated the plot.
+</pre>
+</div>
+<div class="colclear">
+
+</div>
+</div>
+<div id="r-markdown-yaml" class="slide section level1">
+<h1>R Markdown: YAML</h1>
+<h3 id="standard-stuff">Standard stuff</h3>
+<pre class="markdown">
+---
+title: "Interactive Data Visualization"
+author: "Andy Lyons"
+date: "Friday, August 18, 2015"
+output: slidy_presentation
+---
+</pre>
+<h3 id="other-common-options">Other common options</h3>
+<pre class="markdown">
+output:
+  html_document:
+    fig_height: 4
+    fig_width: 4
+    smart: no
+    toc: true
+    toc_depth: 2
+    theme: journal
+    <strong>self_contained: no</strong>
+</pre>
+<h3 id="flavor-specific-options">Flavor specific options</h3>
+<p>Some YAML options are specific to particular markdown types.</p>
+<pre class="markdown">
+output:
+  slidy_presentation:
+    incremental: true
+    highlight: pygments
+    font_adjustment: -1
+    duration: 45
+    mathjax: local
+    footer: "Berkeley R Language Beginner Study Group, Aug. 18, 2015"
+    includes:
+      in_header: idv_header.html    
+</pre>
+<div class="tip">
+<p>An easy way to change common YAML options is to click on the <img src="images/gear_50x50.png" /> button.</p>
+<p><img src="images/rstudio_markdown_options_472x430.png" /></p>
+</div>
+</div>
+<div id="formatting-text" class="slide section level1">
+<h1>Formatting Text</h1>
+<p>Formatting paragraph text is easy. See the ‘Markdown Quick Reference’ to get started. Start a new paragraphs with a blank line.</p>
+<h3 id="emphasis">Emphasis</h3>
+<pre><code>*italic*   **bold**
+_italic_   __bold__</code></pre>
+<h3 id="headers">Headers</h3>
+<pre><code># Header 1
+## Header 2
+### Header 3</code></pre>
+<h3 id="lists">Lists</h3>
+<p>Unordered List</p>
+<pre><code>* Item 1
+* Item 2
+    + Item 2a
+    + Item 2b</code></pre>
+<p>Ordered List</p>
+<pre><code>1. Item 1
+2. Item 2
+3. Item 3
+    + Item 3a
+    + Item 3b</code></pre>
+<h3 id="manual-line-breaks">Manual Line Breaks</h3>
+<p>End a line with two or more spaces:</p>
+<pre><code>Roses are red,   
+Violets are blue.</code></pre>
+<h3 id="links">Links</h3>
+<p>Use a plain http address or add a link to a phrase:</p>
+<pre><code>http://example.com
+
+[linked phrase](http://example.com)</code></pre>
+<h3 id="images">Images</h3>
+<p>Images on the web or local files in the same directory:</p>
+<pre><code>![alt text](http://example.com/logo.png)
+![alt text](figures/img.png)</code></pre>
+<h3 id="blockquotes">Blockquotes</h3>
+<p>A friend once said:</p>
+<pre><code>&gt; It&#39;s always better to give 
+&gt; than to receive.</code></pre>
+<div class="tryit">
+<p>Continue editing the RMarkdown document you started earlier.</p>
+<ul>
+<li>Click on <img src="images/gear_50x50.png" alt="RStudio Gear Icon" /></li>
+<li>Play with
+<ul>
+<li>theme</li>
+<li>TOC</li>
+<li>syntax highlighting</li>
+<li>self-contained</li>
+</ul></li>
+<li>Knit HTML</li>
+<li>Note changes in
+<ul>
+<li>HTML page - font, colors, style, etc.</li>
+<li>YAML section</li>
+<li>additional files and folders in HTML folder</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="code-chunks" class="slide section level1">
+<h1>Code Chunks</h1>
+<pre><code>```{r verbatim=TRUE}
+x = 16000 + rnorm(30) * 3000
+plot(x, type=&quot;b&quot;, pch=20, main=&quot;Dow Jones Index&quot;)
+```</code></pre>
+<p><img src="rmarkdown_files/figure-slidy/unnamed-chunk-1-1.png" width="768" /></p>
+<div class="tip">
+<p>Keyboard shortcut to insert new code chunk: <tt>ctrl + alt + i</tt></p>
+</div>
+</div>
+<div id="code-chunk-options" class="slide section level1">
+<h1>Code Chunk Options</h1>
+<div class="colleft" style="width:55%;">
+<pre class="markdown">
+&#96;``{r, <strong>echo=FALSE</strong>}
+x <- 16000 + rnorm(30) * 3000
+plot(x, type="b", pch=20, main="Dow Jones Index")
+&#96;``
+</pre>
+<p><img src="rmarkdown_files/figure-slidy/unnamed-chunk-2-1.png" width="768" /></p>
+</div>
+<div class="colright" style="width:45%;">
+<p>Useful Code Chunk Options</p>
+<ul>
+<li><code>echo=FALSE</code>. Don’t show the code</li>
+<li><code>message=FALSE</code>. Don’t show output messages</li>
+<li><code>cache=TRUE</code>. Save the plot image for reuse</li>
+<li><code>results=‘hide’</code>. Don’t show any output</li>
+<li><code>fig.height=3, fig.width=4</code>. Set the height and width of figures</li>
+<li><code>fig.show=‘hold’</code>. Wait until the end to render figures (useful when overlaying multiple plot statements)</li>
+<li>many others, see <a href="https://bookdown.org/yihui/rmarkdown/r-code.html" target="_blank">R Markdown: The Definitive Guide</a></li>
+</ul>
+</div>
+<div class="colclear">
+
+</div>
+</div>
+<div id="code-chunk-environment" class="slide section level1">
+<h1>Code Chunk Environment</h1>
+<ul>
+<li>All code in a R Markdown document is executed in a separate environment<br />
+</li>
+<li>This means all libraries and data objects have to be loaded in the R Markdown document (i.e., in a code chunk)<br />
+</li>
+<li>In other words, the packages and objects loaded in your base environment won’t do you any good <img src="images/sad-face-32x32.png" /><br />
+</li>
+<li>Method behind the madness: reproducible research</li>
+</ul>
+</div>
+<div id="code-chunk-environment---examples" class="slide section level1">
+<h1>Code Chunk Environment - Examples</h1>
+<h3 id="bad-code-chunk">Bad Code Chunk</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>stop_dist, <span class="kw">aes</span>(<span class="dt">x=</span>speed, <span class="dt">y=</span>total_dist, </span>
+<span id="cb10-2"><a href="#cb10-2"></a>        <span class="dt">group=</span>surface, <span class="dt">colour=</span>surface)) <span class="op">+</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="st">        </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p>This code chunk will NOT execute because:</p>
+<ol style="list-style-type: lower-roman">
+<li><p><tt>ggplot()</tt> is a <strong>not</strong> a ‘built-in’ R function. It comes from the <tt>ggplot2</tt> package, which hasn’t been loaded yet.</p></li>
+<li><p>the data frame <em>stop_dist</em> hasn’t been loaded into the R Markdown yet. Whether or not it exists in our base environment doesn’t matter for the purposes of R Markdown.</p></li>
+</ol>
+<h3 id="good-code-chunk">Good Code Chunk</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb11-2"><a href="#cb11-2"></a>stop_dist =<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">file.path</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;stopping_dist_cars.csv&quot;</span>), </span>
+<span id="cb11-3"><a href="#cb11-3"></a>             <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>, <span class="dt">strip.white=</span><span class="ot">TRUE</span>)</span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>stop_dist, <span class="kw">aes</span>(<span class="dt">x=</span>speed, <span class="dt">y=</span>total_dist, </span>
+<span id="cb11-5"><a href="#cb11-5"></a>       <span class="dt">group=</span>surface, <span class="dt">colour=</span>surface)) <span class="op">+</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="st">       </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="rmarkdown_files/figure-slidy/ggplotcars2-1.png" width="384" /></p>
+</div>
+<div id="inline-r-expressions" class="slide section level1">
+<h1>Inline R Expressions</h1>
+<p>You can insert an ‘inline’ R expression by wrapping in single back-ticks. Remember to add ‘r’ after the leading back-tick to indicate this is an expression that should be evaluated.</p>
+<p>For example:</p>
+<pre class='markdown'>The area of a circle with radius 5 is &#96;r pi * 5^2&#96;</pre>
+<p>Becomes:</p>
+<p>The area of a circle with radius 5 is 78.5398163</p>
+</div>
+<div id="summary" class="slide section level1">
+<h1>Summary</h1>
+<p>Today we saw:</p>
+<div class="compact">
+<ul>
+<li>the basic anatomy of R Markdown document</li>
+<li>how to edit the YAML</li>
+<li>formatting text</li>
+<li>executing R commands in code chunks</li>
+</ul>
+</div>
+<div class="infobox">
+<p><strong>Additional Resources</strong></p>
+<div class="indented1">
+<p><a href="http://rmarkdown.rstudio.com" target="_blank">R Markdown Tutorials and Examples</a></p>
+<p><a href="https://bookdown.org/yihui/rmarkdown/" target="_blank">R Markdown: The Definitive Guide</a></p>
+<p><a href="https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf" target="_blank">R Markdown Cheat sheet</a></p>
+</div>
+</div>
+</div>
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+</body>
+</html>
