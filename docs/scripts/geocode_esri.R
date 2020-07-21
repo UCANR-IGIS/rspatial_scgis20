@@ -30,7 +30,7 @@ geocode_one <- function (address, token, postal = TRUE){
   require(httr)
 
   # ESRI geolocator
-  gserver <-"http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/geocodeAddresses"
+  gserver <-"https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/geocodeAddresses"
 
   # template for SingleLine format
   pref <- "{'records':[{'attributes':{'OBJECTID':1,'SingleLine':'"
@@ -45,7 +45,7 @@ geocode_one <- function (address, token, postal = TRUE){
 
   # submit
   rawdata <- GET(url)
-
+  
   # parse JSON and process result
   res <- content(rawdata, "parsed", "application/json")
   resdf <- with(res$locations[[1]], {data.frame(lon = as.numeric(location$x),
@@ -85,7 +85,7 @@ geocode_one <- function (address, token, postal = TRUE){
 #               because the house number is interpolated from a range of numbers. "StreetName" is similar,
 #               but without the house number.
 
-geocode_many<- function(id, street, city, state, zip, token){
+geocode_many<- function(id, street, city, state, zip, country = "United States", token){
   require(httr)
   require(rjson)
 
@@ -104,7 +104,8 @@ geocode_many<- function(id, street, city, state, zip, token){
                        Address = street,
                        City = city,
                        State = state,
-                       Zip = zip)
+                       Zip = zip, 
+                       Country = country)
 
   # make json
   tmp_list <- apply(adr_df, 1, function(i) list(attributes = as.list(i)))
@@ -114,7 +115,7 @@ geocode_many<- function(id, street, city, state, zip, token){
   adr_json <- toJSON(list(records = tmp_list))
 
   # Identify the geocoding web service URL
-  gserver <-"http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/geocodeAddresses"
+  gserver <-"https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/geocodeAddresses"
 
   # submit
   req <- POST(
