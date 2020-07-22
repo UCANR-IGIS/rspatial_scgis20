@@ -304,11 +304,13 @@ Your browser does not support iframes.
 <h1>Import the boundary for Yosemite National Park</h1>
 <p>Let’s import the Yosemite <a href="../datasets.html#yose_boundary" target="_blank">park boundary</a> (which happens to be a Shapefile).</p>
 <p>First we list all the layers in the <a href="../datasets.html" target="_blank">datasets folder</a>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">## View spatial layers in the data folder</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">st_layers</span>(<span class="st">&quot;./data&quot;</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">## Import the &#39;yose_boundary&#39; layer (a Shapefile)</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>yose_bnd_ll &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="dt">dsn=</span><span class="st">&quot;./data&quot;</span>, <span class="dt">layer=</span><span class="st">&quot;yose_boundary&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(sf)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">## View spatial layers in the data folder</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="kw">st_layers</span>(<span class="st">&quot;./data&quot;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">## Import the &#39;yose_boundary&#39; layer (a Shapefile)</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>yose_bnd_ll &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="dt">dsn=</span><span class="st">&quot;./data&quot;</span>, <span class="dt">layer=</span><span class="st">&quot;yose_boundary&quot;</span>)</span></code></pre></div>
 <pre><code>## Driver: ESRI Shapefile 
 ## Available layers:
 ##        layer_name geometry_type features fields
@@ -331,13 +333,15 @@ Your browser does not support iframes.
 </div>
 </div>
 <p>See what type of object we just created:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">class</span>(yose_bnd_ll)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">## View the class of the object we just created</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">class</span>(yose_bnd_ll)</span></code></pre></div>
 <pre><code>## [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
 <p>We see that <code>yose_bnd_ll</code> is both a sf object as well as a <code>data.frame</code>. This means we should be able to use the functions designed for <em>either</em> of those objects.</p>
 <div class="tryit">
 <p>Type the name of the object at the console.</p>
 <div class="indented1 indented1-r">
-<div class="sourceCode" id="cb7"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>yose_bnd_ll</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## View the spatial properties of this layer</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>yose_bnd_ll</span></code></pre></div>
 </div>
 <p>What coordinate reference system is it in? [<span id="soln_hcsduo" class="showhidesoln" onclick="showHide(&#39;hcsduo&#39;);return false;">Answer</span>]</p>
 <div id="hcsduo" class="hint">
@@ -347,24 +351,20 @@ Your browser does not support iframes.
 ## dimension:      XY
 ## bbox:           xmin: -119.8864 ymin: 37.4947 xmax: -119.1964 ymax: 38.18515
 ## geographic CRS: North_American_Datum_1983
-##   UNIT_CODE
-## 1      YOSE
-##                                                                             GIS_NOTES
-## 1 Lands - http://landsnet.nps.gov/tractsnet/documents/YOSE/METADATA/yose_metadata.xml
+##   UNIT_CODE                                                                           GIS_NOTES
+## 1      YOSE Lands - http://landsnet.nps.gov/tractsnet/documents/YOSE/METADATA/yose_metadata.xml
 ##                UNIT_NAME  DATE_EDIT STATE REGION GNIS_ID     UNIT_TYPE CREATED_BY
 ## 1 Yosemite National Park 2016-01-27    CA     PW  255923 National Park      Lands
-##                                                 METADATA PARKNAME
-## 1 http://nrdata.nps.gov/programs/Lands/YOSE_METADATA.xml Yosemite
-##                         geometry
-## 1 POLYGON ((-119.8456 37.8327...</code></pre>
+##                                                 METADATA PARKNAME                       geometry
+## 1 http://nrdata.nps.gov/programs/Lands/YOSE_METADATA.xml Yosemite POLYGON ((-119.8456 37.8327...</code></pre>
 <p><strong>Ans</strong>. unprojected geographic coordinates (long-lat).</p>
 </div>
 </div>
 <p>The <strong><code>names()</code></strong> function returns the column labels of a data frame (in this case the attribute table).</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">## View column names in the attribute table</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="kw">names</span>(yose_bnd_ll)</span></code></pre></div>
-<pre><code>##  [1] &quot;UNIT_CODE&quot;  &quot;GIS_NOTES&quot;  &quot;UNIT_NAME&quot;  &quot;DATE_EDIT&quot;  &quot;STATE&quot;      &quot;REGION&quot;    
-##  [7] &quot;GNIS_ID&quot;    &quot;UNIT_TYPE&quot;  &quot;CREATED_BY&quot; &quot;METADATA&quot;   &quot;PARKNAME&quot;   &quot;geometry&quot;</code></pre>
+<pre><code>##  [1] &quot;UNIT_CODE&quot;  &quot;GIS_NOTES&quot;  &quot;UNIT_NAME&quot;  &quot;DATE_EDIT&quot;  &quot;STATE&quot;      &quot;REGION&quot;     &quot;GNIS_ID&quot;   
+##  [8] &quot;UNIT_TYPE&quot;  &quot;CREATED_BY&quot; &quot;METADATA&quot;   &quot;PARKNAME&quot;   &quot;geometry&quot;</code></pre>
 <p>Take note of the last column - <code>geometry</code>. That’s where the geometry is saved (we’ll come back to that later).</p>
 </div>
 <div id="basic-plotting-sf-objects" class="slide section level1">
@@ -372,7 +372,7 @@ Your browser does not support iframes.
 <p>To plot just the geometry of a sf object (i.e., no symbology from the attribute table), we can use the <code>st_geometry()</code> function.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## Plot the geometry (outline) of the Yosemite boundary</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="kw">plot</span>(yose_bnd_ll <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_geometry</span>(), <span class="dt">asp=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/05_importing-vector_files/figure-slidy/plot_yose_bnd_ll-1.png" width="768" /></p>
+<p><img src="05_importing-vector_files/figure-slidy/plot_yose_bnd_ll-1.png" width="768" /></p>
 <div class="tip">
 <p>We add <code>%&gt;% st_geometry()</code> to indicate we want to plot the polygon with a single color/fill (more on that later).</p>
 <p>The <code>asp=1</code> argument sets the aspect ratio. It is optional but generally a good idea for spatial data.</p>
@@ -444,7 +444,7 @@ Your browser does not support iframes.
 <span id="cb18-3"><a href="#cb18-3"></a></span>
 <span id="cb18-4"><a href="#cb18-4"></a><span class="co">## Add historic places</span></span>
 <span id="cb18-5"><a href="#cb18-5"></a><span class="kw">plot</span>(yose_hp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_geometry</span>(), <span class="dt">add=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/05_importing-vector_files/figure-slidy/plot_ynp_hp_klippy-1.png" width="768" /></p>
+<p><img src="05_importing-vector_files/figure-slidy/plot_ynp_hp_klippy-1.png" width="768" /></p>
 </div>
 <div id="import-a-geojson-file" class="slide section level1">
 <h1>Import a GeoJSON file</h1>
@@ -501,7 +501,7 @@ Your browser does not support iframes.
 <h2 id="plot-yosemites-trails">Plot Yosemite’s Trails</h2>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co">## Plot the trails layer</span></span>
 <span id="cb24-2"><a href="#cb24-2"></a><span class="kw">plot</span>(<span class="kw">st_geometry</span>(yose_trails), <span class="dt">axes=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/05_importing-vector_files/figure-slidy/plot_trails_klippy-1.png" width="768" /></p>
+<p><img src="05_importing-vector_files/figure-slidy/plot_trails_klippy-1.png" width="768" /></p>
 <div class="tryit">
 <p>The following code does <strong>not</strong> work to make a plot of the park boundary and the trails. Can you tell why?</p>
 <div class="indented1 indented1-r">
@@ -559,7 +559,7 @@ Your browser does not support iframes.
 ## dimension:      XY
 ## bbox:           xmin: 1383.82 ymin: -61442.93 xmax: 81596.71 ymax: 26405.66
 ## projected CRS:  unnamed</code></pre>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/05_importing-vector_files/figure-slidy/import_watersheds_exec-1.png" width="768" /></p>
+<p><img src="05_importing-vector_files/figure-slidy/import_watersheds_exec-1.png" width="768" /></p>
 <div class="tryit">
 <p>What CRS are the Yosemite watersheds in?</p>
 <p>[<span id="soln_tvzbct" class="showhidesoln" onclick="showHide(&#39;tvzbct&#39;);return false;">Answer</span>]</p>
@@ -571,72 +571,61 @@ Your browser does not support iframes.
 ## bbox:           xmin: 1383.82 ymin: -61442.93 xmax: 81596.71 ymax: 26405.66
 ## projected CRS:  unnamed
 ## First 10 features:
-##        CALWNUM SWRCBNUM21 HRC HBPA  RBU  RBUA  RBUAS   RBUASP    RBUASPW HR RB HU HA HSA
-## 1  8631.400101     631.40  NL   NL 8631 86314 863140 86314001 8631400101  8  6 31  4   0
-## 2  8630.400204     630.40  NL   NL 8630 86304 863040 86304002 8630400204  8  6 30  4   0
-## 3  8631.400104     631.40  NL   NL 8631 86314 863140 86314001 8631400104  8  6 31  4   0
-## 4  6536.510101     536.51  SJ   SJ 6536 65365 653651 65365101 6536510101  6  5 36  5   1
-## 5  6536.600801     536.60  SJ   SJ 6536 65366 653660 65366008 6536600801  6  5 36  6   0
-## 6  8630.400301     630.40  NL   NL 8630 86304 863040 86304003 8630400301  8  6 30  4   0
-## 7  8630.400302     630.40  NL   NL 8630 86304 863040 86304003 8630400302  8  6 30  4   0
-## 8  8630.400400     630.40  NL   NL 8630 86304 863040 86304004 8630400400  8  6 30  4   0
-## 9  8630.400306     630.40  NL   NL 8630 86304 863040 86304003 8630400306  8  6 30  4   0
-## 10 6536.600701     536.60  SJ   SJ 6536 65366 653660 65366007 6536600701  6  5 36  6   0
-##    SPWS PWS         HRNAME         RBNAME       HBPANAME            HUNAME
-## 1     1   1 North Lahontan       Lahontan North Lahontan WEST WALKER RIVER
-## 2     2   4 North Lahontan       Lahontan North Lahontan EAST WALKER RIVER
-## 3     1   4 North Lahontan       Lahontan North Lahontan WEST WALKER RIVER
-## 4     1   1    San Joaquin Central Valley    San Joaquin    TUOLUMNE RIVER
-## 5     8   1    San Joaquin Central Valley    San Joaquin    TUOLUMNE RIVER
-## 6     3   1 North Lahontan       Lahontan North Lahontan EAST WALKER RIVER
-## 7     3   2 North Lahontan       Lahontan North Lahontan EAST WALKER RIVER
-## 8     4   0 North Lahontan       Lahontan North Lahontan EAST WALKER RIVER
-## 9     3   6 North Lahontan       Lahontan North Lahontan EAST WALKER RIVER
-## 10    7   1    San Joaquin Central Valley    San Joaquin    TUOLUMNE RIVER
-##                     HANAME     HSANAME                   CDFSPWNAME             CDFPWSNAME
-## 1  Upper West Walker River   undefined Headwaters West Walker River          Cascade Creek
-## 2  East Walker Tributaries   undefined                Buckeye Creek    Upper Buckeye Creek
-## 3  Upper West Walker River   undefined Headwaters West Walker River         Kirkwood Creek
-## 4             Cherry Creek Mercut Peak             Huckleberry Lake East Fork Cherry Creek
-## 5             Hetch Hetchy   undefined                  Falls Creek Upper Jack Main Canyon
-## 6  East Walker Tributaries   undefined                   Twin Lakes            Horse Creek
-## 7  East Walker Tributaries   undefined                   Twin Lakes           Cattle Creek
-## 8  East Walker Tributaries   undefined                  Green Creek              undefined
-## 9  East Walker Tributaries   undefined                   Twin Lakes    Little Slide Canyon
-## 10            Hetch Hetchy   undefined              Rancheria Creek        Thompson Canyon
-##       ACRES    HUC_8        HUC_8_NAME HUC_8_ALT2 HUC_8_ALT3    DWRNUM20         DWRHUNAME
-## 1   6083.05 16050302 WEST_WALKER-CA,NV          0          0 8631.400101 WEST WALKER RIVER
-## 2   9890.68 16050301 EAST_WALKER-CA,NV          0          0 8630.400204 EAST WALKER RIVER
-## 3   6770.62 16050302 WEST_WALKER-CA,NV          0          0 8631.400104 WEST WALKER RIVER
-## 4  12641.80 18040009    UPPER_TUOLUMNE          0          0 6536.510101    TUOLUMNE RIVER
-## 5   8838.88 18040009    UPPER_TUOLUMNE          0          0 6536.600801    TUOLUMNE RIVER
-## 6   7698.36 16050301 EAST_WALKER-CA,NV          0          0 8630.400301 EAST WALKER RIVER
-## 7  10778.60 16050301 EAST_WALKER-CA,NV          0          0 8630.400302 EAST WALKER RIVER
-## 8  12459.80 16050301 EAST_WALKER-CA,NV          0          0 8630.400400 EAST WALKER RIVER
-## 9   6099.80 16050301 EAST_WALKER-CA,NV          0          0 8630.400306 EAST WALKER RIVER
-## 10  9108.38 18040009    UPPER_TUOLUMNE          0          0 6536.600701    TUOLUMNE RIVER
-##                  DWRHANAME  DWRHSANAME    CDFNUM22 CASE_ RuleID Shape_Leng Shape_Area
-## 1  Upper West Walker River   undefined 8631.400101  6043     11   30867.64   24617751
-## 2  East Walker Tributaries   undefined 8630.400204  6022     10   29692.64   40027025
-## 3  Upper West Walker River   undefined 8631.400104  6046     11   25629.17   27400329
-## 4             Cherry Creek Mercut Peak 6536.510101  4765    104   55741.97   51160710
-## 5             Hetch Hetchy   undefined 6536.600801  4815    104   31653.39   35770470
-## 6  East Walker Tributaries   undefined 8630.400301  6023     10   31428.37   31154844
-## 7  East Walker Tributaries   undefined 8630.400302  6024     10   29562.53   43620499
-## 8  East Walker Tributaries   undefined 8630.400400  6029     10   48098.49   50424283
-## 9  East Walker Tributaries   undefined 8630.400306  6028     10   27669.78   24685535
-## 10            Hetch Hetchy   undefined 6536.600701  4807    104   35837.74   36861121
-##                              geom
-## 1  POLYGON ((39955.35 26405.66...
-## 2  POLYGON ((48360.46 21410.36...
-## 3  POLYGON ((41178.45 21036.4,...
-## 4  POLYGON ((32269.54 20892.96...
-## 5  POLYGON ((35285.94 18614.35...
-## 6  POLYGON ((51733.02 18347.97...
-## 7  POLYGON ((55936.4 18119.57,...
-## 8  POLYGON ((66834.96 17741.56...
-## 9  POLYGON ((50494.98 16876.24...
-## 10 POLYGON ((43466.39 15993.69...</code></pre>
+##        CALWNUM SWRCBNUM21 HRC HBPA  RBU  RBUA  RBUAS   RBUASP    RBUASPW HR RB HU HA HSA SPWS PWS
+## 1  8631.400101     631.40  NL   NL 8631 86314 863140 86314001 8631400101  8  6 31  4   0    1   1
+## 2  8630.400204     630.40  NL   NL 8630 86304 863040 86304002 8630400204  8  6 30  4   0    2   4
+## 3  8631.400104     631.40  NL   NL 8631 86314 863140 86314001 8631400104  8  6 31  4   0    1   4
+## 4  6536.510101     536.51  SJ   SJ 6536 65365 653651 65365101 6536510101  6  5 36  5   1    1   1
+## 5  6536.600801     536.60  SJ   SJ 6536 65366 653660 65366008 6536600801  6  5 36  6   0    8   1
+## 6  8630.400301     630.40  NL   NL 8630 86304 863040 86304003 8630400301  8  6 30  4   0    3   1
+## 7  8630.400302     630.40  NL   NL 8630 86304 863040 86304003 8630400302  8  6 30  4   0    3   2
+## 8  8630.400400     630.40  NL   NL 8630 86304 863040 86304004 8630400400  8  6 30  4   0    4   0
+## 9  8630.400306     630.40  NL   NL 8630 86304 863040 86304003 8630400306  8  6 30  4   0    3   6
+## 10 6536.600701     536.60  SJ   SJ 6536 65366 653660 65366007 6536600701  6  5 36  6   0    7   1
+##            HRNAME         RBNAME       HBPANAME            HUNAME                  HANAME
+## 1  North Lahontan       Lahontan North Lahontan WEST WALKER RIVER Upper West Walker River
+## 2  North Lahontan       Lahontan North Lahontan EAST WALKER RIVER East Walker Tributaries
+## 3  North Lahontan       Lahontan North Lahontan WEST WALKER RIVER Upper West Walker River
+## 4     San Joaquin Central Valley    San Joaquin    TUOLUMNE RIVER            Cherry Creek
+## 5     San Joaquin Central Valley    San Joaquin    TUOLUMNE RIVER            Hetch Hetchy
+## 6  North Lahontan       Lahontan North Lahontan EAST WALKER RIVER East Walker Tributaries
+## 7  North Lahontan       Lahontan North Lahontan EAST WALKER RIVER East Walker Tributaries
+## 8  North Lahontan       Lahontan North Lahontan EAST WALKER RIVER East Walker Tributaries
+## 9  North Lahontan       Lahontan North Lahontan EAST WALKER RIVER East Walker Tributaries
+## 10    San Joaquin Central Valley    San Joaquin    TUOLUMNE RIVER            Hetch Hetchy
+##        HSANAME                   CDFSPWNAME             CDFPWSNAME    ACRES    HUC_8
+## 1    undefined Headwaters West Walker River          Cascade Creek  6083.05 16050302
+## 2    undefined                Buckeye Creek    Upper Buckeye Creek  9890.68 16050301
+## 3    undefined Headwaters West Walker River         Kirkwood Creek  6770.62 16050302
+## 4  Mercut Peak             Huckleberry Lake East Fork Cherry Creek 12641.80 18040009
+## 5    undefined                  Falls Creek Upper Jack Main Canyon  8838.88 18040009
+## 6    undefined                   Twin Lakes            Horse Creek  7698.36 16050301
+## 7    undefined                   Twin Lakes           Cattle Creek 10778.60 16050301
+## 8    undefined                  Green Creek              undefined 12459.80 16050301
+## 9    undefined                   Twin Lakes    Little Slide Canyon  6099.80 16050301
+## 10   undefined              Rancheria Creek        Thompson Canyon  9108.38 18040009
+##           HUC_8_NAME HUC_8_ALT2 HUC_8_ALT3    DWRNUM20         DWRHUNAME               DWRHANAME
+## 1  WEST_WALKER-CA,NV          0          0 8631.400101 WEST WALKER RIVER Upper West Walker River
+## 2  EAST_WALKER-CA,NV          0          0 8630.400204 EAST WALKER RIVER East Walker Tributaries
+## 3  WEST_WALKER-CA,NV          0          0 8631.400104 WEST WALKER RIVER Upper West Walker River
+## 4     UPPER_TUOLUMNE          0          0 6536.510101    TUOLUMNE RIVER            Cherry Creek
+## 5     UPPER_TUOLUMNE          0          0 6536.600801    TUOLUMNE RIVER            Hetch Hetchy
+## 6  EAST_WALKER-CA,NV          0          0 8630.400301 EAST WALKER RIVER East Walker Tributaries
+## 7  EAST_WALKER-CA,NV          0          0 8630.400302 EAST WALKER RIVER East Walker Tributaries
+## 8  EAST_WALKER-CA,NV          0          0 8630.400400 EAST WALKER RIVER East Walker Tributaries
+## 9  EAST_WALKER-CA,NV          0          0 8630.400306 EAST WALKER RIVER East Walker Tributaries
+## 10    UPPER_TUOLUMNE          0          0 6536.600701    TUOLUMNE RIVER            Hetch Hetchy
+##     DWRHSANAME    CDFNUM22 CASE_ RuleID Shape_Leng Shape_Area                           geom
+## 1    undefined 8631.400101  6043     11   30867.64   24617751 POLYGON ((39955.35 26405.66...
+## 2    undefined 8630.400204  6022     10   29692.64   40027025 POLYGON ((48360.46 21410.36...
+## 3    undefined 8631.400104  6046     11   25629.17   27400329 POLYGON ((41178.45 21036.4,...
+## 4  Mercut Peak 6536.510101  4765    104   55741.97   51160710 POLYGON ((32269.54 20892.96...
+## 5    undefined 6536.600801  4815    104   31653.39   35770470 POLYGON ((35285.94 18614.35...
+## 6    undefined 8630.400301  6023     10   31428.37   31154844 POLYGON ((51733.02 18347.97...
+## 7    undefined 8630.400302  6024     10   29562.53   43620499 POLYGON ((55936.4 18119.57,...
+## 8    undefined 8630.400400  6029     10   48098.49   50424283 POLYGON ((66834.96 17741.56...
+## 9    undefined 8630.400306  6028     10   27669.78   24685535 POLYGON ((50494.98 16876.24...
+## 10   undefined 6536.600701  4807    104   35837.74   36861121 POLYGON ((43466.39 15993.69...</code></pre>
 <p>Ans. California Equal Albers (a common projection for statewide data in California)</p>
 </div>
 </div>
@@ -671,7 +660,7 @@ Your browser does not support iframes.
 <p>
 <br/>
 <hr/>
-<strong>Next: </strong> <a href="06_2d-data.html">Working with 2D data</a>
+<strong>Next: </strong> <a href="06_color.html">Working with Color</a>
 </p>
 </div>
 

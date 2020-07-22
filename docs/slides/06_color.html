@@ -172,7 +172,7 @@ Working with Color <br/><img src='images/color-brewer-palette_782x132.png'/>
 <p>Color values are typically used in <tt>plot()</tt> functions.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">par</span>(<span class="dt">bg=</span><span class="st">&quot;yellow&quot;</span>)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw">hist</span>(<span class="kw">rnorm</span>(<span class="dv">500</span>), <span class="dt">main=</span><span class="ot">NULL</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">border=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/07_color_files/figure-slidy/plot_hist-1.png" width="400" height="300" /></p>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_color_files/figure-slidy/plot_hist-1.png" width="400" height="300" /></p>
 <p>Common arguments for colors include:</p>
 <div class="indented1">
 <p><tt><strong>col</strong></tt>: symbol color (for polygons)<br />
@@ -198,7 +198,7 @@ Working with Color <br/><img src='images/color-brewer-palette_782x132.png'/>
 <li>a hexadecimal value (e.g., <tt>'#6c134b'</tt>)</li>
 </ul>
 <div class="indented1">
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/07_color_files/figure-slidy/plot_purple-1.png" width="150" height="150" /></p>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_color_files/figure-slidy/plot_purple-1.png" width="150" height="150" /></p>
 </div>
 </div>
 <div class="infobox">
@@ -248,7 +248,7 @@ hsv()</code></pre>
 <span id="cb9-13"><a href="#cb9-13"></a>red_semitrans &lt;-<span class="st">  &quot;#ff000080&quot;</span></span>
 <span id="cb9-14"><a href="#cb9-14"></a><span class="kw">polygon</span>(<span class="dt">x=</span>xs <span class="op">+</span><span class="st"> </span><span class="fl">0.5</span>, <span class="dt">y=</span>ys, <span class="dt">col=</span>blue_semitrans)</span>
 <span id="cb9-15"><a href="#cb9-15"></a><span class="kw">polygon</span>(<span class="dt">x=</span>xs <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span>, <span class="dt">y=</span>ys, <span class="dt">col=</span>red_semitrans)</span></code></pre></div>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/07_color_files/figure-slidy/trans_klippy-1.png" width="768" /></p>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_color_files/figure-slidy/trans_klippy-1.png" width="768" /></p>
 </div>
 <div class="tryit">
 <p>Modify the code above, using different transparency values (i.e., change the last two characters of the color values).</p>
@@ -262,15 +262,15 @@ hsv()</code></pre>
 <p>If you pass one value, all objects in the plot will have the same color.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">## Twelve points, one color</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="kw">plot</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">y=</span><span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">12</span>), <span class="dt">pch=</span><span class="dv">20</span>, <span class="dt">cex=</span><span class="dv">3</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/07_color_files/figure-slidy/one_color-1.png" width="768" /></p>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_color_files/figure-slidy/one_color-1.png" width="768" /></p>
 <p>If you pass multiple color values, the colors will be <strong>repeated</strong> as needed until there is one color for each feature.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">## Twelve points, three colors</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="kw">plot</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">y=</span><span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">12</span>), <span class="dt">pch=</span><span class="dv">20</span>, <span class="dt">cex=</span><span class="dv">3</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>))</span></code></pre></div>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/07_color_files/figure-slidy/three_colors-1.png" width="768" /></p>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_color_files/figure-slidy/three_colors-1.png" width="768" /></p>
 <p>If you want each feature to have a different color, pass the <strong>same number</strong> of color values as objects in the plot.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## Twelve points, twelve colors</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="kw">plot</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">y=</span><span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">12</span>), <span class="dt">pch=</span><span class="dv">20</span>, <span class="dt">cex=</span><span class="dv">3</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, <span class="dt">col=</span><span class="kw">topo.colors</span>(<span class="dv">12</span>))</span></code></pre></div>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/07_color_files/figure-slidy/dozen_colors-1.png" width="768" /></p>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_color_files/figure-slidy/dozen_colors-1.png" width="768" /></p>
 </div>
 <div id="color-palettes-and-color-ramps" class="slide section level1">
 <h1>Color Palettes and Color Ramps</h1>
@@ -285,7 +285,7 @@ topo.colors(n)  </code></pre>
 <span id="cb14-2"><a href="#cb14-2"></a></span>
 <span id="cb14-3"><a href="#cb14-3"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>))</span>
 <span id="cb14-4"><a href="#cb14-4"></a><span class="kw">barplot</span>(<span class="dt">height=</span><span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">20</span>), <span class="dt">col=</span><span class="kw">terrain.colors</span>(<span class="dv">20</span>), <span class="dt">axes=</span><span class="ot">FALSE</span>, <span class="dt">space=</span><span class="dv">0</span>)</span></code></pre></div>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/07_color_files/figure-slidy/bars_klippy-1.png" width="500" height="200" /></p>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_color_files/figure-slidy/bars_klippy-1.png" width="500" height="200" /></p>
 </div>
 <div class="tryit">
 <ol style="list-style-type: decimal">
@@ -296,10 +296,10 @@ topo.colors(n)  </code></pre>
 <div id="vtxxaw" class="hint">
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># 1. Replicate the bar plot above with a different color palette.</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="kw">barplot</span>(<span class="dt">height=</span><span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">20</span>), <span class="dt">col=</span><span class="kw">cm.colors</span>(<span class="dv">20</span>), <span class="dt">axes=</span><span class="ot">FALSE</span>, <span class="dt">space=</span><span class="dv">0</span>)</span></code></pre></div>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/07_color_files/figure-slidy/plot_heat_cols-1.png" width="500" height="200" /></p>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_color_files/figure-slidy/plot_heat_cols-1.png" width="500" height="200" /></p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># 2. Create a vector of 10 gray values, from pure black to pure white.</span></span>
 <span id="cb16-2"><a href="#cb16-2"></a><span class="kw">barplot</span>(<span class="dt">height=</span><span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">10</span>), <span class="dt">col=</span><span class="kw">gray</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="dv">10</span>), <span class="dt">axes=</span><span class="ot">FALSE</span>, <span class="dt">space=</span><span class="dv">0</span>)</span></code></pre></div>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/07_color_files/figure-slidy/plot_heat_cols-2.png" width="500" height="200" /></p>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_color_files/figure-slidy/plot_heat_cols-2.png" width="500" height="200" /></p>
 </div>
 </div>
 <div class="tip">
@@ -321,13 +321,13 @@ topo.colors(n)  </code></pre>
 <span id="cb17-10"><a href="#cb17-10"></a></span>
 <span id="cb17-11"><a href="#cb17-11"></a><span class="co">## Modify the plot using a color ramp of your choice</span></span>
 <span id="cb17-12"><a href="#cb17-12"></a><span class="co"># plot(xy, type=&quot;b&quot;, pch=16, col=??????)</span></span></code></pre></div>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/07_color_files/figure-slidy/random_walk_plot-1.png" width="500" height="500" /></p>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_color_files/figure-slidy/random_walk_plot-1.png" width="500" height="500" /></p>
 </div>
 <p>[<span id="soln_qgdest" class="showhidesoln" onclick="showHide(&#39;qgdest&#39;);return false;">Solution</span>]</p>
 <div id="qgdest" class="hint">
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">plot</span>(xy, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>)</span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="kw">points</span>(xy, <span class="dt">type=</span><span class="st">&quot;p&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">col=</span><span class="kw">rainbow</span>(n, <span class="dt">end=</span><span class="dv">5</span><span class="op">/</span><span class="dv">6</span>))</span></code></pre></div>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/07_color_files/figure-slidy/random_walk_soln-1.png" width="500" height="500" /></p>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_color_files/figure-slidy/random_walk_soln-1.png" width="500" height="500" /></p>
 </div>
 </div>
 </div>
@@ -338,14 +338,14 @@ topo.colors(n)  </code></pre>
 <span id="cb19-2"><a href="#cb19-2"></a><span class="kw">yellows_to_reds</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;#FFFF00&quot; &quot;#FFBF00&quot; &quot;#FF7F00&quot; &quot;#FF3F00&quot; &quot;#FF0000&quot;</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">plot</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">50</span>, <span class="dt">y=</span><span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">50</span>), <span class="dt">pch=</span><span class="dv">20</span>, <span class="dt">cex=</span><span class="dv">3</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, <span class="dt">col=</span><span class="kw">yellows_to_reds</span>(<span class="dv">50</span>))</span></code></pre></div>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/07_color_files/figure-slidy/fifty_colors-1.png" width="768" /></p>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_color_files/figure-slidy/fifty_colors-1.png" width="768" /></p>
 <div class="tryit">
 <p>Make a color ramp of your own choice and use it to plot circles. See example below.</p>
 <div class="indented1 indented1-r">
 <div class="sourceCode" id="cb22"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">## Plot using a color ramp</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a></span>
 <span id="cb22-3"><a href="#cb22-3"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">cex=</span><span class="dv">4</span>, <span class="dt">col=</span><span class="kw">topo.colors</span>(<span class="dv">10</span>))</span></code></pre></div>
-<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/07_color_files/figure-slidy/plotcols-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="D:/Workshops/R-Spatial/rspatial_mod/outputs/rspatial_scgis20/docs/slides/06_color_files/figure-slidy/plotcols-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
@@ -355,7 +355,7 @@ topo.colors(n)  </code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>colors_qual_paired &lt;-<span class="st"> </span>RColorBrewer<span class="op">::</span><span class="kw">brewer.pal</span>(<span class="dv">8</span>, <span class="st">&quot;Paired&quot;</span>)</span>
 <span id="cb23-2"><a href="#cb23-2"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>))</span>
 <span id="cb23-3"><a href="#cb23-3"></a><span class="kw">barplot</span>(<span class="dt">height=</span><span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">8</span>), <span class="dt">col=</span>colors_qual_paired, <span class="dt">axes=</span><span class="ot">FALSE</span>, <span class="dt">space=</span><span class="dv">0</span>)</span></code></pre></div>
-<p><img src="07_color_files/figure-slidy/rcolorbrew-1.png" width="768" height="200" /></p>
+<p><img src="06_color_files/figure-slidy/rcolorbrew-1.png" width="768" height="200" /></p>
 <div class="tip">
 <p>The following expression returns a vector of 433 colors excluding shades of gray. You can draw a random sample from this list with <tt>sample()</tt> to get a palette for categorical data.</p>
 <div class="indented1 indented1-r">
