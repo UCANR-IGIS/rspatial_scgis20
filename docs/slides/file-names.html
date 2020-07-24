@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Working with Files and Folders  " />
+  <meta name="copyright" content="<span class='footer-right'><a href='../acknowledgements.html'>Acknowledgements</a></span><span class='footer-right'><a href=' https://etherpad.wikimedia.org/p/rspatial-scgis2020 ' target='_blank'>Forum</a></span><span class='footer-right'><a href=' https://ucanr-igis.github.io/rspatial_scgis20/ '> https://ucanr-igis.github.io/rspatial_scgis20/ </a></span><span class='footer-right'><a href='../index.html'>Home</a></span><span class='footer-subtitle'> Spatial Data Analysis with R </span>"/>
+  <meta name="font-size-adjustment" content="2"/>
+  <title>Spatial Data Analysis with R  Society for Conservation GIS, July 2020</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACkUlEQVQ4jX2SW0jTcRTHTzNyeZlh6lqmm3POdNPC6SxSEzaqafkykOFoIxTDWpKRFV6iQMNLFyMSsQvUW0WORc2WWBmGKEGZXUyz0NrmNmfa1PYgfHsQ1v5oHjgvX875/M45vy/R8mDJ9caxrFIL5CUWJB00Q9n+7Q+l1BetUMuMTL3JpTB0QVnejd1Hu9DQ60G5eQbqB7PIvj0L2bUZ0KZzghWbs0o7Fx3Tc/B6vStm6+g0wrQvIKh2gKKyUxnNSZoO685SC1YDeL1e9Ll+Ia7WCd5pJ4hojQ8g1nViezETYBqZx93BOdwa9jAgsdUT4J6ZQqC6f4GIiLYU9/RzNWYIdU9hd/8rLjN7UGT8DbWROVVMlQsBBWas142DiIikdfbFMF0POIVm2NzM1zwLS+mvcSsnEajpBSv/8RIgucGJ1EYXEs+NwjrlWfUGMee/Y2PFJIJLrFibex8kOsahhCYnUlpnIL1kh9X9/yMKG2yIOOlAsPYnAveZsE75EEQUQLwTwy5Rsxvx9UxApKEPEYY+BiSizA623oaggkdgq4xLKwRLq7i8sy6EFlpg8wNEVwyAd3wAbZ8cPu3CazeCC/sRojYjaL8Jvm8MPWLDBm03A8CveQ9+7RBia4cYU4QfeokwzTOwc6/4OzKXHap/C5ufD0RNo0i4OAZR81dcnnD69Mp3PxBe9GRkuZdFKk7sqTcQ132EpGUMydetSLnpgOSGHVtbxpHU9AX8mkFEG55/ZrjQL1h82V6esPLVh8Sr40i940J6xzzS7s1C0m6HqHEEiTnatgT5gcPijHxltFwhjpRIQpZjBAJ2lFTBFW5TiOPT8mXx6apdcRl5OaJM1Q6hLC9ls3RPTLgok0NELCKiv02kPqt/O1MZAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
+  <script language="javascript" type="text/javascript">
+  function TriShowHide(shID) {
+    shIDspan = shID + "span";
+    shIDdiv = shID + "div";
+    if (document.getElementById(shIDdiv).style.display != 'block') {
+      document.getElementById(shIDdiv).style.display = 'block';
+      txtSpan = "&#9660;";
+    } else {
+      document.getElementById(shIDdiv).style.display = 'none';
+      txtSpan = "&#9654;";
+    }
+    document.getElementById(shIDspan).innerHTML = txtSpan + " ";
+  }
+  function showHide(shID) {
+    if (shID=="soln-show-all") {
+      var allAnswerCode = document.getElementsByClassName("answer-code");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'block';
+      }
+    } else if (shID=="soln-hide-all") {
+      var allAnswerCode = document.getElementsByClassName("answer-code");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'none';
+      }
+    } else if (shID=="hints-show-all") {
+      var allAnswerCode = document.getElementsByClassName("hint");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'block';
+      }
+    } else if (shID=="hints-hide-all") {
+      var allAnswerCode = document.getElementsByClassName("hint");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'none';
+      }
+    } else {
+      if (document.getElementById(shID)) {
+        if (document.getElementById(shID).style.display != 'block') {
+          document.getElementById(shID).style.display = 'block';
+        } else {
+          document.getElementById(shID).style.display = 'none';
+        }
+      }
+    }
+  }
+  function CopyToClipboard(containerid) {
+  if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+  } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      // alert("text copied")
+  }}
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163964617-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-163964617-1');
+  </script>
+  <script src="lib/header-attrs-2.3/header-attrs.js"></script>
+  <link href="lib/slidy-2/styles/slidy.css" rel="stylesheet" />
+  <script src="lib/slidy-2/scripts/slidy.js"></script>
+  <script src="lib/slidy_shiny-1/slidy_shiny.js"></script>
+  <script src="lib/clipboard-1.7.1/clipboard.min.js"></script>
+  <link href="lib/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+  <link href="lib/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+  <script src="lib/klippy-0.0.0.9500/js/klippy.min.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="..\css\slidy_styles.css" />
+  <meta name="duration" content="0" />
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title"><span class="course-title">Spatial Data Analysis with R </span><br/><span class="course-subtitle">Society for Conservation GIS, July 2020</span></h1>
+  <p class="author">
+Working with Files and Folders <br/><img src='images/folders_400x300.jpg'/>
+  </p>
+</div>
+<div id="working-directory" class="slide section level1">
+<h1>Working Directory</h1>
+<script>
+  addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<p>When you import or export objects to disk using a script, you don’t have the luxury of an ‘Open…’ or ‘Save As…’ dialog. You have to specify where it’s coming from (or going to).</p>
+<p>All file paths are relative to the <strong>working directory</strong>. You can view the working directory with <code>getwd()</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">## View the working directory</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">getwd</span>()</span></code></pre></div>
+<div class="infobox">
+<p>‘directory’ = ‘folder’</p>
+</div>
+<!--- infobox --->
+<p>To see a list of files in the current working directory, use <code>list.files(x)</code>, where <em>x</em> is a directory.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">## List the files in the current working directory</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">## Note &#39;.&#39; is shorthand for the current working directory</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">list.files</span>(<span class="st">&quot;.&quot;</span>)</span></code></pre></div>
+<div class="tip">
+<p><code>list.files()</code> also lists directories</p>
+<p>Optional arguments let you specify a pattern, recurse subdirectories, etc.</p>
+</div>
+<!--- tip --->
+<p><br />
+</p>
+<p>To list files in a <em>subdirectory</em> of the current directory:</p>
+<div class="indented3">
+<code>list.files("./mysubfolder")</code>
+</div>
+<p>Here ‘<code>.</code>’ tells R to start at the working directory, and then go into ‘<code>mysubfolder</code>’.</p>
+<div class="infobox">
+<p>R always requires forward slashes (<code>/</code>), not back slashes (<code>\</code>).</p>
+<p>Sorry Windows users!</p>
+</div>
+<!--- tip --->
+<p><br />
+</p>
+<div class="tryit">
+<p>List all the Shapefiles in the <code>data</code> directory.</p>
+<div class="indented1 indented1-r">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">## List the Shapefiles in the &#39;data&#39; directory</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">list.files</span>(<span class="st">&quot;./data&quot;</span>, <span class="dt">pattern =</span> <span class="st">&quot;*.shp&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<!--- TryIt --->
+</div>
+<div id="absolute-file-paths" class="slide section level1">
+<h1>Absolute File Paths</h1>
+<p>An absolute file path starts with <code>'/'</code>, which indicates the root directory. It may also include a volume (drive letter). Examples:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## Define a file name that begins with the root directory (on the current drive / volumne)</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>x &lt;-<span class="st"> &quot;/temp/test.csv&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">## See if it exists</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="kw">file.exists</span>(x)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">## Another one, with a drive letter</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>x &lt;-<span class="st"> &quot;E:/downloads/my_notes.txt&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="kw">file.exists</span>(x)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="tip">
+<p>To ensure you didn’t type a filename incorrectly, use <code>file.exists()</code></p>
+<p>File names on Windows are <em>not</em> case sensitive, but for compatibility across platforms make it a practice to match the case.</p>
+</div>
+<!--- tip --->
+</div>
+<div id="importing-files" class="slide section level1">
+<h1>Importing Files</h1>
+<h3 id="example-importing-a-csv">Example: Importing a csv</h3>
+<p>You can import a csv file using <code>read.csv(x)</code>, where <code>x</code> is the name of a file.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## First, save the path and file name to a variable</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>csv_fn &lt;-<span class="st"> &quot;./data/sf_libraries.csv&quot;</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co">## See if it exists</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="kw">file.exists</span>(csv_fn)</span>
+<span id="cb8-6"><a href="#cb8-6"></a></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co">## Import</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>my_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(csv_fn)</span></code></pre></div>
+<div class="tryit">
+<p>What type of object (class) does <code>read.csv()</code> return?</p>
+<p><span id="soln_xtuhwz" class="showhidesoln" onclick="showHide(&#39;xtuhwz&#39;);return false;">Answer</span></p>
+<div id="xtuhwz" class="hint indented1 indented1-r">
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">class</span>(my_data)</span></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+</div>
+<!--- soln_xtuhwz --->
+</div>
+<!--- TryIt --->
+</div>
+<div id="changing-the-working-directory" class="slide section level1">
+<h1>Changing the Working Directory</h1>
+<p>You can change the working directory with <code>setwd()</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">setwd</span>(<span class="st">&quot;/projects/soc101/sf_census/&quot;</span>)</span></code></pre></div>
+<div class="tip">
+<p>You can also set the working directory from the RStudio <em>Session</em> menu.</p>
+<p>If you create a RStudio Project, the working directory defaults to the Project folder.</p>
+</div>
+</div>
+<div id="home-directory" class="slide section level1">
+<h1>‘Home’ Directory</h1>
+<p>The <strong>‘Home’ directory</strong> is usually your Documents folder. Example;</p>
+<div class="indented3">
+<code>C:/Users/Andy/Documents</code>
+</div>
+<p>You can tell R to start in the Home directory with the <strong><code>~</code></strong> character:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## List files in your &#39;Home&#39; directory</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">list.files</span>(<span class="st">&quot;~&quot;</span>)</span></code></pre></div>
+</div>
+<div id="convenience-functions" class="slide section level1">
+<h1>Convenience Functions</h1>
+<h3 id="file.choose"><code>file.choose()</code></h3>
+<p>allows you to pick a file using a file selection dialog, then returns the name.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">## Select a file</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>x &lt;-<span class="st"> </span><span class="kw">file.choose</span>()</span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co">## View x</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>x</span></code></pre></div>
+<p><br />
+</p>
+<h3 id="file.path"><code>file.path()</code></h3>
+<p>lets you concatenate folders and files to construct a syntactically valid name:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">## Construct a complete file name from a set of directories and a file name</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="kw">file.path</span>(<span class="st">&quot;~&quot;</span>, <span class="st">&quot;BaseLayers&quot;</span>, <span class="st">&quot;California&quot;</span>, <span class="st">&quot;Parks.shp&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;~/BaseLayers/California/Parks.shp&quot;</code></pre>
+<p><br />
+</p>
+<h3 id="file_path_as_absolute"><code>file_path_as_absolute()</code></h3>
+<p>(from the <code>tools</code> package) shows you the absolute path for any folder:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">## View the expanded path of the &#39;data&#39; folder</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>tools<span class="op">::</span><span class="kw">file_path_as_absolute</span>(<span class="st">&quot;./data&quot;</span>)</span></code></pre></div>
+</div>
+<div id="saving-r-objects-to-disk" class="slide section level1">
+<h1>Saving R Objects to Disk</h1>
+<p>You can save individual objects (variables) to disk with <strong><code>save()</code></strong>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">## Create 1000 random values</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>rnd_vals &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>) <span class="op">*</span><span class="st"> </span><span class="dv">20</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="co">## Save to the Home directory</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="kw">save</span>(rnd_vals, <span class="dt">file=</span><span class="st">&quot;~/my_random_numbers.RData&quot;</span>)</span></code></pre></div>
+<div class="tip">
+<p><strong>.RData</strong> and <strong>.Rda</strong> are common extensions for R data files, but you can name your file anything you want.</p>
+<p>To save multiple objects to the same file, use the <strong>list</strong> argument:</p>
+<div class="indented3" style="font-family:monospace;">
+<p>save(<strong>list = c(“x”, “y”)</strong>, file = “~/xy.RData”)</p>
+</div>
+<p>To save your entire <strong>workspace</strong> (<em>all</em> variables in memory), use <code>save.image()</code>. RStudio also has a ‘Save Workspace’ button on the ‘Environment’ window, and will probably ask if you want to save your workspace when you quit the program.</p>
+</div>
+<!---- tip --->
+<p><br />
+</p>
+<h2 id="load-saved-objects-back-into-r">Load Saved Objects Back into R</h2>
+<p><code>save()</code> stores objects in a binary, compressed file format that R understands. This makes it very flexible and easy to bring back into R using the sister function <strong><tt>load()</tt></strong>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">## Delete rnd_vals from memory</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="kw">rm</span>(rnd_vals)</span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="kw">ls</span>()</span>
+<span id="cb18-4"><a href="#cb18-4"></a></span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="co">## Load the saved file</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a><span class="kw">load</span>(<span class="st">&quot;~/my_random_numbers.RData&quot;</span>)</span>
+<span id="cb18-7"><a href="#cb18-7"></a></span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="co">## View objects in memory. (rnd_vals should be back!)</span></span>
+<span id="cb18-9"><a href="#cb18-9"></a><span class="kw">ls</span>()</span></code></pre></div>
+</div>
+<div id="saving-and-sourcing-scripts" class="slide section level1">
+<h1>Saving and Sourcing Scripts</h1>
+<p>You can save and open scripts, R Markdown files, etc. from the RStudio <strong>File</strong> menu.</p>
+<p>If you have a set of commands that you want to rerun repeatedly, you can save them as a *.R file and then run them all at once with <tt><strong>source()</strong></tt> function.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">source</span>(<span class="st">&quot;import_clean_data.R&quot;</span>)</span></code></pre></div>
+<div class="tip">
+<p><tt><strong>source()</strong></tt> automatically runs all the commands in a script, so only use it with scripts that are ‘ready-to-go’.</p>
+<p>To run commands one-by-one, open the script in RStudio and use the ‘run’ button.</p>
+</div>
+</div>
+<div id="rstudio-files-pane" class="slide section level1">
+<h1>RStudio Files Pane</h1>
+<p>In RStudio, use the <strong>Files</strong> tab to browse your files, open R files, and set the working directory.</p>
+<p><img src="images/rstudio-files-pane_616x504x256.png" style="display:block; margin-left:3em; border:1px solid grey;" /></p>
+<div class="tip">
+<p>You can open many files by clicking on them in Files pane:</p>
+<div class="indented1">
+<p><code>*.R</code>, <code>*.txt</code>, <code>*.css</code> - clicking will open for editing<br />
+<code>*.RData</code>, <code>*.rda</code> - clicking will import them into RStudio</p>
+</div>
+</div>
+<!--- tip --->
+</div>
+<div id="summary" class="slide section level1">
+<h1>Summary</h1>
+<p>Importing and exporting data typically requires passing a <strong>file name</strong>.</p>
+<p>File names are in reference to the current <strong>Working Directory</strong>, which you specify with the ‘<strong><code>.</code></strong>’</p>
+<p>The ‘Home’ Directory is a good place to store things you use frequently.</p>
+<p>Convenience functions like <code>file.exists()</code> and <code>list.files()</code> can make your life easier.</p>
+<p><br />
+</p>
+<p>
+<br/>
+<hr/>
+<strong>Next: </strong> <a href="importing-vector.html">Importing and Plotting Vector Data</a>
+</p>
+</div>
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+</body>
+</html>
