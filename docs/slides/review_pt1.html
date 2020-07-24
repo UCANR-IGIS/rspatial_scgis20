@@ -11,70 +11,6 @@
   <meta name="font-size-adjustment" content="2"/>
   <title>Spatial Data Analysis with R  Society for Conservation GIS, July 2020</title>
   <style type="text/css">code{white-space: pre;}</style>
-  <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
   <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACkUlEQVQ4jX2SW0jTcRTHTzNyeZlh6lqmm3POdNPC6SxSEzaqafkykOFoIxTDWpKRFV6iQMNLFyMSsQvUW0WORc2WWBmGKEGZXUyz0NrmNmfa1PYgfHsQ1v5oHjgvX875/M45vy/R8mDJ9caxrFIL5CUWJB00Q9n+7Q+l1BetUMuMTL3JpTB0QVnejd1Hu9DQ60G5eQbqB7PIvj0L2bUZ0KZzghWbs0o7Fx3Tc/B6vStm6+g0wrQvIKh2gKKyUxnNSZoO685SC1YDeL1e9Ll+Ia7WCd5pJ4hojQ8g1nViezETYBqZx93BOdwa9jAgsdUT4J6ZQqC6f4GIiLYU9/RzNWYIdU9hd/8rLjN7UGT8DbWROVVMlQsBBWas142DiIikdfbFMF0POIVm2NzM1zwLS+mvcSsnEajpBSv/8RIgucGJ1EYXEs+NwjrlWfUGMee/Y2PFJIJLrFibex8kOsahhCYnUlpnIL1kh9X9/yMKG2yIOOlAsPYnAveZsE75EEQUQLwTwy5Rsxvx9UxApKEPEYY+BiSizA623oaggkdgq4xLKwRLq7i8sy6EFlpg8wNEVwyAd3wAbZ8cPu3CazeCC/sRojYjaL8Jvm8MPWLDBm03A8CveQ9+7RBia4cYU4QfeokwzTOwc6/4OzKXHap/C5ufD0RNo0i4OAZR81dcnnD69Mp3PxBe9GRkuZdFKk7sqTcQ132EpGUMydetSLnpgOSGHVtbxpHU9AX8mkFEG55/ZrjQL1h82V6esPLVh8Sr40i940J6xzzS7s1C0m6HqHEEiTnatgT5gcPijHxltFwhjpRIQpZjBAJ2lFTBFW5TiOPT8mXx6apdcRl5OaJM1Q6hLC9ls3RPTLgok0NELCKiv02kPqt/O1MZAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
   <script language="javascript" type="text/javascript">
   function TriShowHide(shID) {
@@ -163,212 +99,232 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Welcome and Part 1 Review <br/><img src='images/puzzle_400x364x256.png'/>
   </p>
 </div>
-<div id="highlights-from-last-time" class="slide section level1">
-<h1>Highlights from Last Time</h1>
+<div id="about-me" class="slide section level1">
+<h1>About Me…</h1>
+<script>
+  addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
 <script language="javascript" type="text/javascript">w3c_slidy.mouse_click_enabled = false;</script>
+<p><img src="images/anr_montage-wide_1120x520.png" /></p>
 <style type="text/css">
 .fundesc {
   color: DimGray;
   font-style: italic;
 }
 </style>
-<script>
-  addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
-</script>
-<h2 id="sf-functions"><code>sf</code> functions</h2>
+</div>
+<div id="getting-help" class="slide section level1">
+<h1>Getting Help</h1>
+<p><img src="images/r-wizard_120x170.png" style="float:right; padding:10px;"/></p>
+<h2 id="r-wizards">R Wizards</h2>
+<div class="indented2" style="margin-left:3em;">
+<ul>
+<li>Declan Pizzino<br />
+</li>
+<li>JayLee Tuil<br />
+</li>
+</ul>
+</div>
+<div style="clear:both;">
+
+</div>
+<p><strong>Chat Window</strong></p>
 <div class="indented2">
-<ul>
-<li><code>st_read()</code> <span class="fundesc">– import all manner of spatial data</span><br />
-</li>
-<li><code>st_crs()</code> <span class="fundesc">– view (or assign) a crs to a <code>sf</code> object</span><br />
-</li>
-<li>EPSG numbers <span class="fundesc">– big catalog of coordinate reference systems</span><br />
-</li>
-<li><code>st_transform()</code> <span class="fundesc">– project (or unproject) <code>sf</code> objects</span><br />
-</li>
-<li><code>st_as_sf()</code> <span class="fundesc">– turn a data frame with xy columns into a <code>sf</code> data frame</span><br />
-</li>
-<li><code>st_geometry()</code> <span class="fundesc">– return just the geometry (i.e., for plotting)</span><br />
-</li>
-<li><code>st_drop_geometry()</code> <span class="fundesc">– throw away the geometry (i.e., for analysis of the attribute table)</span><br />
-</li>
-<li><code>st_write()</code> <span class="fundesc">– export <code>sf</code> objects to all manner of formats</span><br />
-</li>
-</ul>
+<p>Best place for questions and comments during the presentations</p>
 </div>
-<h2 id="dplyr-functions"><code>dplyr</code> functions</h2>
+<p><strong>Post-workshop Q&amp;A</strong></p>
 <div class="indented2">
+<p>Anything else!</p>
+</div>
+</div>
+<div id="workshop-materials" class="slide section level1">
+<h1>Workshop Materials</h1>
+<p><strong>Slides and exercises:</strong></p>
+<div class="compact">
 <ul>
-<li><code>filter()</code> &amp; <code>slice()</code> <span class="fundesc">– for attribute queries</span><br />
+<li><a href="https://ucanr-igis.github.io/rspatial_scgis20/" target="_blank">https://ucanr-igis.github.io/rspatial_scgis20/</a></li>
+</ul>
+</div>
+<!-- *Workshop computers*:  `c:\\rspatial_scgis19-master\\docs\\` -->
+<p><strong>Community Forum:</strong></p>
+<div class="compact">
+<ul>
+<li><a href="https://etherpad.wikimedia.org/p/rspatial-scgis2020" target="_blank" rel="noopener">https://etherpad.wikimedia.org/p/rspatial-scgis2020</a></li>
+</ul>
+<div class="indented1">
+<ul>
+<li>questions<br />
 </li>
-<li><code>mutate()</code> <span class="fundesc">– add new columns to the attribute table</span><br />
+<li>code<br />
 </li>
-<li><code>group_by()</code>, <code>summarise()</code>, <code>count()</code>, <code>top_n()</code>, etc. <span class="fundesc">– analysis of the attribute table</span><br />
+<li>resources</li>
+</ul>
+</div>
+</div>
+<!---
+- projects
+--->
+<p><strong>Virtual Environment</strong></p>
+<div class="compact">
+<ul>
+<li><p><a href="https://rstudio.cloud/project/1463502" target="_blank" rel="noopener">https://rstudio.cloud/project/1463502</a></p></li>
+<li><p>Data and packages pre-installed!</p></li>
+</ul>
+</div>
+<p><strong>Data</strong></p>
+<div class="compact">
+<ul>
+<li><p>RStudio Cloud: see ‘data’ directory in project</p></li>
+<li><p>RStudio Desktop: download zip from <a href="https://github.com/ucanr-igis/rspatial_data" target="_blank" rel="noopener">https://github.com/ucanr-igis/rspatial_data</a></p></li>
+</ul>
+</div>
+<p><strong>Other Resources &amp; Cheatsheets</strong></p>
+<div class="compact">
+<ul>
+<li>see <a href="https://ucanr-igis.github.io/rspatial_scgis20/resources.html">Resources.html</a></li>
+</ul>
+</div>
+</div>
+<div id="learning-strategy" class="slide section level1">
+<h1>Learning Strategy</h1>
+<p><img src="images/learning_strategy_venn_diagram_450x450x256.png" style="display:block; margin:1em auto;" /></p>
+<div style="text-align:right; width:400px; margin-left:100px; border-bottom:2px solid black;">
+<p>+ foundational concepts<br />
++ code recipes<br />
++ working examples<br />
++ practice<br />
++ a good search engine</p>
+</div>
+<div style="text-align:right; width:400px; margin-left:100px;">
+<p><strong>functional pRoficiency!</strong></p>
+</div>
+<p><br />
+</p>
+<p><img src="images/cookbook_cover_300x360x256.png" style="display:block; margin:1em auto; border:1px solid grey;" /></p>
+</div>
+<div id="highlights-from-part-i" class="slide section level1">
+<h1>Highlights from Part I</h1>
+<p><strong>RStudio</strong></p>
+<div class="compact">
+<ul>
+<li>not required to use R<br />
+</li>
+<li>simplifies common tasks<br />
+</li>
+<li>lots of expanded functionality, bells and whistles<br />
+</li>
+<li>desktop and cloud versions<br />
+</li>
+</ul>
+</div>
+<p><strong>R Syntax</strong></p>
+<div class="compact">
+<ul>
+<li>case sensitive<br />
+</li>
+<li>two common assignment operators:</li>
+</ul>
+</div>
+<div class="indented4">
+<p><strong><code>x = 34</code></strong><br />
+<strong><code>x &lt;- 34</code></strong></p>
+</div>
+<p><strong>Working with Packages</strong></p>
+<div class="compact">
+<ul>
+<li>expand the functionality of R<br />
+</li>
+<li>thousands and thousands of them<br />
+</li>
+<li>find them from your colleagues, tasks views on CRAN<br />
+</li>
+<li><code>tidyverse</code> is a family of packages that support piping syntax<br />
+</li>
+<li>main packages for spatial data:</li>
+</ul>
+</div>
+<div class="indented4">
+<p><strong><code>sf</code></strong><br />
+<strong><code>raster</code></strong></p>
+</div>
+<div class="compact">
+<ul>
+<li>you can specify which package to use with <strong><code>::</code></strong><br />
+</li>
+</ul>
+</div>
+<div class="indented4">
+<p><strong><code>sp::over()</code></strong></p>
+</div>
+<div class="compact">
+<ul>
+<li><code>arcgisbinding</code> package connects R and ArcGIS Pro<br />
+</li>
+</ul>
+</div>
+<p><strong>Files and Folders</strong></p>
+<div class="compact">
+<ul>
+<li>always remember what your working directory is!<br />
+</li>
+<li>multiple ways to view or change the working directory</li>
+</ul>
+</div>
+<div class="indented4">
+<p>RStudio menu<br />
+<strong><code>getwd()</code></strong><br />
+<strong><code>setwd()</code></strong></p>
+</div>
+<p><strong>Importing Spatial Data</strong></p>
+<div class="compact">
+<ul>
+<li><code>sf</code> package can import Shapefiles, GeoJSON, KML, geopackage, ESRI geodatabase, etc.<br />
+</li>
+<li><code>my_layer &lt;- st_read(*source*, *layer*)</code></li>
+</ul>
+</div>
+<p><strong>Plotting Spatial Data</strong></p>
+<div class="compact">
+<ul>
+<li><code>plot(my_layer, asp = 1, col = "red", ...)</code><br />
+</li>
+<li><tt>plot(my_other_layer, <strong>add = TRUE</strong>)</tt></li>
+</ul>
+</div>
+<p><img src="review_pt1_files/figure-slidy/plot_yose_bnd_ll-1.png" width="768" /></p>
+</div>
+<div id="todays-outline" class="slide section level1">
+<h1>Today’s Outline</h1>
+<div class="compact">
+<ul>
+<li>More Plotting Vector Data<br />
+</li>
+<li>Working with 2D data<br />
+</li>
+<li>Common Manipulations<br />
+</li>
+<li>Group Photo<br />
+</li>
+<li>Evaluation<br />
+</li>
+<li>Optional Exercise<br />
 </li>
 </ul>
 </div>
 </div>
-<div id="quiz" class="slide section level1 incremental">
-<h1 class="incremental">Quiz</h1>
-<p><strong>1. What is the EPSG code for geographic coordinates (WGS84 datum)? </strong></p>
+<div id="get-on-the-map" class="slide section level1">
+<h1>Get on the Map!</h1>
+<p><strong>Participants from Part 1</strong></p>
 <div class="indented1">
-<p>Ans. 4326</p>
+<iframe src="../workshop-map_pt1.html" style="width:800px; height:600px; border:1px solid dimgray;">
+</iframe>
 </div>
-<p><strong>2. Why is this important?</strong></p>
+<p>What <strong>city</strong> are you from, and what is your <strong>favorite invertebrate</strong>?</p>
+<p>Complete this form for our Geocoding Exercise:</p>
+<p><strong><a href="https://forms.gle/SAbmxXmMdpihGvkQ9" target="_blank" rel="noopener">https://forms.gle/SAbmxXmMdpihGvkQ9</a></strong></p>
 <div class="indented1">
-<p>This is the crs used by the global GPS system, and the default crs for most GPS location software.</p>
-<p>You may have to manually assign the crs when coverting a csv file into a sf object.</p>
-<p>The <code>leaflet</code> package requires layers to be in geographic coordinates.</p>
-<p>Geographic coordinates are inappropriate for many types of spatial analysis.</p>
+<p><img src="images/lady-bug_230x200.jpg" /> <img src="images/jelly_fish_134x200.jpg" /> <img src="images/earthworm_200x200.jpg" /> <img src="images/tarantula_220x200.jpg" /></p>
 </div>
-<p><strong>3. Bonus:is the EPSG code for geographic coordinates in the <em>NAD83</em> datum? Why is this important?</strong></p>
-<div class="indented1">
-<p>Ans. 4269</p>
-<p>NAD83 is a common datum for many data providers (e.g., the National Park Service). You may encounter data that is unprojected (i.e., long-lat) in NAD83, as well as projected (e.g., UTM) in NAD83.</p>
-</div>
-</div>
-<div id="another-way-to-deal-with-duplicate-function-names-conflicted-package" class="slide section level1">
-<h1>Another way to deal with duplicate function names: <code>conflicted</code> package</h1>
-<p>When you call a function that exists in multiple packages, R uses whichever package was loaded first.</p>
-<p>The <code>conflicted</code> package helps you avoid problems with duplicate function names, by specifying which one to prioritize <em>no matter what</em> order they were loaded.</p>
-<p>This is particularly useful with functions in the <code>dplyr</code> package that exist in other packages also.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(conflicted)</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># Set conflict preference</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;count&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;select&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span>
-<span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># From here on out, anytime we call filter(), count(), or select(),</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># R will use the dplyr version.</span></span></code></pre></div>
-</div>
-<div id="what-are-named-vectors" class="slide section level1">
-<h1>What Are ‘Named Vectors’?</h1>
-<p>Basic vectors are unnamed, meaning the individual elements don’t have names:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>x</span></code></pre></div>
-<pre><code>## [1] 1 2 3 4 5</code></pre>
-<p>Elements of vectors <em>can</em> have names however, if you create them with the <code>c()</code> function:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">girth =</span> <span class="dv">54</span>, <span class="dt">height =</span> <span class="dv">98</span>, <span class="dt">depth =</span> <span class="dv">30</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>y</span></code></pre></div>
-<pre><code>##  girth height  depth 
-##     54     98     30</code></pre>
-<p>Unfortunately, just because a vector has named elements doesn’t mean you can extract elements by name (unlike a list object). This would <strong>not</strong> work:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">## This would generate an error:</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>y<span class="op">$</span>girth</span></code></pre></div>
-<p>So why would anyone want to create a named vector?</p>
-<p>Occassionaly you see function arguments that want a named vector. For example suppose you want to join the following two tables with <code>dplyr::left_join()</code>:</p>
-<p><img src="images/table_join01_820x442x256.png" style="display:block; margin:1em auto;" /></p>
-<p>This can be easily accomplished with:</p>
-<div class="indented2" style="font-family:monospace;">
-dplyr::left_join(x = iris, y = iris_physiology, by = “Species”)
-</div>
-<p>But what if the join columm is named <em>differently</em> in each table?</p>
-<p><img src="images/table_join02_820x442x256.png" style="display:block; margin:1em auto;" /></p>
-<p><code>left_join()</code> has a way to handle this, provided you pass a <strong>named vector</strong> as the by argument:</p>
-<div class="indented2" style="font-family:monospace;">
-dplyr::left_join(x = iris, y = iris_physiology, by = c(“Species” = “SpeciesName”))
-</div>
-</div>
-<div id="anatomy-of-a-tmap-choropleth-map" class="slide section level1">
-<h1>Anatomy of a <code>tmap</code> Choropleth Map</h1>
-<p>Choropleth maps use different colors and symbol properties to display feature attributes.</p>
-<p>While you can make choropleth maps in base R, it’s a lot easier to use tmap, ggplot2, or other packages.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## Load the counties</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>epsg_caalbers &lt;-<span class="st"> </span><span class="dv">3310</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>ca_cnty_alb &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&quot;./data/ca_counties.geojson&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_transform</span>(epsg_caalbers)</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="kw">glimpse</span>(ca_cnty_alb)</span></code></pre></div>
-<pre><code>## Reading layer `ca_counties&#39; from data source `D:\Workshops\R-Spatial\rspatial_mod\outputs\rspatial_data\data\ca_counties.geojson&#39; using driver `GeoJSON&#39;
-## Simple feature collection with 58 features and 13 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XYZ
-## bbox:           xmin: -124.4096 ymin: 32.53416 xmax: -114.1312 ymax: 42.00952
-## z_range:        zmin: 0 zmax: 0
-## geographic CRS: WGS 84
-## Rows: 58
-## Columns: 14
-## $ STATEFP    &lt;chr&gt; &quot;06&quot;, &quot;06&quot;, &quot;06&quot;, &quot;06&quot;, &quot;06&quot;, &quot;06&quot;, &quot;06&quot;, &quot;06&quot;, &quot;06&quot;, &quot;06&quot;, &quot;06&quot;, &quot;06&quot;, &quot;06&quot;, &quot;06&quot;, &quot;06&quot;, &quot;06&quot;, &quot;...
-## $ COUNTYFP   &lt;chr&gt; &quot;099&quot;, &quot;075&quot;, &quot;005&quot;, &quot;071&quot;, &quot;091&quot;, &quot;093&quot;, &quot;063&quot;, &quot;079&quot;, &quot;049&quot;, &quot;011&quot;, &quot;013&quot;, &quot;111&quot;, &quot;059&quot;, &quot;113&quot;,...
-## $ LSAD       &lt;chr&gt; &quot;22&quot;, &quot;22&quot;, &quot;22&quot;, &quot;22&quot;, &quot;22&quot;, &quot;22&quot;, &quot;22&quot;, &quot;22&quot;, &quot;22&quot;, &quot;22&quot;, &quot;22&quot;, &quot;22&quot;, &quot;22&quot;, &quot;22&quot;, &quot;22&quot;, &quot;22&quot;, &quot;...
-## $ ALAND      &lt;dbl&gt; 3870792979, 121451664, 1539947591, 51947497395, 2468686345, 16259635719, 6612371925, 8543720566, ...
-## $ AWATER     &lt;dbl&gt; 51176484, 479139414, 29470575, 123929658, 23299112, 179864658, 156389419, 820409436, 745929078, 1...
-## $ CountyFIPS &lt;chr&gt; &quot;06099&quot;, &quot;06075&quot;, &quot;06005&quot;, &quot;06071&quot;, &quot;06091&quot;, &quot;06093&quot;, &quot;06063&quot;, &quot;06079&quot;, &quot;06049&quot;, &quot;06011&quot;, &quot;06013&quot;...
-## $ CountyNAME &lt;chr&gt; &quot;Stanislaus County&quot;, &quot;San Francisco County&quot;, &quot;Amador County&quot;, &quot;San Bernardino County&quot;, &quot;Sierra Co...
-## $ POP2010    &lt;dbl&gt; 515283, 805825, 37860, 2041689, 3221, 44971, 19918, 269860, 9708, 21459, 1052894, 825353, 3018080...
-## $ POP2011    &lt;dbl&gt; 518270, 816239, 37520, 2064663, 3104, 44719, 19690, 271165, 9499, 21415, 1066587, 830973, 3056311...
-## $ POP2012    &lt;dbl&gt; 522134, 829691, 37072, 2080651, 3076, 44214, 19341, 274528, 9332, 21397, 1079358, 835476, 3089893...
-## $ POP2013    &lt;dbl&gt; 526286, 841138, 36602, 2093306, 3040, 43773, 18877, 276284, 9112, 21432, 1095980, 840972, 3121854...
-## $ POP2014    &lt;dbl&gt; 531997, 852469, 36742, 2112619, 3003, 43628, 18606, 279083, 9023, 21419, 1111339, 846178, 3145515...
-## $ SQMI       &lt;dbl&gt; 1494.52, 46.89, 594.58, 20057.04, 953.17, 6277.88, 2553.05, 3298.75, 3915.40, 1150.73, 722.74, 18...
-## $ geometry   &lt;MULTIPOLYGON [m]&gt; MULTIPOLYGON Z (((-131297 -..., MULTIPOLYGON Z (((-205081.3..., MULTIPOLYGON Z (((-3...</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>mymap &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(ca_cnty_alb) <span class="op">+</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="st">  </span><span class="kw">tm_polygons</span> (<span class="dt">col =</span> <span class="st">&quot;POP2014&quot;</span>,                   <span class="co">## col: the column that contains the values</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>       <span class="dt">n =</span> <span class="dv">10</span>,                                    <span class="co">## n: number of bins</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>       <span class="dt">style =</span> <span class="st">&quot;cont&quot;</span>,                            <span class="co">## style: method to create the bins</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>       <span class="dt">palette =</span> <span class="st">&quot;YlOrRd&quot;</span>,                        <span class="co">## palette: a named palette or a vector of colors</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a>       <span class="dt">colorNA =</span> <span class="st">&quot;grey50&quot;</span>,                        <span class="co">## colorNA: the color to use for NA values</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a>       <span class="dt">legend.format =</span> <span class="kw">list</span>(<span class="dt">big.num.abbr =</span> <span class="ot">NA</span>),   <span class="co">## legend options  </span></span>
-<span id="cb9-8"><a href="#cb9-8"></a>       <span class="dt">legend.reverse =</span> <span class="ot">FALSE</span> ,                   <span class="co">## legend.reverse: reverse the legend</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a>       <span class="dt">title =</span> <span class="st">&quot;2014 Population&quot;</span>                  <span class="co">## title: title of the legend element</span></span>
-<span id="cb9-10"><a href="#cb9-10"></a>    ) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;top&quot;</span>)) <span class="op">+</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a><span class="st">  </span><span class="kw">tm_scale_bar</span>(<span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</span>
-<span id="cb9-13"><a href="#cb9-13"></a></span>
-<span id="cb9-14"><a href="#cb9-14"></a>mymap</span></code></pre></div>
-<p><img src="review_pt1_files/figure-slidy/ca_map_pop2014-1.png" width="768" /></p>
-<div class="infobox">
-<p>Arguments that define the choropleth generally go in the function that displays the features (e.g., <code>tm_symbols()</code>, <code>tm_polygons()</code>, <code>tm_fill()</code>, <code>tm_borders()</code>)</p>
-<p>Common arguments include:</p>
-<div class="indented1">
-<p><code>col</code> - (stands for column, not color) the column that has the values</p>
-<p><code>palette</code> - named palette (to see a list of named palettes, run <code>RColorBrewer::brewer.pal.info</code>), or a vector of colors</p>
-<p><code>n</code> - number of ‘bins’ to create</p>
-<p><code>style</code> - how the ‘bins’ should be constructed:</p>
-<div class="indented1">
-<ul>
-<li><p>discrete options: <tt>“cat”, “fixed”, “sd”, “equal”, “pretty”, “quantile”, “kmeans”, “hclust”, “bclust”, “fisher”, “jenks”, and “log10_pretty”`</tt></p></li>
-<li><p>continuous options: <tt>“cont”, “order”, “log10”</tt></p></li>
-</ul>
-</div>
-<p><code>breaks</code> - specific break points (when <code>style = 'fixed'</code>)</p>
-</div>
-</div>
-<!--- infobox --->
-<div class="tryit">
-<p>Make a map of the 2014 population density per county (i.e., population / square mile). Use a monochromatic color ramp (e.g., ‘Purples’). <span id="soln_zjgsbe" class="showhidesoln" onclick="showHide(&#39;zjgsbe&#39;);return false;">Hint</span></p>
-<div id="zjgsbe" class="hint">
-<p>Create the column first using <code>dplyr::mutate()</code></p>
-<p>Because California’s population at the county level is so skewed (thanks LA!), consider using the ‘log10’ style to scale the values logarithmically.</p>
-</div>
-<!--- soln_zjgsbe --->
-<p><span id="soln_nsjrpj" class="showhidesoln" onclick="showHide(&#39;nsjrpj&#39;);return false;">Solution</span></p>
-<div id="nsjrpj" class="hint">
-<div class="sourceCode" id="cb10"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">## Compute the pouplation per square mile</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>ca_cnty_alb &lt;-<span class="st"> </span>ca_cnty_alb <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">pop_density_2014 =</span> POP2014 <span class="op">/</span><span class="st"> </span>SQMI)</span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="kw">summary</span>(ca_cnty_alb<span class="op">$</span>pop_density_<span class="dv">2014</span>)</span>
-<span id="cb10-4"><a href="#cb10-4"></a></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="co">##3 Create the map definition</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a>mymap &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(ca_cnty_alb) <span class="op">+</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="st">  </span><span class="kw">tm_polygons</span> (<span class="dt">col =</span> <span class="st">&quot;pop_density_2014&quot;</span>,                 <span class="co">## col: the column that contains the values</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a>               <span class="dt">n =</span> <span class="dv">10</span>,                                   <span class="co">## n: number of bins</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a>               <span class="dt">style =</span> <span class="st">&quot;log10&quot;</span>,                          <span class="co">## style: method to create the bins</span></span>
-<span id="cb10-10"><a href="#cb10-10"></a>               <span class="dt">palette =</span> <span class="st">&quot;Purples&quot;</span>,                      <span class="co">## palette: a named palette or a vector of colors</span></span>
-<span id="cb10-11"><a href="#cb10-11"></a>               <span class="dt">colorNA =</span> <span class="st">&quot;grey50&quot;</span>,                       <span class="co">## colorNA: the color to use for NA values</span></span>
-<span id="cb10-12"><a href="#cb10-12"></a>               <span class="dt">legend.format =</span> <span class="kw">list</span>(<span class="dt">big.num.abbr =</span> <span class="ot">NA</span>),  <span class="co">## legend options  </span></span>
-<span id="cb10-13"><a href="#cb10-13"></a>               <span class="dt">legend.reverse =</span> <span class="ot">TRUE</span> ,                   <span class="co">## legend.reverse: reverse the legend</span></span>
-<span id="cb10-14"><a href="#cb10-14"></a>               <span class="dt">title =</span> <span class="st">&quot;2014 Population Density&quot;</span>         <span class="co">## title: title of the legend element</span></span>
-<span id="cb10-15"><a href="#cb10-15"></a>  ) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb10-16"><a href="#cb10-16"></a><span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;top&quot;</span>)) <span class="op">+</span></span>
-<span id="cb10-17"><a href="#cb10-17"></a><span class="st">  </span><span class="kw">tm_scale_bar</span>(<span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</span>
-<span id="cb10-18"><a href="#cb10-18"></a></span>
-<span id="cb10-19"><a href="#cb10-19"></a>mymap</span></code></pre></div>
-<p><img src="review_pt1_files/figure-slidy/ca_map_popdens2014-1.png" width="768" /></p>
-<pre><code>##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-##     1.512    25.555   107.375   696.709   347.779 18180.188</code></pre>
-</div>
-<!--- soln_nsjrpj --->
-</div>
-<!--- TryIt --->
 <p>
 <br/>
 <hr/>

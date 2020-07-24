@@ -50,10 +50,13 @@ cities_loc_df <- cities_tbl %>% left_join(cities_tbl_gc, by = "ID")
 ## Inspect results
 ## View(cities_loc_df)
 
+cat("Saving the geocoded data back to Google Sheets \n")
+
 ## Save the merged data back to the Google Sheet (in a different tab)
 googlesheets4::gs4_auth(email="andlyons@ucdavis.edu")
 
 ## Write the results back to the Google Sheet
 sheet_write(cities_loc_df, ss = scgis_cities_id, sheet = "Form Responses Geocoded")
 
+cat("Done! \n")
 
