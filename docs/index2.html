@@ -265,17 +265,18 @@ Society for Conservation GIS, July 2020
 </p>
 <div id="vfelgf" class="hint">
 <div style="font-size:140%; font-weight:normal; margin-left:0.5em; margin-right:0.5em;">
+
 <p>
 As we get going, please:
 </p>
-<p>
+<p style="line-height:1.8;">
 <ol style="list-style-type: lower-roman">
-<li>Open this course website:<br/><tt><a href="https://ucanr-igis.github.io/rspatial_scgis20/" class="uri">https://ucanr-igis.github.io/rspatial_scgis20/</a></tt><br/>
+<li>Open the workshop website:<br/><strong><tt><a href="https://ucanr-igis.github.io/rspatial_scgis20/" class="uri">https://ucanr-igis.github.io/rspatial_scgis20/</a></tt></strong><br/> <em>Refresh your browser to get the latest version</em>
 </p></li>
 </ol>
-<p>
+<p style="line-height:1.8; margin-top:1em;">
 <ol start="2" style="list-style-type: lower-roman">
-<li>Introduce yourself on the community forum:<br/><tt><a href="https://tinyurl.com/rspatial-scgis20" class="uri">https://tinyurl.com/rspatial-scgis20</a></tt>
+<li>Introduce yourself on the community forum:<br/><strong><tt><a href="https://etherpad.wikimedia.org/p/rspatial-scgis2020" class="uri">https://etherpad.wikimedia.org/p/rspatial-scgis2020</a></tt></strong> <span style="color:red; font-size:90%; font-weight:bold; font-style:italic; padding:3px;"><sup>new</sup></span> <br/><em>Open access</em>
 </p>
 </div>
 </div></li>
@@ -287,7 +288,7 @@ As we get going, please:
 <h1>Workshop Materials</h1>
 <ul>
 <li><p>Website: <span style="font-family:monospace;"><a href="https://ucanr-igis.github.io/rspatial_scgis20/" target="_blank">https://ucanr-igis.github.io/rspatial_scgis20/</a></span></p></li>
-<li><p>Community Forum: <span style="font-family:monospace;"><a href="https://tinyurl.com/rspatial-scgis20" target="_blank">https://tinyurl.com/rspatial-scgis20</a></span></p></li>
+<li><p>Community Forum: <span style="font-family:monospace;"><a href="https://etherpad.wikimedia.org/p/rspatial-scgis2020" target="_blank">https://etherpad.wikimedia.org/p/rspatial-scgis2020</a></span></p></li>
 <li><p><a href="setup.html" target="_blank">Computer Setup</a></p></li>
 <li><p><a href="datasets.html" target="_blank">Data files</a></p></li>
 </ul>
@@ -301,55 +302,43 @@ Part 1. Intro to R, R Syntax, Importing Spatial Data, Manipulating Tabular Data
 July 21, 2020. 11:00a - 1:00p PDT
 </p>
 <li class="slides">
-<a target="_blank" class="slides" href="slides/01_intro.html">Introduction</a>
+<a target="_blank" class="slides" href="slides/intro.html">Introduction</a>
 </li>
 <p class="slides_desc">
 Workshop overview, resources, R vs GIS, RStudio
 </p>
 <li class="slides">
-<a target="_blank" class="slides" href="slides/02_syntax.html">R Syntax</a>
+<a target="_blank" class="slides" href="slides/syntax.html">R Syntax</a>
 </li>
 <p class="slides_desc">
 Syntax rules, variables, naming styles, data types, sequences, basic plotting, functions, file names and directories, saving your work
 </p>
 <li class="slides">
-<a target="_blank" class="slides" href="slides/03_packages.html">Working with Packages</a>
+<a target="_blank" class="slides" href="slides/packages.html">Working with Packages</a>
 </li>
 <p class="slides_desc">
 Finding packages, spatial package ecosystem, tidyverse, installing and loading packages, what’s in a package
 </p>
 <li class="exercises">
-<a target="_blank" class="exercises" href="exercises/ex01_packages.html">Exercise 1. Packages</a>
+<a target="_blank" class="exercises" href="exercises/packages.html">Exercise: Packages</a>
 </li>
 <p class="exercises_desc">
 Working with packages
 </p>
 <li class="slides">
-<a target="_blank" class="slides" href="slides/04_file-names.html">Files and Folders</a>
+<a target="_blank" class="slides" href="slides/file-names.html">Files and Folders</a>
 </li>
 <p class="slides_desc">
 Working with files &amp; folders for import and export
 </p>
 <li class="slides">
-<a target="_blank" class="slides" href="slides/05_importing-vector.html">Importing and Plotting Vector Data</a>
+<a target="_blank" class="slides" href="slides/importing-vector.html">Importing and Plotting Vector Data</a>
 </li>
 <p class="slides_desc">
 Spatial data classses; importing from Shapefiles, KMLs, geodatabases, and GeoPackages; basic plotting
 </p>
-<li class="exercises">
-<a target="_blank" class="exercises" href="exercises/ex02_plot-yose-cell-twrs.html">Exercise 2. Make a Map of Cell Towers</a>
-</li>
-<p class="exercises_desc">
-Make a map of Yosemite Cell Towers
-</p>
-<li class="slides">
-<a target="_blank" class="slides" href="slides/06_2d-data.html">Working with 2D data</a>
-</li>
-<p class="slides_desc">
-Data frame methods, piping, dplyr, importing csv files
-</p>
 <li class="slides bonus">
-<a target="_blank" class="slides" href="slides/07_color.html">Working with Color</a>
+<a target="_blank" class="slides" href="slides/color.html">Working with Color</a>
 </li>
 <p class="slides_desc">
 Color models, color functions, RColorBrewer
@@ -364,34 +353,40 @@ Part 2. Managing and Manipulating Spatial Data, Visualization, Querying Feature 
 July 24, 2020. 11:00a - 1:00p PDT
 </p>
 <li class="slides">
-<a target="_blank" class="slides" href="slides/08_review_pt1.html">Review</a>
+<a target="_blank" class="slides" href="slides/review_pt1.html">Welcome and Review</a>
 </li>
 <p class="slides_desc">
 Welcome and Quick Review of Part I
 </p>
 <li class="slides">
-<a target="_blank" class="slides" href="slides/09_plotting-vector.html">Plotting Spatial Data II</a>
+<a target="_blank" class="slides" href="slides/plotting-vector.html">Plotting Spatial Data II</a>
 </li>
 <p class="slides_desc">
 Overlaying layers, attribute driven symbology, tmap, leaflet
 </p>
 <li class="slides">
-<a target="_blank" class="slides" href="slides/10_sf-objects.html">Manipulating Simple Features</a>
+<a target="_blank" class="slides" href="slides/2d-data.html">Working with 2D data</a>
+</li>
+<p class="slides_desc">
+Data frame methods, piping, dplyr, importing csv files
+</p>
+<li class="exercises">
+<a target="_blank" class="exercises" href="exercises/plot-yose-cell-twrs.html">Exercise: Make a Map of Cell Towers</a>
+</li>
+<p class="exercises_desc">
+Make a map of Yosemite Cell Towers
+</p>
+<li class="slides">
+<a target="_blank" class="slides" href="slides/sf-objects.html">Manipulating Simple Features</a>
 </li>
 <p class="slides_desc">
 WKT, projections, converting data frames into sf, attribute queries, exporting
 </p>
 <li class="exercises">
-<a target="_blank" class="exercises" href="exercises/ex03_ex-2d-sf-manip.html">Exercise 3. Tabular Data and Simple Features Manipulations</a>
+<a target="_blank" class="exercises" href="exercises/ex-2d-sf-manip.html">Exercise: Tabular Data and Simple Features Manipulations</a>
 </li>
 <p class="exercises_desc">
 Practice using functions from dplyr, base R, and sf package
-</p>
-<li class="slides bonus">
-<a target="_blank" class="slides" href="slides/11_geocoding.html">Geocoding</a>
-</li>
-<p class="slides_desc">
-Geocoding with Google, ESRI World Geocoding Service, and OSM Nominatim
 </p>
 <div class="hrleft">
 
@@ -402,44 +397,20 @@ Part 3. Geoprocessing, Spatial Queries, Working with APIs, Automation
 <p style="font-size:100%;">
 July 28, 2020. 11:00a - 1:00p PDT
 </p>
-<li class="slides">
-Review and Practice
-</li>
-<p class="slides_desc">
-Review of Part I &amp; II
-</p>
-<li class="slides">
-Mapping the Coronavirus
-</li>
-<p class="slides_desc">
-Importing NYT COVID-19 infection data, downloading census county boundaries with tigris, joining tables, making a choropleth map
-</p>
-<li class="slides">
-Geoprocessing
-</li>
-<p class="slides_desc">
-Geoprocessing with sf and dplyr functions
-</p>
-<li class="exercises">
-Exercise 4. Geoprocessing Review
-</li>
-<p class="exercises_desc">
-Computing areas, unions, intersections, and MCPs
-</p>
-<li class="slides bonus">
-Custom Functions
-</li>
-<p class="slides_desc">
-Writing your own functions
-</p>
 <div class="hrleft">
 
 </div>
-<h1 id="bonus-material" class>
-Bonus Material
+<h1 id="bonus" class>
+Bonus
 </h1>
 <li class="slides bonus">
-R Markdown
+<a target="_blank" class="slides" href="slides/geocoding.html">Geocoding</a>
+</li>
+<p class="slides_desc">
+Geocoding with Google, ESRI World Geocoding Service, and OSM Nominatim
+</p>
+<li class="slides bonus">
+<a target="_blank" class="slides" href="slides/rmarkdown.html">R Markdown</a>
 </li>
 <p class="slides_desc">
 R Markdown

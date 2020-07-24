@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Spatial Data Analysis with R Exercise 1. Packages</title>
+
+<script src="lib/header-attrs-2.3/header-attrs.js"></script>
+<script src="lib/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="lib/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="lib/navigation-1.1/tabsets.js"></script>
+<link href="lib/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="lib/highlightjs-9.12.0/highlight.js"></script>
+<link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACkUlEQVQ4jX2SW0jTcRTHTzNyeZlh6lqmm3POdNPC6SxSEzaqafkykOFoIxTDWpKRFV6iQMNLFyMSsQvUW0WORc2WWBmGKEGZXUyz0NrmNmfa1PYgfHsQ1v5oHjgvX875/M45vy/R8mDJ9caxrFIL5CUWJB00Q9n+7Q+l1BetUMuMTL3JpTB0QVnejd1Hu9DQ60G5eQbqB7PIvj0L2bUZ0KZzghWbs0o7Fx3Tc/B6vStm6+g0wrQvIKh2gKKyUxnNSZoO685SC1YDeL1e9Ll+Ia7WCd5pJ4hojQ8g1nViezETYBqZx93BOdwa9jAgsdUT4J6ZQqC6f4GIiLYU9/RzNWYIdU9hd/8rLjN7UGT8DbWROVVMlQsBBWas142DiIikdfbFMF0POIVm2NzM1zwLS+mvcSsnEajpBSv/8RIgucGJ1EYXEs+NwjrlWfUGMee/Y2PFJIJLrFibex8kOsahhCYnUlpnIL1kh9X9/yMKG2yIOOlAsPYnAveZsE75EEQUQLwTwy5Rsxvx9UxApKEPEYY+BiSizA623oaggkdgq4xLKwRLq7i8sy6EFlpg8wNEVwyAd3wAbZ8cPu3CazeCC/sRojYjaL8Jvm8MPWLDBm03A8CveQ9+7RBia4cYU4QfeokwzTOwc6/4OzKXHap/C5ufD0RNo0i4OAZR81dcnnD69Mp3PxBe9GRkuZdFKk7sqTcQ132EpGUMydetSLnpgOSGHVtbxpHU9AX8mkFEG55/ZrjQL1h82V6esPLVh8Sr40i940J6xzzS7s1C0m6HqHEEiTnatgT5gcPijHxltFwhjpRIQpZjBAJ2lFTBFW5TiOPT8mXx6apdcRl5OaJM1Q6hLC9ls3RPTLgok0NELCKiv02kPqt/O1MZAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
+<script language="javascript" type="text/javascript">
+function TriShowHide(shID) {
+  shIDspan = shID + "span";
+  shIDdiv = shID + "div";
+  if (document.getElementById(shIDdiv).style.display != 'block') {
+    document.getElementById(shIDdiv).style.display = 'block';
+    txtSpan = "&#9660;";
+  } else {
+    document.getElementById(shIDdiv).style.display = 'none';
+    txtSpan = "&#9654;";
+  }
+  document.getElementById(shIDspan).innerHTML = txtSpan + " ";
+}
+function showHide(shID) {
+  if (shID=="soln-show-all") {
+    var allAnswerCode = document.getElementsByClassName("answer-code");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'block';
+    }
+  } else if (shID=="soln-hide-all") {
+    var allAnswerCode = document.getElementsByClassName("answer-code");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'none';
+    }
+  } else if (shID=="hints-show-all") {
+    var allAnswerCode = document.getElementsByClassName("hint");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'block';
+    }
+  } else if (shID=="hints-hide-all") {
+    var allAnswerCode = document.getElementsByClassName("hint");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'none';
+    }
+  } else {
+    if (document.getElementById(shID)) {
+      if (document.getElementById(shID).style.display != 'block') {
+        document.getElementById(shID).style.display = 'block';
+      } else {
+        document.getElementById(shID).style.display = 'none';
+      }
+    }
+  }
+}
+function CopyToClipboard(containerid) {
+if (document.selection) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(document.getElementById(containerid));
+    range.select().createTextRange();
+    document.execCommand("copy");
+} else if (window.getSelection) {
+    var range = document.createRange();
+    range.selectNode(document.getElementById(containerid));
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
+    // alert("text copied")
+}}
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163964617-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-163964617-1');
+</script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="..\css\slidy_styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore"><span class="ex-course-title">Spatial Data Analysis with R</span><br/><span class="ex-subtitle">Exercise 1. Packages</span></h1>
+
+</div>
+
+
+<style type="text/css">
+body {font-size:14pt;}
+code.r{font-size: 20px;}
+pre {font-size: 20px}
+</style>
+<div id="instructions" class="section level3">
+<h3>Instructions</h3>
+<ul>
+<li><span id="soln_odrinn" style="color:#008040; cursor:pointer;" onclick="showHide(&#39;odrinn&#39;);return false;">Setup R</span> (if you haven’t already)</li>
+</ul>
+<div id="odrinn" style="display:none; margin-left:4em;">
+<p><strong>Working on your computer:</strong><br />
+i. Install <a href="https://cran.r-project.org/">R</a>, <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a>, and the <a href="../setup.html">required packages</a>.<br />
+ii. Download and unzip the <a href="https://github.com/ucanr-igis/rspatial_scgis20" target="_blank">workshop materials</a>.</p>
+<p><strong>Using RStudio Cloud:</strong><br />
+i. Log-in to your RStudio Cloud account.<br />
+ii. Clone the workshop <a href="https://rstudio.cloud/project/1463502" target="_blank">RStudio Cloud Project</a> (which already has all the data and pacakages installed).<br />
+iii. Click ‘Save a permanent copy’ to save a copy in your own workspace.</p>
+</div>
+<!--- Download the <a href="https://github.com/ucanr-igis/rspatial_data">data file</a> and unzip it. --->
+<ul>
+<li><p>Create a new R script in RStudio (File → New File → R Script).</p></li>
+<li><p>Click the ‘Copy’ button below to copy the questions to the clipboard, then paste them into your script. Under each question, write R code. Run each line of R code as you enter it (press the Run button or ctrl+enter) to make sure it works.</p></li>
+<li><p>Remember to save your script periodically to avoid losing work if RStudio crashes.</p></li>
+<li><p>If you get stuck, click on the ‘hint’ link to see a hint, or the question number to see the answer. Click again to hide.</p></li>
+<li><p>Questions? Ask the instructor.</p></li>
+</ul>
+<hr class="hrdivider">
+<div class="copy-button">
+<button onclick="CopyToClipboard(&#39;qtn_div&#39;);return false;">
+Copy questions
+</button>
+</div>
+<div id="qtn_div" class="ex-qtn">
+<p>############################<br/>#### <strong>EXPLORING PACKAGES</strong> ####<br/>############################</p>
+<p><a id="qtn_xpmnyc" href="#" class="showhidelink" onclick="showHide('xpmnyc');return false;"># 1.</a> Load the <tt>sf</tt>, <tt>raster</tt>, and <tt>tmap</tt> packages.</p>
+<div id="xpmnyc" class="answer-code">
+<pre class="r"><code>library(sf)
+library(raster)
+library(tmap)</code></pre>
+</div>
+<p><a id="qtn_ycybrs" href="#" class="showhidelink" onclick="showHide('ycybrs');return false;"># 2.</a> Run the ‘gallery’ demo from the <tt>sp</tt> package. <a href="#" class="showhidehint" onclick="showHide('jootpd');return false;"></a></p>
+<div id="jootpd" class="hint">
+The package must be loaded before you can run the <tt>demo()</tt> function.
+</div>
+<div id="ycybrs" class="answer-code">
+<pre class="r"><code>library(sp)  
+demo(gallery)</code></pre>
+</div>
+<p><a id="qtn_ljzzuv" href="#" class="showhidelink" onclick="showHide('ljzzuv');return false;"># 3.</a> What datasets are bundled with the <tt>maps</tt> package?</p>
+<div id="ljzzuv" class="answer-code">
+<pre class="r"><code>install.packages(&quot;maps&quot;)
+data(package=&quot;maps&quot;)</code></pre>
+</div>
+<p><a id="qtn_yjqdpl" href="#" class="showhidelink" onclick="showHide('yjqdpl');return false;"># 4.</a> What type of object is the ‘world.cities’ from the <tt>maps</tt> package? <a href="#" class="showhidehint" onclick="showHide('gyshky');return false;"></a></p>
+<div id="gyshky" class="hint">
+You may need to install the <tt>maps</tt> package if you haven’t already.
+</div>
+<div id="yjqdpl" class="answer-code">
+<pre class="r"><code>library(maps)
+class(world.cities)</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+</div>
+<p><a id="qtn_qaszan" href="#" class="showhidelink" onclick="showHide('qaszan');return false;"># 5.</a> The <tt>HairEyeColor</tt> dataset contains hair and eye color data from student from<br />
+#  which university <a href="#" class="showhidehint" onclick="showHide('ibymvd');return false;"></a></p>
+<div id="ibymvd" class="hint">
+Bundled datasets have help pages too!
+</div>
+<div id="qaszan" class="answer-code">
+<pre class="r"><code>?HairEyeColor</code></pre>
+<p>The University of Delaware.</p>
+</div>
+<p><a id="qtn_edwpeb" href="#" class="showhidelink" onclick="showHide('edwpeb');return false;"># 6.</a> Which package could you use to compute <em>Ripley’s K</em> (a statistic that measures<br />
+#  point clustering)?</p>
+<div id="edwpeb" class="answer-code">
+<p>Google: <em>Ripley’s K R</em><br />
+The <a href="https://cran.r-project.org/web/packages/spatstat/vignettes/getstart.pdf" target="_blank"><tt>spatstat</tt></a> package has it</p>
+</div>
+<p><a id="qtn_svgobv" href="#" class="showhidelink" onclick="showHide('svgobv');return false;"># 7.</a> Open the Vignette for the <tt>raster</tt> package</p>
+<div id="svgobv" class="answer-code">
+<p>You can open a Vignette from the index help page of a package, or by running:</p>
+<pre class="r"><code>vignette(&quot;Raster&quot;, package=&quot;raster&quot;)</code></pre>
+</div>
+</div>
+</div>
+
+<hr>
+<div style="float:right; width:33%; text-align:right;">
+<a href="../index.html" style="text-decoration:none;">Course outline</a>
+</div>
+
+<div style="float:right; width:33%; text-align:center;">
+<a href="#" style="text-decoration:none;" onclick="showHide('soln-show-all');return false;">show all solutions</a> | <a href="#" style="text-decoration:none;" onclick="showHide('soln-hide-all');return false;">hide all solutions</a>
+</div>
+
+<div style="width:33%;">
+<a href="#" style="text-decoration:none;" onclick="showHide('hints-show-all');return false;">show all hints</a> | <a href="#" style="text-decoration:none;" onclick="showHide('hints-hide-all');return false;">hide all hints</a>
+</div>
+<br/>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

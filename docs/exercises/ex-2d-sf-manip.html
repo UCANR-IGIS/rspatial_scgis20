@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Spatial Data Analysis with R Manipuplating Tabular Data and Simple Features</title>
+
+<script src="lib/header-attrs-2.3/header-attrs.js"></script>
+<script src="lib/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="lib/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="lib/navigation-1.1/tabsets.js"></script>
+<link href="lib/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="lib/highlightjs-9.12.0/highlight.js"></script>
+<script src="lib/clipboard-1.7.1/clipboard.min.js"></script>
+<link href="lib/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+<link href="lib/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+<script src="lib/klippy-0.0.0.9500/js/klippy.min.js"></script>
+<link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACkUlEQVQ4jX2SW0jTcRTHTzNyeZlh6lqmm3POdNPC6SxSEzaqafkykOFoIxTDWpKRFV6iQMNLFyMSsQvUW0WORc2WWBmGKEGZXUyz0NrmNmfa1PYgfHsQ1v5oHjgvX875/M45vy/R8mDJ9caxrFIL5CUWJB00Q9n+7Q+l1BetUMuMTL3JpTB0QVnejd1Hu9DQ60G5eQbqB7PIvj0L2bUZ0KZzghWbs0o7Fx3Tc/B6vStm6+g0wrQvIKh2gKKyUxnNSZoO685SC1YDeL1e9Ll+Ia7WCd5pJ4hojQ8g1nViezETYBqZx93BOdwa9jAgsdUT4J6ZQqC6f4GIiLYU9/RzNWYIdU9hd/8rLjN7UGT8DbWROVVMlQsBBWas142DiIikdfbFMF0POIVm2NzM1zwLS+mvcSsnEajpBSv/8RIgucGJ1EYXEs+NwjrlWfUGMee/Y2PFJIJLrFibex8kOsahhCYnUlpnIL1kh9X9/yMKG2yIOOlAsPYnAveZsE75EEQUQLwTwy5Rsxvx9UxApKEPEYY+BiSizA623oaggkdgq4xLKwRLq7i8sy6EFlpg8wNEVwyAd3wAbZ8cPu3CazeCC/sRojYjaL8Jvm8MPWLDBm03A8CveQ9+7RBia4cYU4QfeokwzTOwc6/4OzKXHap/C5ufD0RNo0i4OAZR81dcnnD69Mp3PxBe9GRkuZdFKk7sqTcQ132EpGUMydetSLnpgOSGHVtbxpHU9AX8mkFEG55/ZrjQL1h82V6esPLVh8Sr40i940J6xzzS7s1C0m6HqHEEiTnatgT5gcPijHxltFwhjpRIQpZjBAJ2lFTBFW5TiOPT8mXx6apdcRl5OaJM1Q6hLC9ls3RPTLgok0NELCKiv02kPqt/O1MZAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
+<script language="javascript" type="text/javascript">
+function TriShowHide(shID) {
+  shIDspan = shID + "span";
+  shIDdiv = shID + "div";
+  if (document.getElementById(shIDdiv).style.display != 'block') {
+    document.getElementById(shIDdiv).style.display = 'block';
+    txtSpan = "&#9660;";
+  } else {
+    document.getElementById(shIDdiv).style.display = 'none';
+    txtSpan = "&#9654;";
+  }
+  document.getElementById(shIDspan).innerHTML = txtSpan + " ";
+}
+function showHide(shID) {
+  if (shID=="soln-show-all") {
+    var allAnswerCode = document.getElementsByClassName("answer-code");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'block';
+    }
+  } else if (shID=="soln-hide-all") {
+    var allAnswerCode = document.getElementsByClassName("answer-code");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'none';
+    }
+  } else if (shID=="hints-show-all") {
+    var allAnswerCode = document.getElementsByClassName("hint");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'block';
+    }
+  } else if (shID=="hints-hide-all") {
+    var allAnswerCode = document.getElementsByClassName("hint");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'none';
+    }
+  } else {
+    if (document.getElementById(shID)) {
+      if (document.getElementById(shID).style.display != 'block') {
+        document.getElementById(shID).style.display = 'block';
+      } else {
+        document.getElementById(shID).style.display = 'none';
+      }
+    }
+  }
+}
+function CopyToClipboard(containerid) {
+if (document.selection) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(document.getElementById(containerid));
+    range.select().createTextRange();
+    document.execCommand("copy");
+} else if (window.getSelection) {
+    var range = document.createRange();
+    range.selectNode(document.getElementById(containerid));
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
+    // alert("text copied")
+}}
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163964617-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-163964617-1');
+</script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="..\css\slidy_styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore"><span class="ex-course-title">Spatial Data Analysis with R</span><br/><span class="ex-subtitle">Manipuplating Tabular Data and Simple Features</span></h1>
+
+</div>
+
+
+<style type="text/css">
+body {font-size:14pt;}
+code.r{font-size: 20px;}
+pre {font-size: 20px}
+</style>
+<div id="instructions" class="section level3">
+<h3>Instructions</h3>
+<ul>
+<li><span id="soln_odrinn" style="color:#008040; cursor:pointer;" onclick="showHide(&#39;odrinn&#39;);return false;">Setup R</span> (if you haven’t already)</li>
+</ul>
+<div id="odrinn" style="display:none; margin-left:4em;">
+<p><strong>Working on your computer:</strong><br />
+i. Install <a href="https://cran.r-project.org/">R</a>, <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a>, and the <a href="../setup.html">required packages</a>.<br />
+ii. Download and unzip the <a href="https://github.com/ucanr-igis/rspatial_scgis20" target="_blank">workshop materials</a>.</p>
+<p><strong>Using RStudio Cloud:</strong><br />
+i. Log-in to your RStudio Cloud account.<br />
+ii. Clone the workshop <a href="https://rstudio.cloud/project/1463502" target="_blank">RStudio Cloud Project</a> (which already has all the data and pacakages installed).<br />
+iii. Click ‘Save a permanent copy’ to save a copy in your own workspace.</p>
+</div>
+<!--- Download the <a href="https://github.com/ucanr-igis/rspatial_data">data file</a> and unzip it. --->
+<ul>
+<li><p>Create a new R script in RStudio (File → New File → R Script).</p></li>
+<li><p>Click the ‘Copy’ button below to copy the questions to the clipboard, then paste them into your script. Under each question, write R code. Run each line of R code as you enter it (press the Run button or ctrl+enter) to make sure it works.</p></li>
+<li><p>Remember to save your script periodically to avoid losing work if RStudio crashes.</p></li>
+<li><p>If you get stuck, click on the ‘hint’ link to see a hint, or the question number to see the answer. Click again to hide.</p></li>
+<li><p>Questions? Ask the instructor.</p></li>
+</ul>
+<script>
+  addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<style type="text/css">
+code {
+  background-color:transparent;
+}
+</style>
+<hr class="hrdivider">
+<div class="copy-button">
+<button onclick="CopyToClipboard(&#39;qtn_div&#39;);return false;">
+Copy questions
+</button>
+</div>
+<div id="qtn_div" class="ex-qtn">
+<p>####################################<br/>#### <strong>EXPLORE THE QUAKES DATASET</strong> ####<br/>####################################</p>
+<p># In this section, you’ll explore the ‘quakes’ dataset, which is part of base R<br />
+#  (run ?quakes for details).</p>
+<p><a id="qtn_xyaqrw" href="#" class="showhidelink" onclick="showHide('xyaqrw');return false;"># 1.</a> How many rows are in quakes?</p>
+<div id="xyaqrw" class="answer-code">
+<pre class="r"><code>nrow(quakes)</code></pre>
+<pre><code>## [1] 1000</code></pre>
+</div>
+<!--- ans_xyaqrw --->
+<p><a id="qtn_xzfykh" href="#" class="showhidelink" onclick="showHide('xzfykh');return false;"># 2.</a> What is the minimum and maximum depth of the quakes in this dataset?</p>
+<div id="xzfykh" class="answer-code">
+<pre class="r"><code>range(quakes$depth)</code></pre>
+<pre><code>## [1]  40 680</code></pre>
+<pre class="r"><code>## You could also do:
+summary(quakes$depth)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    40.0    99.0   247.0   311.4   543.0   680.0</code></pre>
+<pre class="r"><code>## or:
+library(dplyr)
+quakes %&gt;% pull(depth) %&gt;% summary()</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    40.0    99.0   247.0   311.4   543.0   680.0</code></pre>
+<p>⇒ 40 to 680 km.</p>
+</div>
+<!--- ans_xzfykh --->
+<p><a id="qtn_iqzbzo" href="#" class="showhidelink" onclick="showHide('iqzbzo');return false;"># 3.</a> Create a histogram of the magnitude.</p>
+<div id="iqzbzo" class="answer-code">
+<pre class="r"><code>hist(quakes$mag, col = &quot;gray&quot;)</code></pre>
+<p><img src="ex-2d-sf-manip_files/figure-html/hist_quakes-1.png" width="672" /></p>
+</div>
+<!--- ans_iqzbzo --->
+<p><a id="qtn_usnbfu" href="#" class="showhidelink" onclick="showHide('usnbfu');return false;"># 4.</a> What was the median magnitude of the quakes in this dataset? What was the most<br />
+#  common magnitude (i.e., mode)? <a href="#" class="showhidehint" onclick="showHide('ikvvsm');return false;"></a></p>
+<div id="ikvvsm" class="hint">
+<p>By definition, the <em>median</em> is the ‘middle’ value of a data set when sorted. The <em>mode</em> is the most common value.</p>
+<p>Getting the median is relatively easy using a built-in function. Find the mode will require a little more creativity.</p>
+</div>
+<!--- hint_ikvvsm --->
+<div id="usnbfu" class="answer-code">
+<pre class="r"><code>## Median
+median(quakes$mag)</code></pre>
+<pre><code>## [1] 4.6</code></pre>
+<pre class="r"><code>## Mode
+quakes %&gt;% group_by(mag) %&gt;% count() %&gt;% as_tibble() %&gt;% top_n(1, n)</code></pre>
+<pre><code>## # A tibble: 1 x 2
+##     mag     n
+##   &lt;dbl&gt; &lt;int&gt;
+## 1   4.5   107</code></pre>
+</div>
+<!--- ans_usnbfu --->
+<p>########################<br/>#### <strong>MAPPING QUAKES</strong> ####<br/>########################</p>
+<p><a id="qtn_lflvyr" href="#" class="showhidelink" onclick="showHide('lflvyr');return false;"># 5.</a> Convert quakes into a simple feature data frame. Plot it. <a href="#" class="showhidehint" onclick="showHide('ndijqi');return false;"></a></p>
+<div id="ndijqi" class="hint">
+<p>Use <code>sf::st_as_sf()</code><br />
+You can use either WGS84 or NAD83 as the datum.</p>
+</div>
+<!--- hint_ndijqi --->
+<div id="lflvyr" class="answer-code">
+<pre class="r"><code>quakes_sf &lt;- sf::st_as_sf(quakes, coords=c(&quot;long&quot;, &quot;lat&quot;), crs=4326)
+plot(quakes_sf %&gt;% sf::st_geometry(), pch = 16, cex = 0.5, axes = TRUE)</code></pre>
+<p><img src="ex-2d-sf-manip_files/figure-html/plot_quakes-1.png" width="672" /></p>
+</div>
+<!--- ans_lflvyr --->
+<p><a id="qtn_wssdud" href="#" class="showhidelink" onclick="showHide('wssdud');return false;"># 6.</a> Plot the top 10% of quakes in terms of magnitude.</p>
+<div id="wssdud" class="answer-code">
+<pre class="r"><code>plot(quakes_sf %&gt;% top_frac(0.1, mag) %&gt;% sf::st_geometry(), pch = 16, cex = 0.5, axes = TRUE)</code></pre>
+<p><img src="ex-2d-sf-manip_files/figure-html/plot_top10_quakes-1.png" width="672" /></p>
+</div>
+<!--- ans_wssdud --->
+<p><a id="qtn_gjgupo" href="#" class="showhidelink" onclick="showHide('gjgupo');return false;"># 7.</a> Plot the quakes colored by depth.</p>
+<div id="gjgupo" class="answer-code">
+<pre class="r"><code>tmap::tmap_mode(&quot;plot&quot;)</code></pre>
+<pre><code>## tmap mode set to plotting</code></pre>
+<pre class="r"><code>tmap::tm_shape(quakes_sf) + 
+  tmap::tm_symbols(col = &quot;depth&quot;,
+             size = 0.5,
+             palette = &quot;Blues&quot;,
+             title.col = &quot;depth (km)&quot;)</code></pre>
+<p><img src="ex-2d-sf-manip_files/figure-html/plot_quakes_depth-1.png" width="672" /></p>
+</div>
+<!--- ans_gjgupo --->
+<p>#############################################<br/>#### <strong>EXPLORE THE MISSING PERSONS DATASET</strong> ####<br/>#############################################</p>
+<p><a id="qtn_ejzdos" href="#" class="showhidelink" onclick="showHide('ejzdos');return false;"># 8.</a> Import Yosemite missing persons file and list the column names.</p>
+<div id="ejzdos" class="answer-code">
+<pre class="r"><code>missing_df &lt;- read.csv(&quot;./data/yosemite_missing_people.csv&quot;, stringsAsFactors = FALSE)
+names(missing_df) </code></pre>
+<pre><code>##  [1] &quot;ï..X&quot;       &quot;Y&quot;          &quot;OBJECTID_1&quot; &quot;OBJECTID&quot;   &quot;Georef_Unc&quot; &quot;Distance&quot;   &quot;Type&quot;       &quot;Lat&quot;        &quot;Long&quot;      
+## [10] &quot;Extent&quot;     &quot;CaseNumber&quot; &quot;SARNumber&quot;  &quot;IncidYear&quot;  &quot;DateTimeLa&quot; &quot;DateTimeIn&quot; &quot;DateTimeSu&quot; &quot;DateTIme_1&quot; &quot;ContactMet&quot;
+## [19] &quot;EcoRegionD&quot; &quot;EcoRegio_1&quot; &quot;IncidType&quot;  &quot;NumberofSu&quot; &quot;GroupDynam&quot; &quot;SubjectCat&quot; &quot;SubSex&quot;     &quot;SubAge&quot;     &quot;IPPType&quot;   
+## [28] &quot;IPPClassif&quot; &quot;IncidContr&quot; &quot;IncidOutco&quot; &quot;Scenario&quot;   &quot;SubjMedInj&quot; &quot;RescueMeth&quot; &quot;LostPerson&quot; &quot;IPP_GR_Loc&quot; &quot;IPP_GR_Typ&quot;
+## [37] &quot;IPP_GR_Pat&quot; &quot;IPP_GR_Not&quot; &quot;Intended_D&quot; &quot;FindFeatur&quot; &quot;Found_GR_L&quot; &quot;Found_GR_T&quot; &quot;Found_GR_P&quot; &quot;Found_GR_N&quot; &quot;Motorized_&quot;
+## [46] &quot;Incident_N&quot; &quot;TotalTimeM&quot; &quot;TotalSearc&quot; &quot;GlobalID&quot;</code></pre>
+<pre class="r"><code># OR
+# tibble::glimpse(missing_df) </code></pre>
+</div>
+<!--- ans_ejzdos --->
+<p><a id="qtn_jglsvf" href="#" class="showhidelink" onclick="showHide('jglsvf');return false;"># 9.</a> Compute the number of people reported missing per year. Which year had the<br />
+#  greatest number of missing persons? <a href="#" class="showhidehint" onclick="showHide('gcdfxj');return false;"></a></p>
+<div id="gcdfxj" class="hint">
+<p>Use columns ‘IncidYear’ and ‘NumberofSu’</p>
+</div>
+<!--- hint_gcdfxj --->
+<div id="jglsvf" class="answer-code">
+<pre class="r"><code>missing_df %&gt;% 
+  dplyr::group_by(IncidYear) %&gt;% 
+  dplyr::summarise(sum_missing = sum(NumberofSu))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 11 x 2
+##    IncidYear sum_missing
+##        &lt;int&gt;       &lt;int&gt;
+##  1      2000          32
+##  2      2001          24
+##  3      2002          21
+##  4      2003          27
+##  5      2004          20
+##  6      2005          37
+##  7      2006          25
+##  8      2007          34
+##  9      2008          23
+## 10      2009          45
+## 11      2010          26</code></pre>
+<p>⇒ 2009 had the greatest number of missing persons reported.</p>
+</div>
+<!--- ans_jglsvf --->
+<p><a id="qtn_zhhaer" href="#" class="showhidelink" onclick="showHide('zhhaer');return false;"># 10.</a> Compute a frequency table of the incident outcome. What percentage of incident<br />
+#  reports ended in the lost person(s) being found alive? <a href="#" class="showhidehint" onclick="showHide('qopnya');return false;"></a></p>
+<div id="qopnya" class="hint">
+<p>Use column ‘IncidOutco’</p>
+</div>
+<!--- hint_qopnya --->
+<div id="zhhaer" class="answer-code">
+<pre class="r"><code>missing_df %&gt;% dplyr::group_by(IncidOutco) %&gt;% count()</code></pre>
+<pre><code>## # A tibble: 4 x 2
+## # Groups:   IncidOutco [4]
+##   IncidOutco                n
+##   &lt;chr&gt;                 &lt;int&gt;
+## 1 Subject Found Alive     200
+## 2 Subject Found DOA         9
+## 3 Subject Found Injured     3
+## 4 Subject Found Medical     1</code></pre>
+<pre class="r"><code>missing_df %&gt;% dplyr::filter(IncidOutco == &quot;Subject Found Alive&quot;) %&gt;% 
+  dplyr::count() %&gt;% 
+  as.numeric() / 
+  (missing_df %&gt;% dplyr::count() %&gt;% as.numeric())</code></pre>
+<pre><code>## [1] 0.9389671</code></pre>
+</div>
+<!--- ans_zhhaer --->
+<p><a id="qtn_ylawap" href="#" class="showhidelink" onclick="showHide('ylawap');return false;"># 11.</a> Create a simple features data frame from the missing persons. <a href="#" class="showhidehint" onclick="showHide('qpxdhi');return false;"></a></p>
+<div id="qpxdhi" class="hint">
+<p>Use <code>st_as_sf()</code><br />
+The EPSG number for geographic coordinates (WGS84) is 4326.</p>
+</div>
+<!--- hint_qpxdhi --->
+<div id="ylawap" class="answer-code">
+<pre class="r"><code>yose_missing_ll &lt;- sf::st_as_sf(missing_df, coords=c(&quot;Long&quot;, &quot;Lat&quot;), crs=4326)</code></pre>
+</div>
+<!--- ans_ylawap --->
+<p><a id="qtn_tpxnwo" href="#" class="showhidelink" onclick="showHide('tpxnwo');return false;"># 12.</a> Project the missing persons location to UTM Zone 11 (NAD83). <a href="#" class="showhidehint" onclick="showHide('qqrlnl');return false;"></a></p>
+<div id="qqrlnl" class="hint">
+<p>The EPSG number for UTM Zone 11 North (NAD83) is 26911.</p>
+</div>
+<!--- hint_qqrlnl --->
+<div id="tpxnwo" class="answer-code">
+<pre class="r"><code>epsg_utm11n_nad83 &lt;- 26911
+yose_missing_utm &lt;- yose_missing_ll %&gt;% sf::st_transform(epsg_utm11n_nad83)</code></pre>
+</div>
+<!--- ans_tpxnwo --->
+<p><a id="qtn_euexkg" href="#" class="showhidelink" onclick="showHide('euexkg');return false;"># 13.</a> Import the trails layer. What projection system is it in? <a href="#" class="showhidehint" onclick="showHide('ldasmz');return false;"></a></p>
+<div id="ldasmz" class="hint">
+<p>Import the trails with:</p>
+<pre class="r"><code>## Define the path to the file geodatabase
+gdb_fn &lt;- &quot;./data/yose_trails.gdb&quot;
+yose_trails &lt;- sf::st_read(gdb_fn, layer=&quot;Trails&quot;)</code></pre>
+</div>
+<!--- hint_ldasmz --->
+<div id="euexkg" class="answer-code">
+<pre class="r"><code>## Define the path to the file geodatabase
+gdb_fn &lt;- &quot;./data/yose_trails.gdb&quot;
+yose_trails &lt;- sf::st_read(gdb_fn, layer=&quot;Trails&quot;)</code></pre>
+<pre><code>## Reading layer `Trails&#39; from data source `D:\Workshops\R-Spatial\rspatial_mod\outputs\rspatial_data\data\yose_trails.gdb&#39; using driver `OpenFileGDB&#39;
+## Simple feature collection with 1074 features and 13 fields
+## geometry type:  MULTILINESTRING
+## dimension:      XY
+## bbox:           xmin: 245134 ymin: 4153668 xmax: 323239.7 ymax: 4250703
+## projected CRS:  NAD83 / UTM zone 11N</code></pre>
+<p>⇒ The trails are in EPSG = 26911 (UTM Zone 11 North NAD83)</p>
+</div>
+<!--- ans_euexkg --->
+<p><a id="qtn_kbmfwi" href="#" class="showhidelink" onclick="showHide('kbmfwi');return false;"># 14.</a> Plot the missing persons over the trails layer. Do they seem spatially related?</p>
+<div id="kbmfwi" class="answer-code">
+<pre class="r"><code>tmap::tmap_mode(&quot;plot&quot;)</code></pre>
+<pre><code>## tmap mode set to plotting</code></pre>
+<pre class="r"><code>mymap &lt;- tmap::tm_shape(yose_trails) +
+  tmap::tm_lines(col = &quot;gray50&quot;) +
+  tmap::tm_shape(yose_missing_utm) +
+  tmap::tm_symbols(col = &quot;red&quot;, size = 0.5)
+
+mymap</code></pre>
+<p><img src="ex-2d-sf-manip_files/figure-html/tmap_trails_missing-1.png" width="672" /></p>
+<p>It does seem as if most missing persons are reported along trails.</p>
+</div>
+<!--- ans_kbmfwi --->
+<p><a id="qtn_tjouwd" href="#" class="showhidelink" onclick="showHide('tjouwd');return false;"># 15.</a> Export the projected missing persons layer as a Shapefile, keeping only the<br />
+#  following columns: IncidYear, DateTimeLa, IncidType, NumberofSu, and SubAge. <a href="#" class="showhidehint" onclick="showHide('sjaprr');return false;"></a></p>
+<div id="sjaprr" class="hint">
+<p>Use <code>sf::st_write</code><br />
+To tell it which columns to export, look for a function from the dplyr package.</p>
+</div>
+<!--- hint_sjaprr --->
+<div id="tjouwd" class="answer-code">
+<pre class="r"><code>sf::st_write(yose_missing_utm %&gt;% 
+           dplyr::select(IncidYear, DateTimeLa, IncidType, NumberofSu, SubAge),
+         dsn = &quot;missing_persons.shp&quot;,
+         delete_dsn = TRUE)</code></pre>
+<p>‘delete_dsn’ ⇒ overwrite existing</p>
+</div>
+<!--- ans_tjouwd --->
+</div>
+<!-- end question div -->
+</div>
+
+<hr>
+<div style="float:right; width:33%; text-align:right;">
+<a href="../index.html" style="text-decoration:none;">Course outline</a>
+</div>
+
+<div style="float:right; width:33%; text-align:center;">
+<a href="#" style="text-decoration:none;" onclick="showHide('soln-show-all');return false;">show all solutions</a> | <a href="#" style="text-decoration:none;" onclick="showHide('soln-hide-all');return false;">hide all solutions</a>
+</div>
+
+<div style="width:33%;">
+<a href="#" style="text-decoration:none;" onclick="showHide('hints-show-all');return false;">show all hints</a> | <a href="#" style="text-decoration:none;" onclick="showHide('hints-hide-all');return false;">hide all hints</a>
+</div>
+<br/>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

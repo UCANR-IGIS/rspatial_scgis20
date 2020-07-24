@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Geocoding  " />
-  <meta name="copyright" content="<span class='footer-right'><a href='../acknowledgements.html'>Acknowledgements</a></span><span class='footer-right'><a href=' https://tinyurl.com/rspatial-scgis20 ' target='_blank'>Forum</a></span><span class='footer-right'><a href=' https://ucanr-igis.github.io/rspatial_scgis20/ '> https://ucanr-igis.github.io/rspatial_scgis20/ </a></span><span class='footer-right'><a href='../index.html'>Home</a></span><span class='footer-subtitle'> Spatial Data Analysis with R </span>"/>
+  <meta name="copyright" content="<span class='footer-right'><a href='../acknowledgements.html'>Acknowledgements</a></span><span class='footer-right'><a href=' https://etherpad.wikimedia.org/p/rspatial-scgis2020 ' target='_blank'>Forum</a></span><span class='footer-right'><a href=' https://ucanr-igis.github.io/rspatial_scgis20/ '> https://ucanr-igis.github.io/rspatial_scgis20/ </a></span><span class='footer-right'><a href='../index.html'>Home</a></span><span class='footer-subtitle'> Spatial Data Analysis with R </span>"/>
   <meta name="font-size-adjustment" content="2"/>
   <title>Spatial Data Analysis with R  Society for Conservation GIS, July 2020</title>
   <style type="text/css">code{white-space: pre;}</style>
@@ -338,10 +338,8 @@ Geocoding <br/><img src='images/geocoding_482x200.png'/>
 <pre><code>##        lon      lat score locName status  matchAddr side addressType
 ## 1 -122.413 37.78679 89.66   World      M Millennium    L         POI</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">geocode_one</span>(<span class="st">&quot;547 Emerson St, Palo Alto, CA 94301&quot;</span>, my_esri_token, <span class="dt">postal=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>##         lon      lat score locName status                                    matchAddr side
-## 1 -122.1619 37.44418   100   World      M 547 Emerson St, Palo Alto, California, 94301    R
-##    addressType
-## 1 PointAddress</code></pre>
+<pre><code>##         lon      lat score locName status                                    matchAddr side  addressType
+## 1 -122.1619 37.44418   100   World      M 547 Emerson St, Palo Alto, California, 94301    R PointAddress</code></pre>
 </div>
 <div id="batch-geocode-multiple-addresses" class="slide section level1">
 <h1>Batch Geocode Multiple Addresses</h1>
