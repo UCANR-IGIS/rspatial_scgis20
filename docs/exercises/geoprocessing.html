@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Spatial Data Analysis with R Geoprocessing</title>
+
+<script src="lib/header-attrs-2.3/header-attrs.js"></script>
+<script src="lib/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="lib/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="lib/navigation-1.1/tabsets.js"></script>
+<link href="lib/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="lib/highlightjs-9.12.0/highlight.js"></script>
+<script src="lib/clipboard-1.7.1/clipboard.min.js"></script>
+<link href="lib/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+<link href="lib/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+<script src="lib/klippy-0.0.0.9500/js/klippy.min.js"></script>
+<link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACkUlEQVQ4jX2SW0jTcRTHTzNyeZlh6lqmm3POdNPC6SxSEzaqafkykOFoIxTDWpKRFV6iQMNLFyMSsQvUW0WORc2WWBmGKEGZXUyz0NrmNmfa1PYgfHsQ1v5oHjgvX875/M45vy/R8mDJ9caxrFIL5CUWJB00Q9n+7Q+l1BetUMuMTL3JpTB0QVnejd1Hu9DQ60G5eQbqB7PIvj0L2bUZ0KZzghWbs0o7Fx3Tc/B6vStm6+g0wrQvIKh2gKKyUxnNSZoO685SC1YDeL1e9Ll+Ia7WCd5pJ4hojQ8g1nViezETYBqZx93BOdwa9jAgsdUT4J6ZQqC6f4GIiLYU9/RzNWYIdU9hd/8rLjN7UGT8DbWROVVMlQsBBWas142DiIikdfbFMF0POIVm2NzM1zwLS+mvcSsnEajpBSv/8RIgucGJ1EYXEs+NwjrlWfUGMee/Y2PFJIJLrFibex8kOsahhCYnUlpnIL1kh9X9/yMKG2yIOOlAsPYnAveZsE75EEQUQLwTwy5Rsxvx9UxApKEPEYY+BiSizA623oaggkdgq4xLKwRLq7i8sy6EFlpg8wNEVwyAd3wAbZ8cPu3CazeCC/sRojYjaL8Jvm8MPWLDBm03A8CveQ9+7RBia4cYU4QfeokwzTOwc6/4OzKXHap/C5ufD0RNo0i4OAZR81dcnnD69Mp3PxBe9GRkuZdFKk7sqTcQ132EpGUMydetSLnpgOSGHVtbxpHU9AX8mkFEG55/ZrjQL1h82V6esPLVh8Sr40i940J6xzzS7s1C0m6HqHEEiTnatgT5gcPijHxltFwhjpRIQpZjBAJ2lFTBFW5TiOPT8mXx6apdcRl5OaJM1Q6hLC9ls3RPTLgok0NELCKiv02kPqt/O1MZAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
+<script language="javascript" type="text/javascript">
+function TriShowHide(shID) {
+  shIDspan = shID + "span";
+  shIDdiv = shID + "div";
+  if (document.getElementById(shIDdiv).style.display != 'block') {
+    document.getElementById(shIDdiv).style.display = 'block';
+    txtSpan = "&#9660;";
+  } else {
+    document.getElementById(shIDdiv).style.display = 'none';
+    txtSpan = "&#9654;";
+  }
+  document.getElementById(shIDspan).innerHTML = txtSpan + " ";
+}
+function showHide(shID) {
+  if (shID=="soln-show-all") {
+    var allAnswerCode = document.getElementsByClassName("answer-code");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'block';
+    }
+  } else if (shID=="soln-hide-all") {
+    var allAnswerCode = document.getElementsByClassName("answer-code");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'none';
+    }
+  } else if (shID=="hints-show-all") {
+    var allAnswerCode = document.getElementsByClassName("hint");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'block';
+    }
+  } else if (shID=="hints-hide-all") {
+    var allAnswerCode = document.getElementsByClassName("hint");
+    for (i = 0; i < allAnswerCode.length; i++) {
+        allAnswerCode[i].style.display = 'none';
+    }
+  } else {
+    if (document.getElementById(shID)) {
+      if (document.getElementById(shID).style.display != 'block') {
+        document.getElementById(shID).style.display = 'block';
+      } else {
+        document.getElementById(shID).style.display = 'none';
+      }
+    }
+  }
+}
+function CopyToClipboard(containerid) {
+if (document.selection) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(document.getElementById(containerid));
+    range.select().createTextRange();
+    document.execCommand("copy");
+} else if (window.getSelection) {
+    var range = document.createRange();
+    range.selectNode(document.getElementById(containerid));
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
+    // alert("text copied")
+}}
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163964617-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-163964617-1');
+</script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="..\css\slidy_styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore"><span class="ex-course-title">Spatial Data Analysis with R</span><br/><span class="ex-subtitle">Geoprocessing</span></h1>
+
+</div>
+
+
+<style type="text/css">
+body {font-size:14pt;}
+code.r{font-size: 20px;}
+pre {font-size: 20px}
+</style>
+<div id="instructions" class="section level3">
+<h3>Instructions</h3>
+<ul>
+<li><span id="soln_odrinn" style="color:#008040; cursor:pointer;" onclick="showHide(&#39;odrinn&#39;);return false;">Setup R</span> (if you haven’t already)</li>
+</ul>
+<div id="odrinn" style="display:none; margin-left:4em;">
+<p><strong>Working on your computer:</strong><br />
+i. Install <a href="https://cran.r-project.org/">R</a>, <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a>, and the <a href="../setup.html">required packages</a>.<br />
+ii. Download and unzip the <a href="https://github.com/ucanr-igis/rspatial_scgis20" target="_blank">workshop materials</a>.</p>
+<p><strong>Using RStudio Cloud:</strong><br />
+i. Log-in to your RStudio Cloud account.<br />
+ii. Clone the workshop <a href="https://rstudio.cloud/project/1463502" target="_blank">RStudio Cloud Project</a> (which already has all the data and pacakages installed).<br />
+iii. Click ‘Save a permanent copy’ to save a copy in your own workspace.</p>
+</div>
+<!--- Download the <a href="https://github.com/ucanr-igis/rspatial_data">data file</a> and unzip it. --->
+<ul>
+<li><p>Create a new R script in RStudio (File → New File → R Script).</p></li>
+<li><p>Click the ‘Copy’ button below to copy the questions to the clipboard, then paste them into your script. Under each question, write R code. Run each line of R code as you enter it (press the Run button or ctrl+enter) to make sure it works.</p></li>
+<li><p>Remember to save your script periodically to avoid losing work if RStudio crashes.</p></li>
+<li><p>If you get stuck, click on the ‘hint’ link to see a hint, or the question number to see the answer. Click again to hide.</p></li>
+<li><p>Questions? Ask the instructor.</p></li>
+</ul>
+<script>
+  addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<pre><code>## tmap mode set to plotting</code></pre>
+<style type="text/css">
+code {
+  background-color:transparent;
+}
+</style>
+<hr class="hrdivider">
+<div class="copy-button">
+<button onclick="CopyToClipboard(&#39;qtn_div&#39;);return false;">
+Copy questions
+</button>
+</div>
+<div id="qtn_div" class="ex-qtn">
+<p>#################################<br/>#### <strong>COMPUTE WATERSHED AREAS</strong> ####<br/>#################################</p>
+<p><a id="qtn_uvatat" href="#" class="showhidelink" onclick="showHide('uvatat');return false;"># 1.</a> Import the YNP watersheds. If needed, project them to UTM Zone 11N WGS84. <a href="#" class="showhidehint" onclick="showHide('ijgqaf');return false;"></a></p>
+<div id="ijgqaf" class="hint">
+<p>The EPSG number for UTM Zone 11N with datum WGS84 is <code>32611</code>.</p>
+</div>
+<!--- hint_ijgqaf --->
+<div id="uvatat" class="answer-code">
+<pre class="r klippy copyme"><code>library(sf)
+
+## Define constant for UTM 11N WGS84
+epsg_utm11n_wgs84 &lt;- 32611
+
+## Import watersheds
+gpkg_watershd_fn &lt;- &quot;./data/yose_watersheds.gpkg&quot;
+yose_watersheds &lt;- st_read(gpkg_watershd_fn, layer=&quot;calw221&quot;) %&gt;% 
+  st_transform(epsg_utm11n_wgs84)
+
+## Plot it
+plot(st_geometry(yose_watersheds), axes=TRUE)</code></pre>
+<p><img src="geoprocessing_files/figure-html/import_watersheds-1.png" width="672" /></p>
+<pre><code>## Reading layer `calw221&#39; from data source `D:\Workshops\R-Spatial\rspatial_mod\outputs\rspatial_data\data\yose_watersheds.gpkg&#39; using driver `GPKG&#39;
+## Simple feature collection with 127 features and 38 fields
+## geometry type:  POLYGON
+## dimension:      XY
+## bbox:           xmin: 1383.82 ymin: -61442.93 xmax: 81596.71 ymax: 26405.66
+## projected CRS:  unnamed</code></pre>
+</div>
+<!--- ans_uvatat --->
+<p><a id="qtn_urkjql" href="#" class="showhidelink" onclick="showHide('urkjql');return false;"># 2.</a> Create a histogram showing the area of the watersheds in km2. Which is the<br />
+#  largest?</p>
+<div id="urkjql" class="answer-code">
+<pre class="r klippy copyme"><code>library(dplyr)
+
+## Compute the area of each watershed
+watershed_area &lt;- st_area(yose_watersheds) %&gt;% units::set_units(&quot;km^2&quot;)
+
+## Show a histogram
+hist(watershed_area, col = &quot;gray&quot;, breaks=20)</code></pre>
+<p><img src="geoprocessing_files/figure-html/watersheds_area-1.png" width="672" /></p>
+<pre class="r klippy copyme"><code>## Identify the largest record and show the name
+biggest_idx &lt;- which.max(watershed_area)
+yose_watersheds %&gt;% slice(biggest_idx) %&gt;% pull(CDFPWSNAME) %&gt;% as.character()
+
+## Plot the biggest watershed on top of all the watersheds
+tmap_mode(&quot;plot&quot;)
+tm_shape(yose_watersheds) + 
+  tm_borders(col = &quot;gray&quot;) +
+tm_shape(yose_watersheds %&gt;% slice(biggest_idx)) +
+  tm_fill(col = &quot;navy&quot;)</code></pre>
+<p><img src="geoprocessing_files/figure-html/watersheds_area-2.png" width="672" /></p>
+<pre><code>## [1] &quot;Crane Creek&quot;</code></pre>
+<p>⇒ Crane Creek is the largest</p>
+</div>
+<!--- ans_urkjql --->
+<p>#############################################<br/>#### <strong>WHICH WATERSHEDS ARE PRONE TO FIRE?</strong> ####<br/>#############################################</p>
+<p><a id="qtn_ybrynm" href="#" class="showhidelink" onclick="showHide('ybrynm');return false;"># 3.</a> Union the watersheds to the larger ‘HU’ units. Plot them.</p>
+<div id="ybrynm" class="answer-code">
+<pre class="r klippy copyme"><code>## Lump the little watersheds by their &#39;HU&#39; value
+yose_watersheds_hu &lt;- yose_watersheds %&gt;%  group_by(HU) %&gt;% 
+  summarise(HUNAME = first(HUNAME), NUM_WATERSHEDS = n())
+
+## Plot
+tm_shape(yose_watersheds_hu) + 
+  tm_polygons(col=&quot;HUNAME&quot;, title=&quot;HU Watershed&quot;) + 
+tm_shape(yose_watersheds) +
+  tm_borders(col=&quot;gray&quot;, lwd=0.8) +
+tm_layout(legend.outside = T)</code></pre>
+<p><img src="geoprocessing_files/figure-html/watersheds_union-1.png" width="672" /></p>
+</div>
+<!--- ans_ybrynm --->
+<p><a id="qtn_lnlrwe" href="#" class="showhidelink" onclick="showHide('lnlrwe');return false;"># 4.</a> Import the burned areas layer for 1987-2016. If needed, project it to UTM<br />
+#  Zone 11N WGS84.</p>
+<div id="lnlrwe" class="answer-code">
+<pre class="r klippy copyme"><code>firehist_gdb &lt;- &quot;./data/yose_firehistory.gdb&quot;
+
+## Import the &#39;Fire History Polys&#39; layer  
+yose_firearea8716_ind &lt;- st_read(firehist_gdb, layer=&quot;YNP_FireHistoryPolys&quot;) %&gt;% 
+  filter(YEAR &gt;= 1987, YEAR &lt;= 2016) %&gt;% 
+  st_transform(epsg_utm11n_wgs84)
+
+plot(yose_firearea8716_ind %&gt;% st_geometry(), col = &quot;grey&quot;, axes = TRUE)</code></pre>
+<p><img src="geoprocessing_files/figure-html/import_firehist-1.png" width="672" /></p>
+<pre><code>## Reading layer `YNP_FireHistoryPolys&#39; from data source `D:\Workshops\R-Spatial\rspatial_mod\outputs\rspatial_data\data\yose_firehistory.gdb&#39; using driver `OpenFileGDB&#39;
+## Simple feature collection with 4422 features and 21 fields
+## geometry type:  GEOMETRY
+## dimension:      XY
+## bbox:           xmin: 240811.5 ymin: 4152616 xmax: 304220.8 ymax: 4227957
+## projected CRS:  NAD83 / UTM zone 11N</code></pre>
+</div>
+<!--- ans_lnlrwe --->
+<p><a id="qtn_mzzbet" href="#" class="showhidelink" onclick="showHide('mzzbet');return false;"># 5.</a> For each HU watershed, compute the area that burned at least once between<br />
+#  1987-2016.</p>
+<div id="mzzbet" class="answer-code">
+<pre class="r klippy copyme"><code>## Union the individual fire into one big one
+yose_firearea8716_all &lt;- yose_firearea8716_ind %&gt;% st_make_valid() %&gt;% st_union()
+
+## Compute the area of intersection
+hu_fire &lt;- yose_watersheds_hu %&gt;% st_intersection(yose_firearea8716_all)
+
+## Plot
+tm_shape(yose_watersheds_hu) + tm_polygons(&quot;HUNAME&quot;) +
+  tm_shape(hu_fire) + tm_polygons() +
+  tm_layout(legend.outside = TRUE)</code></pre>
+</div>
+<!--- ans_mzzbet --->
+<p>#####################################<br/>#### <strong>ANALYZING CAMPGROUND ‘SIZE’</strong> ####<br/>#####################################</p>
+<p><a id="qtn_smbidz" href="#" class="showhidelink" onclick="showHide('smbidz');return false;"># 6.</a> Import the Campsites (not Campgrounds) from the YNP Points of Interest<br />
+#  layer. If needed, project them to UTM Zone 11N WGS84.</p>
+<div id="smbidz" class="answer-code">
+<pre class="r klippy copyme"><code>## Import the Yosemite Points-of-Interest Shapefile and
+## filter it down to just the campsites
+yose_campsites_utm &lt;- st_read(dsn=&quot;./data&quot;, layer=&quot;yose_poi&quot;) %&gt;% 
+  st_transform(epsg_utm11n_wgs84) %&gt;% 
+  filter(POITYPE == &quot;Campsite&quot;)
+
+## Plot the campsites
+plot(yose_campsites_utm %&gt;% st_geometry(), pch=16, asp=1, cex=0.5, axes=TRUE)</code></pre>
+<p><img src="geoprocessing_files/figure-html/import_campsites-1.png" width="672" /></p>
+<pre><code>## Reading layer `yose_poi&#39; from data source `D:\Workshops\R-Spatial\rspatial_mod\outputs\rspatial_data\data&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 2720 features and 30 fields
+## geometry type:  POINT
+## dimension:      XY
+## bbox:           xmin: 246416.2 ymin: 4153717 xmax: 301510.7 ymax: 4208419
+## projected CRS:  NAD83 / UTM zone 11N</code></pre>
+</div>
+<!--- ans_smbidz --->
+<p><a id="qtn_pzokxb" href="#" class="showhidelink" onclick="showHide('pzokxb');return false;"># 7.</a> Extract the campsites that are part of the Wawona Campground. Plot them.</p>
+<div id="pzokxb" class="answer-code">
+<pre class="r klippy copyme"><code>## Filter just those campsites where POINAME = &#39;Wawona Campground Campsite&#39; 
+wawona_campsites &lt;- yose_campsites_utm %&gt;% 
+  filter(POINAME == &quot;Wawona Campground Campsite&quot;)
+
+plot(wawona_campsites %&gt;% st_geometry(), pch = 16, axes = TRUE)</code></pre>
+<p><img src="geoprocessing_files/figure-html/get_wawona_campsites-1.png" width="672" /></p>
+</div>
+<!--- ans_pzokxb --->
+<p><a id="qtn_yprglc" href="#" class="showhidelink" onclick="showHide('yprglc');return false;"># 8.</a> Create a Minimum Convex Polygon (MCP) around the campsites in Wawona<br />
+#  Campground, and plot it. <a href="#" class="showhidehint" onclick="showHide('fvcurj');return false;"></a></p>
+<div id="fvcurj" class="hint">
+<p><code>st_convex_hull()</code> operates on MULTIPOINT features. Convert a POINT object with many features into a MULTIPOINT object with a single feature with <code>st_union()</code>.</p>
+</div>
+<!--- hint_fvcurj --->
+<div id="yprglc" class="answer-code">
+<pre class="r klippy copyme"><code>## Compute the MCP around the Wawona Campground campsites
+wawona_mcp &lt;- wawona_campsites %&gt;% st_union() %&gt;%  st_convex_hull()
+
+## Plot
+tmap_mode(&quot;plot&quot;)
+tm_shape(wawona_campsites) + tm_symbols(col = &quot;darkgreen&quot;, shape = 16, size = 0.5) +
+  tm_shape(wawona_mcp) + tm_borders(col = &quot;red&quot;) + 
+  tm_layout(main.title = &quot;Wawona Campground&quot;)</code></pre>
+<p><img src="geoprocessing_files/figure-html/wawona_mcp-1.png" width="672" /></p>
+</div>
+<!--- ans_yprglc --->
+<p><a id="qtn_qtflna" href="#" class="showhidelink" onclick="showHide('qtflna');return false;"># 9.</a> Do the same for the Bridalveil Creek campsites and the Lower Pines campsites.</p>
+<div id="qtflna" class="answer-code">
+<pre class="r klippy copyme"><code>bridalveil_campsites &lt;- yose_campsites_utm %&gt;% 
+  filter(POINAME == &quot;Bridalveil Creek Campsite&quot;)
+bridalveil_mcp &lt;- bridalveil_campsites %&gt;% st_union() %&gt;%  st_convex_hull()
+
+tm_shape(bridalveil_campsites) + tm_symbols(col = &quot;darkgreen&quot;, shape = 16, size = 0.5) +
+  tm_shape(bridalveil_mcp) + tm_borders(col = &quot;red&quot;) + 
+  tm_layout(main.title = &quot;Bridalveil Creek&quot;)
+
+lowerpines_campsites &lt;- yose_campsites_utm %&gt;% 
+  filter(POINAME == &quot;Lower Pines Campsite&quot;)
+lowerpines_mcp &lt;- lowerpines_campsites %&gt;% st_union() %&gt;%  st_convex_hull()
+
+tm_shape(lowerpines_campsites) + tm_symbols(col = &quot;darkgreen&quot;, shape = 16, size = 0.5) +
+  tm_shape(lowerpines_mcp) + tm_borders(col = &quot;red&quot;) +
+  tm_layout(main.title = &quot;Lower Pines&quot;)
+
+## Coming soon...</code></pre>
+<p><img src="geoprocessing_files/figure-html/bridalveil_lowerpines-1.png" width="672" /><img src="geoprocessing_files/figure-html/bridalveil_lowerpines-2.png" width="672" /></p>
+</div>
+<!--- ans_qtflna --->
+<p><a id="qtn_qxpalp" href="#" class="showhidelink" onclick="showHide('qxpalp');return false;"># 10.</a> Using the MCPs as a proxy for ‘campground area’, which of these three<br />
+#  campgrounds is the largest?</p>
+<div id="qxpalp" class="answer-code">
+<pre class="r klippy copyme"><code>wawona_mcp %&gt;%  st_area() %&gt;% set_units(&quot;ha&quot;)
+bridalveil_mcp %&gt;% st_area() %&gt;% set_units(&quot;ha&quot;)
+lowerpines_mcp %&gt;%  st_area() %&gt;% set_units(&quot;ha&quot;)</code></pre>
+<pre><code>## 17.83682 [ha]
+## 6.932616 [ha]
+## 4.336733 [ha]</code></pre>
+<p>⇒ Wawona Campground is the largest by area</p>
+</div>
+<!--- ans_qxpalp --->
+<p><a id="qtn_wrrfkc" href="#" class="showhidelink" onclick="showHide('wrrfkc');return false;"># 11.</a> BONUS: Combine the MCPs into a single sf polygon layer.</p>
+<div id="wrrfkc" class="answer-code">
+<pre class="r"><code>mcps_all &lt;- st_sf(id = 1:3, 
+                  geometry = st_sfc(wawona_mcp[[1]],
+                                    bridalveil_mcp[[1]], 
+                                    lowerpines_mcp[[1]]))
+mcps_all</code></pre>
+<pre><code>## Simple feature collection with 3 features and 1 field
+## geometry type:  POLYGON
+## dimension:      XY
+## bbox:           xmin: 262757.3 ymin: 4158605 xmax: 273919.8 ymax: 4180273
+## CRS:            NA
+##   id                       geometry
+## 1  1 POLYGON ((263860.9 4158605,...
+## 2  2 POLYGON ((268785.6 4171562,...
+## 3  3 POLYGON ((273814.8 4179960,...</code></pre>
+</div>
+<!--- ans_wrrfkc --->
+</div>
+<!-- end question div -->
+</div>
+
+<hr>
+<div style="float:right; width:33%; text-align:right;">
+<a href="../index.html" style="text-decoration:none;">Course outline</a>
+</div>
+
+<div style="float:right; width:33%; text-align:center;">
+<a href="#" style="text-decoration:none;" onclick="showHide('soln-show-all');return false;">show all solutions</a> | <a href="#" style="text-decoration:none;" onclick="showHide('soln-hide-all');return false;">hide all solutions</a>
+</div>
+
+<div style="width:33%;">
+<a href="#" style="text-decoration:none;" onclick="showHide('hints-show-all');return false;">show all hints</a> | <a href="#" style="text-decoration:none;" onclick="showHide('hints-hide-all');return false;">hide all hints</a>
+</div>
+<br/>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

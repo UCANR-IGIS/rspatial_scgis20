@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Review and Practice  " />
+  <meta name="copyright" content="<span class='footer-right'><a href='../acknowledgements.html'>Acknowledgements</a></span><span class='footer-right'><a href=' https://etherpad.wikimedia.org/p/rspatial-scgis2020 ' target='_blank'>Forum</a></span><span class='footer-right'><a href=' https://ucanr-igis.github.io/rspatial_scgis20/ '> https://ucanr-igis.github.io/rspatial_scgis20/ </a></span><span class='footer-right'><a href='../index.html'>Home</a></span><span class='footer-subtitle'> Spatial Data Analysis with R </span>"/>
+  <meta name="font-size-adjustment" content="2"/>
+  <title>Spatial Data Analysis with R  Society for Conservation GIS, July 2020</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACkUlEQVQ4jX2SW0jTcRTHTzNyeZlh6lqmm3POdNPC6SxSEzaqafkykOFoIxTDWpKRFV6iQMNLFyMSsQvUW0WORc2WWBmGKEGZXUyz0NrmNmfa1PYgfHsQ1v5oHjgvX875/M45vy/R8mDJ9caxrFIL5CUWJB00Q9n+7Q+l1BetUMuMTL3JpTB0QVnejd1Hu9DQ60G5eQbqB7PIvj0L2bUZ0KZzghWbs0o7Fx3Tc/B6vStm6+g0wrQvIKh2gKKyUxnNSZoO685SC1YDeL1e9Ll+Ia7WCd5pJ4hojQ8g1nViezETYBqZx93BOdwa9jAgsdUT4J6ZQqC6f4GIiLYU9/RzNWYIdU9hd/8rLjN7UGT8DbWROVVMlQsBBWas142DiIikdfbFMF0POIVm2NzM1zwLS+mvcSsnEajpBSv/8RIgucGJ1EYXEs+NwjrlWfUGMee/Y2PFJIJLrFibex8kOsahhCYnUlpnIL1kh9X9/yMKG2yIOOlAsPYnAveZsE75EEQUQLwTwy5Rsxvx9UxApKEPEYY+BiSizA623oaggkdgq4xLKwRLq7i8sy6EFlpg8wNEVwyAd3wAbZ8cPu3CazeCC/sRojYjaL8Jvm8MPWLDBm03A8CveQ9+7RBia4cYU4QfeokwzTOwc6/4OzKXHap/C5ufD0RNo0i4OAZR81dcnnD69Mp3PxBe9GRkuZdFKk7sqTcQ132EpGUMydetSLnpgOSGHVtbxpHU9AX8mkFEG55/ZrjQL1h82V6esPLVh8Sr40i940J6xzzS7s1C0m6HqHEEiTnatgT5gcPijHxltFwhjpRIQpZjBAJ2lFTBFW5TiOPT8mXx6apdcRl5OaJM1Q6hLC9ls3RPTLgok0NELCKiv02kPqt/O1MZAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
+  <script language="javascript" type="text/javascript">
+  function TriShowHide(shID) {
+    shIDspan = shID + "span";
+    shIDdiv = shID + "div";
+    if (document.getElementById(shIDdiv).style.display != 'block') {
+      document.getElementById(shIDdiv).style.display = 'block';
+      txtSpan = "&#9660;";
+    } else {
+      document.getElementById(shIDdiv).style.display = 'none';
+      txtSpan = "&#9654;";
+    }
+    document.getElementById(shIDspan).innerHTML = txtSpan + " ";
+  }
+  function showHide(shID) {
+    if (shID=="soln-show-all") {
+      var allAnswerCode = document.getElementsByClassName("answer-code");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'block';
+      }
+    } else if (shID=="soln-hide-all") {
+      var allAnswerCode = document.getElementsByClassName("answer-code");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'none';
+      }
+    } else if (shID=="hints-show-all") {
+      var allAnswerCode = document.getElementsByClassName("hint");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'block';
+      }
+    } else if (shID=="hints-hide-all") {
+      var allAnswerCode = document.getElementsByClassName("hint");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'none';
+      }
+    } else {
+      if (document.getElementById(shID)) {
+        if (document.getElementById(shID).style.display != 'block') {
+          document.getElementById(shID).style.display = 'block';
+        } else {
+          document.getElementById(shID).style.display = 'none';
+        }
+      }
+    }
+  }
+  function CopyToClipboard(containerid) {
+  if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+  } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      // alert("text copied")
+  }}
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163964617-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-163964617-1');
+  </script>
+  <script src="lib/header-attrs-2.3/header-attrs.js"></script>
+  <link href="lib/slidy-2/styles/slidy.css" rel="stylesheet" />
+  <script src="lib/slidy-2/scripts/slidy.js"></script>
+  <script src="lib/slidy_shiny-1/slidy_shiny.js"></script>
+  <script src="lib/clipboard-1.7.1/clipboard.min.js"></script>
+  <link href="lib/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+  <link href="lib/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+  <script src="lib/klippy-0.0.0.9500/js/klippy.min.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="..\css\slidy_styles.css" />
+  <meta name="duration" content="0" />
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title"><span class="course-title">Spatial Data Analysis with R </span><br/><span class="course-subtitle">Society for Conservation GIS, July 2020</span></h1>
+  <p class="author">
+Review and Practice <br/><img src='images/puzzle_400x364x256.png'/>
+  </p>
+</div>
+<div id="highlights-from-last-time" class="slide section level1">
+<h1>Highlights from Last Time</h1>
+<script language="javascript" type="text/javascript">w3c_slidy.mouse_click_enabled = false;</script>
+<style type="text/css">
+.fundesc {
+  color: DimGray;
+  font-style: italic;
+}
+</style>
+<script>
+  addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<h2 id="sf-functions"><code>sf</code> functions</h2>
+<div class="indented2">
+<ul>
+<li><code>st_read()</code> <span class="fundesc">– import all manner of spatial data</span><br />
+</li>
+<li><code>st_crs()</code> <span class="fundesc">– view (or assign) a crs to a <code>sf</code> object</span><br />
+</li>
+<li>EPSG numbers <span class="fundesc">– big catalog of coordinate reference systems</span><br />
+</li>
+<li><code>st_transform()</code> <span class="fundesc">– project (or unproject) <code>sf</code> objects</span><br />
+</li>
+<li><code>st_as_sf()</code> <span class="fundesc">– turn a data frame with xy columns into a <code>sf</code> data frame</span><br />
+</li>
+<li><code>st_geometry()</code> <span class="fundesc">– return just the geometry (i.e., for plotting)</span><br />
+</li>
+<li><code>st_drop_geometry()</code> <span class="fundesc">– throw away the geometry (i.e., for analysis of the attribute table)</span><br />
+</li>
+<li><code>st_write()</code> <span class="fundesc">– export <code>sf</code> objects to all manner of formats</span><br />
+</li>
+</ul>
+</div>
+<h2 id="dplyr-functions"><code>dplyr</code> functions</h2>
+<div class="indented2">
+<ul>
+<li><code>filter()</code> &amp; <code>slice()</code> <span class="fundesc">– for attribute queries</span><br />
+</li>
+<li><code>mutate()</code> <span class="fundesc">– add new columns to the attribute table</span><br />
+</li>
+<li><code>group_by()</code>, <code>summarise()</code>, <code>count()</code>, <code>top_n()</code>, etc. <span class="fundesc">– analysis of the attribute table</span><br />
+</li>
+</ul>
+</div>
+</div>
+<div id="quiz" class="slide section level1 incremental">
+<h1 class="incremental">Quiz</h1>
+<p><strong>1. What is the EPSG code for geographic coordinates (WGS84 datum)? </strong></p>
+<div class="indented1">
+<p>Ans. 4326</p>
+</div>
+<p><strong>2. Why is this important?</strong></p>
+<div class="indented1">
+<p>This is the crs used by the global GPS system, and the default crs for most GPS location software.</p>
+<p>You may have to manually assign the crs when coverting a csv file into a sf object.</p>
+<p>The <code>leaflet</code> package requires layers to be in geographic coordinates.</p>
+<p>Geographic coordinates are inappropriate for many types of spatial analysis.</p>
+</div>
+<p><strong>3. Bonus:is the EPSG code for geographic coordinates in the <em>NAD83</em> datum? Why is this important?</strong></p>
+<div class="indented1">
+<p>Ans. 4269</p>
+<p>NAD83 is a common datum for many data providers (e.g., the National Park Service). You may encounter data that is unprojected (i.e., long-lat) in NAD83, as well as projected (e.g., UTM) in NAD83.</p>
+</div>
+<p>
+<br/>
+<hr/>
+<strong>Next: </strong> <a href="geoprocessing.html">Geoprocessing</a>
+</p>
+</div>
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+</body>
+</html>

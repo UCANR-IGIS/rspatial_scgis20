@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Custom Functions  " />
+  <meta name="copyright" content="<span class='footer-right'><a href='../acknowledgements.html'>Acknowledgements</a></span><span class='footer-right'><a href=' https://etherpad.wikimedia.org/p/rspatial-scgis2020 ' target='_blank'>Forum</a></span><span class='footer-right'><a href=' https://ucanr-igis.github.io/rspatial_scgis20/ '> https://ucanr-igis.github.io/rspatial_scgis20/ </a></span><span class='footer-right'><a href='../index.html'>Home</a></span><span class='footer-subtitle'> Spatial Data Analysis with R </span>"/>
+  <meta name="font-size-adjustment" content="2"/>
+  <title>Spatial Data Analysis with R  Society for Conservation GIS, July 2020</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACkUlEQVQ4jX2SW0jTcRTHTzNyeZlh6lqmm3POdNPC6SxSEzaqafkykOFoIxTDWpKRFV6iQMNLFyMSsQvUW0WORc2WWBmGKEGZXUyz0NrmNmfa1PYgfHsQ1v5oHjgvX875/M45vy/R8mDJ9caxrFIL5CUWJB00Q9n+7Q+l1BetUMuMTL3JpTB0QVnejd1Hu9DQ60G5eQbqB7PIvj0L2bUZ0KZzghWbs0o7Fx3Tc/B6vStm6+g0wrQvIKh2gKKyUxnNSZoO685SC1YDeL1e9Ll+Ia7WCd5pJ4hojQ8g1nViezETYBqZx93BOdwa9jAgsdUT4J6ZQqC6f4GIiLYU9/RzNWYIdU9hd/8rLjN7UGT8DbWROVVMlQsBBWas142DiIikdfbFMF0POIVm2NzM1zwLS+mvcSsnEajpBSv/8RIgucGJ1EYXEs+NwjrlWfUGMee/Y2PFJIJLrFibex8kOsahhCYnUlpnIL1kh9X9/yMKG2yIOOlAsPYnAveZsE75EEQUQLwTwy5Rsxvx9UxApKEPEYY+BiSizA623oaggkdgq4xLKwRLq7i8sy6EFlpg8wNEVwyAd3wAbZ8cPu3CazeCC/sRojYjaL8Jvm8MPWLDBm03A8CveQ9+7RBia4cYU4QfeokwzTOwc6/4OzKXHap/C5ufD0RNo0i4OAZR81dcnnD69Mp3PxBe9GRkuZdFKk7sqTcQ132EpGUMydetSLnpgOSGHVtbxpHU9AX8mkFEG55/ZrjQL1h82V6esPLVh8Sr40i940J6xzzS7s1C0m6HqHEEiTnatgT5gcPijHxltFwhjpRIQpZjBAJ2lFTBFW5TiOPT8mXx6apdcRl5OaJM1Q6hLC9ls3RPTLgok0NELCKiv02kPqt/O1MZAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
+  <script language="javascript" type="text/javascript">
+  function TriShowHide(shID) {
+    shIDspan = shID + "span";
+    shIDdiv = shID + "div";
+    if (document.getElementById(shIDdiv).style.display != 'block') {
+      document.getElementById(shIDdiv).style.display = 'block';
+      txtSpan = "&#9660;";
+    } else {
+      document.getElementById(shIDdiv).style.display = 'none';
+      txtSpan = "&#9654;";
+    }
+    document.getElementById(shIDspan).innerHTML = txtSpan + " ";
+  }
+  function showHide(shID) {
+    if (shID=="soln-show-all") {
+      var allAnswerCode = document.getElementsByClassName("answer-code");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'block';
+      }
+    } else if (shID=="soln-hide-all") {
+      var allAnswerCode = document.getElementsByClassName("answer-code");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'none';
+      }
+    } else if (shID=="hints-show-all") {
+      var allAnswerCode = document.getElementsByClassName("hint");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'block';
+      }
+    } else if (shID=="hints-hide-all") {
+      var allAnswerCode = document.getElementsByClassName("hint");
+      for (i = 0; i < allAnswerCode.length; i++) {
+          allAnswerCode[i].style.display = 'none';
+      }
+    } else {
+      if (document.getElementById(shID)) {
+        if (document.getElementById(shID).style.display != 'block') {
+          document.getElementById(shID).style.display = 'block';
+        } else {
+          document.getElementById(shID).style.display = 'none';
+        }
+      }
+    }
+  }
+  function CopyToClipboard(containerid) {
+  if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+  } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      // alert("text copied")
+  }}
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163964617-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-163964617-1');
+  </script>
+  <script src="lib/header-attrs-2.3/header-attrs.js"></script>
+  <link href="lib/slidy-2/styles/slidy.css" rel="stylesheet" />
+  <script src="lib/slidy-2/scripts/slidy.js"></script>
+  <script src="lib/slidy_shiny-1/slidy_shiny.js"></script>
+  <script src="lib/clipboard-1.7.1/clipboard.min.js"></script>
+  <link href="lib/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+  <link href="lib/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+  <script src="lib/klippy-0.0.0.9500/js/klippy.min.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="..\css\slidy_styles.css" />
+  <meta name="duration" content="0" />
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title"><span class="course-title">Spatial Data Analysis with R </span><br/><span class="course-subtitle">Society for Conservation GIS, July 2020</span></h1>
+  <p class="author">
+Custom Functions <br/><img src='images/gears-function_400x278.png'/>
+  </p>
+</div>
+<div id="custom-functions" class="slide section level1">
+<h1>Custom Functions</h1>
+<script language="javascript" type="text/javascript">w3c_slidy.mouse_click_enabled = false;</script>
+<script>
+  addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<h2 id="why-write-functions">Why Write Functions?</h2>
+<p>Functions help you:</p>
+<div class="indented2">
+<ul>
+<li>reuse your code</li>
+<li>make your scripts easier to write (&amp; read)</li>
+<li>share your work through scripts or packages</li>
+</ul>
+</div>
+<p>Functions generally do one or two things:</p>
+<ol style="list-style-type: decimal">
+<li>take an <strong>action</strong> (e.g., plot, download data)</li>
+<li>return values</li>
+</ol>
+<h2 id="creating-functions">Creating Functions</h2>
+<p>You define a function like you define a variable:</p>
+<pre><code>myfun &lt;- function() { 
+  ## code goes here
+}</code></pre>
+<h2 id="example-hello-world">Example: Hello World</h2>
+<p>A simple function that takes an action.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>hello_world &lt;-<span class="st"> </span><span class="cf">function</span>() {</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="kw">print</span>(<span class="st">&quot;Hello world!&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>}</span></code></pre></div>
+<p>You call custom functions like any built-in function. Remember to add the <tt>()</tt>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">hello_world</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;Hello world!&quot;</code></pre>
+<div class="tryit">
+<p>Create a hello_world function that prints something to the console.</p>
+<p>Call it.</p>
+</div>
+</div>
+<div id="returning-values" class="slide section level1">
+<h1>Returning Values</h1>
+<p>Functions will return a value when:</p>
+<div class="indented2">
+<ul>
+<li>it reaches the last line of code</li>
+<li>it encounters a <tt>return()</tt> function</li>
+</ul>
+</div>
+<h2 id="example-returning-a-value">Example: Returning a Value</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>pi_squared &lt;-<span class="st"> </span><span class="cf">function</span>() {</span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="kw">return</span>(pi <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a>}</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a>x &lt;-<span class="st"> </span><span class="kw">pi_squared</span>()</span>
+<span id="cb5-6"><a href="#cb5-6"></a>x</span></code></pre></div>
+<pre><code>## [1] 9.869604</code></pre>
+<div class="tip">
+<p>If you need to return multiple variables, or an unstructured object, put them in a list object and return the list.</p>
+</div>
+</div>
+<div id="adding-arguments" class="slide section level1">
+<h1>Adding Arguments</h1>
+<p>Arguments add flexibility to your function, allowing you to use it in different places in your code. You define arguments in the function definition.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>inch2cm &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="kw">return</span>(x <span class="op">*</span><span class="st"> </span><span class="fl">2.54</span>)  </span>
+<span id="cb7-3"><a href="#cb7-3"></a>}</span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="kw">inch2cm</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 25.4</code></pre>
+<div class="tip">
+<p>The code in your function should <strong><em>only</em></strong> depend on arguments passed to it, not other variables or packages which may or may not be available.</p>
+<p>Arguments are passed as <em>copies</em> (as opposed to a pointer). This means if the function modifies the argument, it won’t change the argument in the calling environment.</p>
+</div>
+<h2 id="multiple-arguments">Multiple Arguments</h2>
+<p>Separate multiple arguments with commas.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>circle_pts &lt;-<span class="st"> </span><span class="cf">function</span>(radius, ctr_x, ctr_y) {</span>
+<span id="cb9-2"><a href="#cb9-2"></a>  theta &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">0</span>, <span class="dt">to=</span><span class="dv">2</span><span class="op">*</span>pi, <span class="dt">by=</span>pi<span class="op">/</span><span class="dv">18</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>  xs &lt;-<span class="st"> </span>ctr_x <span class="op">+</span><span class="st"> </span>radius <span class="op">*</span><span class="st"> </span><span class="kw">cos</span>(theta)</span>
+<span id="cb9-4"><a href="#cb9-4"></a>  ys &lt;-<span class="st"> </span>ctr_y <span class="op">+</span><span class="st"> </span>radius <span class="op">*</span><span class="st"> </span><span class="kw">sin</span>(theta)</span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="kw">return</span> (<span class="kw">cbind</span>(xs, ys))</span>
+<span id="cb9-6"><a href="#cb9-6"></a>}</span>
+<span id="cb9-7"><a href="#cb9-7"></a></span>
+<span id="cb9-8"><a href="#cb9-8"></a>pts &lt;-<span class="st"> </span><span class="kw">circle_pts</span>(<span class="fl">0.5</span>, <span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="kw">head</span>(pts)</span></code></pre></div>
+<pre><code>##            xs       ys
+## [1,] 10.50000 10.00000
+## [2,] 10.49240 10.08682
+## [3,] 10.46985 10.17101
+## [4,] 10.43301 10.25000
+## [5,] 10.38302 10.32139
+## [6,] 10.32139 10.38302</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">plot</span>(pts, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>, <span class="dt">asp=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="custom-functions_files/figure-slidy/circl01-1.png" width="400" height="400" style="display: block; margin: auto;" /></p>
+<p>R will throw an error message if required arguments are not passed.</p>
+<div class="tip">
+<p>R doesn’t require you to declare a data type for arguments, so if you need to check data type you need to build that in your code. E.g.,</p>
+<pre><code>if (!inherits(x, &quot;list&quot;)) stop(&quot;x should be a list&quot;)</code></pre>
+</div>
+<h2 id="providing-default-values">Providing Default Values</h2>
+<p>The way you make an argument optional is to give it a default value.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>circle_pts &lt;-<span class="st"> </span><span class="cf">function</span>(radius, <span class="dt">ctr_x=</span><span class="dv">0</span>, <span class="dt">ctr_y=</span><span class="dv">0</span>) {</span>
+<span id="cb13-2"><a href="#cb13-2"></a>  theta &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">0</span>, <span class="dt">to=</span><span class="dv">2</span><span class="op">*</span>pi, <span class="dt">by=</span>pi<span class="op">/</span><span class="dv">18</span>)</span>
+<span id="cb13-3"><a href="#cb13-3"></a>  xs &lt;-<span class="st"> </span>ctr_x <span class="op">+</span><span class="st"> </span>radius <span class="op">*</span><span class="st"> </span><span class="kw">cos</span>(theta)</span>
+<span id="cb13-4"><a href="#cb13-4"></a>  ys &lt;-<span class="st"> </span>ctr_y <span class="op">+</span><span class="st"> </span>radius <span class="op">*</span><span class="st"> </span><span class="kw">sin</span>(theta)</span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="kw">return</span> (<span class="kw">cbind</span>(xs, ys))</span>
+<span id="cb13-6"><a href="#cb13-6"></a>}</span>
+<span id="cb13-7"><a href="#cb13-7"></a></span>
+<span id="cb13-8"><a href="#cb13-8"></a>pts &lt;-<span class="st"> </span><span class="kw">circle_pts</span>(<span class="dv">1</span>)</span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="kw">head</span>(pts)</span></code></pre></div>
+<pre><code>##             xs        ys
+## [1,] 1.0000000 0.0000000
+## [2,] 0.9848078 0.1736482
+## [3,] 0.9396926 0.3420201
+## [4,] 0.8660254 0.5000000
+## [5,] 0.7660444 0.6427876
+## [6,] 0.6427876 0.7660444</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">plot</span>(pts, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>, <span class="dt">asp=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="custom-functions_files/figure-slidy/circl02-1.png" width="400" height="400" style="display: block; margin: auto;" /></p>
+<div class="tryit">
+<p>Write a function that squares the log of the argument. Test if your function is vectorized.</p>
+<p><span id="soln_tgyfdc" class="showhidesoln" onclick="showHide(&#39;tgyfdc&#39;);return false;">[Solution]</span></p>
+<div id="tgyfdc" class="hint">
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>log_sq &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="kw">log</span>(x) <span class="op">^</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>}</span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="kw">log_sq</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">log_sq</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1] 0.000000 0.480453 1.206949 1.921812 2.590290 3.210402 3.786566 4.324077 4.827796 5.301898</code></pre>
+<p>Yes it is vectorized because both <tt>log()</tt> and exponentiation (<tt>^</tt>) are vector functions.</p>
+</div>
+</div>
+</div>
+<div id="writing-custom-functions---tips-and-good-practices" class="slide section level1">
+<h1>Writing Custom Functions - Tips and Good Practices</h1>
+<div class="indented2">
+<ul>
+<li>put the non-optional arguments first</li>
+<li>check the value and class of arguments as needed</li>
+<li>best functions do one small thing (modular)</li>
+<li>avoid naming your functions with a built-in function name</li>
+<li>exchange information through arguments and return values</li>
+<li>remember to load packages!</li>
+<li>send message to the console using <tt>print()</tt>, <tt>cat()</tt> statements</li>
+<li>functions can be saved in R files or packages reloaded with <tt>source()</tt>, e.g.,</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">source</span>(<span class="st">&quot;~/MyScripts/andy_utils.R&quot;</span>)</span></code></pre></div>
+</div>
+<div class="tryit">
+<p>Write a function that takes as its argument a sf object, and returns the area of the bounding box.</p>
+</div>
+</div>
+
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+</body>
+</html>
