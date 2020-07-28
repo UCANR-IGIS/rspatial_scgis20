@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <meta name="author" content="Geoprocessing " />
+  <meta name="author" content="Geoprocessing 1 " />
   <meta name="copyright" content="<span class='footer-right'><a href='../acknowledgements.html'>Acknowledgements</a></span><span class='footer-right'><a href=' https://etherpad.wikimedia.org/p/rspatial-scgis2020 ' target='_blank'>Forum</a></span><span class='footer-right'><a href=' https://ucanr-igis.github.io/rspatial_scgis20/ '> https://ucanr-igis.github.io/rspatial_scgis20/ </a></span><span class='footer-right'><a href='../index.html'>Home</a></span><span class='footer-subtitle'> Spatial Data Analysis with R </span>"/>
   <meta name="font-size-adjustment" content="2"/>
   <title>Spatial Data Analysis with R   Society for Conservation GIS, July 2020</title>
@@ -161,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="slide titlepage">
   <h1 class="title"><span class="course-title">Spatial Data Analysis with R </span> <br/><span class="course-subtitle">Society for Conservation GIS, July 2020</span></h1>
   <p class="author">
-Geoprocessing<br/><img src='images/geoprocessing256_498x166.png'/>
+Geoprocessing 1<br/><img src='images/geoprocessing256_498x166.png'/>
   </p>
 </div>
 <div id="geoprocessing" class="slide section level1">
@@ -170,6 +170,9 @@ Geoprocessing<br/><img src='images/geoprocessing256_498x166.png'/>
 <script>
   addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
 </script>
+</div>
+<div id="geoprocessing-functions" class="slide section level1">
+<h1>Geoprocessing Functions</h1>
 <p>Generally speaking, geoprocessing functions are functions that analyze or alter the <strong>geometry</strong> of the data.</p>
 <p>We can generally divide geoprocessing into 3 categories:</p>
 <!--- See https://edzer.github.io/UseR2017/ --->
@@ -293,12 +296,10 @@ distance between features
 ## dimension:      XY
 ## bbox:           xmin: 246268.6 ymin: 4182145 xmax: 264049.5 ymax: 4215598
 ## projected CRS:  NAD83 / UTM zone 11N
-##          FIRE_ID LINK_ID SACS_ID FILE_ID NAME    ACRES YEAR TYPE CAUSE HECTARES AREA PERIMETER
-## 4251 CA-YNP-0126    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;  Rim 78892.24 2013   WF    HC       NA   NA   1123267
-##      SEQ_NO DECADE  STARTDATE    OUTDATE X_COORD Y_COORD ET_ID Shape_Length Shape_Area
-## 4251     NA   2010 2013-08-17 2013-10-18      NA      NA    NA     209505.2  318835601
-##                               Shape
-## 4251 MULTIPOLYGON (((247876.4 42...
+##          FIRE_ID LINK_ID SACS_ID FILE_ID NAME    ACRES YEAR TYPE CAUSE HECTARES AREA PERIMETER SEQ_NO DECADE  STARTDATE
+## 4251 CA-YNP-0126    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;  Rim 78892.24 2013   WF    HC       NA   NA   1123267     NA   2010 2013-08-17
+##         OUTDATE X_COORD Y_COORD ET_ID Shape_Length Shape_Area                          Shape
+## 4251 2013-10-18      NA      NA    NA     209505.2  318835601 MULTIPOLYGON (((247876.4 42...
 ## 123.1031 [mi^2]</code></pre>
 <p>⇒ the <strong>2013 Rim fire</strong> was the largest!</p>
 </div>
@@ -321,47 +322,47 @@ distance between features
 ## projected CRS:  NAD83 / UTM zone 11N
 ## Rows: 823
 ## Columns: 41
-## $ RDNAME         &lt;chr&gt; &quot;Northside Drive&quot;, &quot;Northside Drive&quot;, &quot;Northside Drive&quot;, &quot;Southside Dri...
-## $ RDALTNAME      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ MAPLABEL       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ RDSTATUS       &lt;chr&gt; &quot;Existing&quot;, &quot;Existing&quot;, &quot;Existing&quot;, &quot;Existing&quot;, &quot;Existing&quot;, &quot;Existing&quot;,...
-## $ RDCLASS        &lt;chr&gt; &quot;Primary&quot;, &quot;Primary&quot;, &quot;Primary&quot;, &quot;Primary&quot;, &quot;Primary&quot;, &quot;Primary&quot;, &quot;Seco...
-## $ RDSURFACE      &lt;chr&gt; &quot;Asphalt&quot;, &quot;Asphalt&quot;, &quot;Asphalt&quot;, &quot;Asphalt&quot;, &quot;Asphalt&quot;, &quot;Asphalt&quot;, &quot;Asph...
-## $ RDONEWAY       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ RDLANES        &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ RDHICLEAR      &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;,...
-## $ RTENUMBER      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ SEASONAL       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ SEASDESC       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ RDMAINTAINER   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ ISEXTANT       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ PUBLICDISPLAY  &lt;chr&gt; &quot;Public Map Display&quot;, &quot;Public Map Display&quot;, &quot;Public Map Display&quot;, &quot;Publ...
-## $ DATAACCESS     &lt;chr&gt; &quot;Unrestricted&quot;, &quot;Unrestricted&quot;, &quot;Unrestricted&quot;, &quot;Unrestricted&quot;, &quot;Unrest...
-## $ UNITCODE       &lt;chr&gt; &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;,...
-## $ UNITNAME       &lt;chr&gt; &quot;Yosemite National Park&quot;, &quot;Yosemite National Park&quot;, &quot;Yosemite National ...
-## $ GROUPCODE      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ GROUPNAME      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ REGIONCODE     &lt;chr&gt; &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;...
-## $ CREATEDATE     &lt;dttm&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA...
-## $ CREATEUSER     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ EDITDATE       &lt;dttm&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA...
-## $ EDITUSER       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ MAPMETHOD      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ MAPSOURCE      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ SOURCEDATE     &lt;dttm&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA...
-## $ XYACCURACY     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ ROUTEID        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ FACLOCID       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ FACASSETID     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ FEATUREID      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ GEOMETRYID     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ NOTES          &lt;chr&gt; &quot;In Park = Y, Fire Road = No&quot;, &quot;In Park = Y, Fire Road = No&quot;, &quot;In Park ...
-## $ YOSE_Surface   &lt;chr&gt; &quot;Paved&quot;, &quot;Paved&quot;, &quot;Paved&quot;, &quot;Paved&quot;, &quot;Paved&quot;, &quot;Paved&quot;, &quot;Paved&quot;, &quot;Paved&quot;,...
-## $ YOSE_FIRE_ROAD &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;,...
-## $ YOSE_INPARK    &lt;chr&gt; &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;...
-## $ YOSE_Type      &lt;chr&gt; &quot;Primary Road&quot;, &quot;Primary Road&quot;, &quot;Primary Road&quot;, &quot;Primary Road&quot;, &quot;Primar...
-## $ Shape_Length   &lt;dbl&gt; 493.53512, 67.90781, 33.35863, 258.00073, 117.94169, 167.51558, 71.8290...
-## $ Shape          &lt;MULTILINESTRING [m]&gt; MULTILINESTRING ((270865.2 ..., MULTILINESTRING ((27082...</code></pre>
+## $ RDNAME         &lt;chr&gt; &quot;Northside Drive&quot;, &quot;Northside Drive&quot;, &quot;Northside Drive&quot;, &quot;Southside Drive&quot;, &quot;Northside Drive&quot;, &quot;North...
+## $ RDALTNAME      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ MAPLABEL       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ RDSTATUS       &lt;chr&gt; &quot;Existing&quot;, &quot;Existing&quot;, &quot;Existing&quot;, &quot;Existing&quot;, &quot;Existing&quot;, &quot;Existing&quot;, &quot;Existing&quot;, &quot;Existing&quot;, &quot;Exis...
+## $ RDCLASS        &lt;chr&gt; &quot;Primary&quot;, &quot;Primary&quot;, &quot;Primary&quot;, &quot;Primary&quot;, &quot;Primary&quot;, &quot;Primary&quot;, &quot;Secondary&quot;, &quot;Primary&quot;, &quot;Secondary&quot;...
+## $ RDSURFACE      &lt;chr&gt; &quot;Asphalt&quot;, &quot;Asphalt&quot;, &quot;Asphalt&quot;, &quot;Asphalt&quot;, &quot;Asphalt&quot;, &quot;Asphalt&quot;, &quot;Asphalt&quot;, &quot;Asphalt&quot;, &quot;Asphalt&quot;, &quot;A...
+## $ RDONEWAY       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ RDLANES        &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ RDHICLEAR      &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;,...
+## $ RTENUMBER      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ SEASONAL       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ SEASDESC       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ RDMAINTAINER   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ ISEXTANT       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ PUBLICDISPLAY  &lt;chr&gt; &quot;Public Map Display&quot;, &quot;Public Map Display&quot;, &quot;Public Map Display&quot;, &quot;Public Map Display&quot;, &quot;Public Map D...
+## $ DATAACCESS     &lt;chr&gt; &quot;Unrestricted&quot;, &quot;Unrestricted&quot;, &quot;Unrestricted&quot;, &quot;Unrestricted&quot;, &quot;Unrestricted&quot;, &quot;Unrestricted&quot;, &quot;Unre...
+## $ UNITCODE       &lt;chr&gt; &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE&quot;, &quot;YOSE...
+## $ UNITNAME       &lt;chr&gt; &quot;Yosemite National Park&quot;, &quot;Yosemite National Park&quot;, &quot;Yosemite National Park&quot;, &quot;Yosemite National Park...
+## $ GROUPCODE      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ GROUPNAME      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ REGIONCODE     &lt;chr&gt; &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PWR&quot;, &quot;PW...
+## $ CREATEDATE     &lt;dttm&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ...
+## $ CREATEUSER     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ EDITDATE       &lt;dttm&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ...
+## $ EDITUSER       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ MAPMETHOD      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ MAPSOURCE      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ SOURCEDATE     &lt;dttm&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ...
+## $ XYACCURACY     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ ROUTEID        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ FACLOCID       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ FACASSETID     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ FEATUREID      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ GEOMETRYID     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ NOTES          &lt;chr&gt; &quot;In Park = Y, Fire Road = No&quot;, &quot;In Park = Y, Fire Road = No&quot;, &quot;In Park = Y, Fire Road = No&quot;, &quot;In Park...
+## $ YOSE_Surface   &lt;chr&gt; &quot;Paved&quot;, &quot;Paved&quot;, &quot;Paved&quot;, &quot;Paved&quot;, &quot;Paved&quot;, &quot;Paved&quot;, &quot;Paved&quot;, &quot;Paved&quot;, &quot;Paved&quot;, &quot;Paved&quot;, &quot;Paved&quot;, &quot;P...
+## $ YOSE_FIRE_ROAD &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;,...
+## $ YOSE_INPARK    &lt;chr&gt; &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Ye...
+## $ YOSE_Type      &lt;chr&gt; &quot;Primary Road&quot;, &quot;Primary Road&quot;, &quot;Primary Road&quot;, &quot;Primary Road&quot;, &quot;Primary Road&quot;, &quot;Primary Road&quot;, &quot;Seco...
+## $ Shape_Length   &lt;dbl&gt; 493.53512, 67.90781, 33.35863, 258.00073, 117.94169, 167.51558, 71.82903, 330.03084, 73.37367, 80.215...
+## $ Shape          &lt;MULTILINESTRING [m]&gt; MULTILINESTRING ((270865.2 ..., MULTILINESTRING ((270821.5 ..., MULTILINESTRING ((270...</code></pre>
 <p>Next, write an expression that returns the total length of all primary roads.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## Load the units package so we can convert meters to miles</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="kw">library</span>(units)</span>
@@ -513,14 +514,14 @@ return the boundary of a geometry
 <span id="cb17-5"><a href="#cb17-5"></a></span>
 <span id="cb17-6"><a href="#cb17-6"></a><span class="co">## Plot it</span></span>
 <span id="cb17-7"><a href="#cb17-7"></a><span class="kw">plot</span>(<span class="kw">st_geometry</span>(yose_watersheds), <span class="dt">axes=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="geoprocessing_files/figure-slidy/watershed_imp_klippy-1.png" width="768" /></p>
+<p><img src="geoprocessing1_files/figure-slidy/watershed_imp_klippy-1.png" width="768" /></p>
 <p>Next, compute the centroids:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>yose_watersheds_ctr &lt;-<span class="st"> </span>yose_watersheds <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_centroid</span>()</span>
 <span id="cb18-2"><a href="#cb18-2"></a></span>
 <span id="cb18-3"><a href="#cb18-3"></a><span class="co">## Plot it</span></span>
 <span id="cb18-4"><a href="#cb18-4"></a><span class="kw">tm_shape</span>(yose_watersheds) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span></span>
 <span id="cb18-5"><a href="#cb18-5"></a><span class="st">  </span><span class="kw">tm_shape</span>(yose_watersheds_ctr) <span class="op">+</span><span class="st"> </span><span class="kw">tm_symbols</span>(<span class="dt">size=</span><span class="fl">0.3</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="geoprocessing_files/figure-slidy/watershed_ctr_klippy-1.png" width="768" /></p>
+<p><img src="geoprocessing1_files/figure-slidy/watershed_ctr_klippy-1.png" width="768" /></p>
 </div>
 <div id="example-buffer-the-campgrounds" class="slide section level1">
 <h1>Example: Buffer the Campgrounds</h1>
@@ -543,7 +544,7 @@ return the boundary of a geometry
 <span id="cb20-9"><a href="#cb20-9"></a><span class="kw">tm_layout</span>(<span class="dt">title=</span><span class="st">&quot;1km buffer around campgrounds&quot;</span>, </span>
 <span id="cb20-10"><a href="#cb20-10"></a>          <span class="dt">title.bg.color=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
 <span id="cb20-11"><a href="#cb20-11"></a><span class="kw">tm_scale_bar</span>(<span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</span></code></pre></div>
-<p><img src="geoprocessing_files/figure-slidy/buff_campgrounds_klippy-1.png" width="768" /></p>
+<p><img src="geoprocessing1_files/figure-slidy/buff_campgrounds_klippy-1.png" width="768" /></p>
 <div class="tip">
 <p>To create an interior buffer, make the buffer distance <em>negative.</em></p>
 <p>If you want to buffer using a distance in some other unit, you can pass a <code>units</code> object to the <code>dist</code> argument:</p>
@@ -599,7 +600,7 @@ difference between pairs of geometries
 st_sym_difference()
 </td>
 <td style="text-align:left;">
-symmetric difference (xor)
+symmetric difference (xor, union w/o intersection)
 </td>
 </tr>
 </tbody>
@@ -615,7 +616,7 @@ symmetric difference (xor)
 <span id="cb22-6"><a href="#cb22-6"></a><span class="kw">plot</span>(yose_bnd_utm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_geometry</span>(), <span class="dt">col=</span><span class="ot">NA</span>, <span class="dt">border=</span><span class="st">&quot;red&quot;</span>)</span>
 <span id="cb22-7"><a href="#cb22-7"></a><span class="kw">plot</span>(yose_fires_80s <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_geometry</span>(), <span class="dt">col=</span><span class="ot">NA</span>, <span class="dt">border=</span><span class="st">&quot;gray50&quot;</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 767</code></pre>
-<p><img src="geoprocessing_files/figure-slidy/fire_80s_klippy-1.png" width="768" /></p>
+<p><img src="geoprocessing1_files/figure-slidy/fire_80s_klippy-1.png" width="768" /></p>
 <p>Next we union the polygons and compute the area.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co">## Union the polygons (to remove overlapping polygons)</span></span>
 <span id="cb24-2"><a href="#cb24-2"></a>yose_fires_80s_union &lt;-<span class="st"> </span>yose_fires_80s <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_union</span>()</span>
@@ -625,7 +626,7 @@ symmetric difference (xor)
 <span id="cb24-6"><a href="#cb24-6"></a><span class="co">## Compute the total area, displying the units in square miles</span></span>
 <span id="cb24-7"><a href="#cb24-7"></a>yose_fires_80s_union <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_area</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">set_units</span>(mi2)</span></code></pre></div>
 <pre><code>## 87.66586 [mi2]</code></pre>
-<p><img src="geoprocessing_files/figure-slidy/fire_80s_union_klippy-1.png" width="768" /></p>
+<p><img src="geoprocessing1_files/figure-slidy/fire_80s_union_klippy-1.png" width="768" /></p>
 <div class="tryit">
 <p>Find the total area burned during the 1990s.</p>
 <p>[<span id="soln_eiwdnf" class="showhidesoln" onclick="showHide(&#39;eiwdnf&#39;);return false;">Solution</span>]</p>
@@ -655,138 +656,6 @@ symmetric difference (xor)
 </div>
 <!--- info-box --->
 </div>
-<div id="dissolve-boundaries-based-on-attribute-fields" class="slide section level1">
-<h1>Dissolve Boundaries Based on Attribute Fields</h1>
-<p>Grouping rows based on a common value of an attribute, and then computing one or more summary statistics for each group of rows, is extremely common. We a regular data frame, we can use <tt><strong>group_by()</strong></tt> and <tt><strong>summarise()</strong></tt> from <strong>dplyr</strong>.</p>
-<p>We illustrate this with the attribute table from watersheds layer. This table has a column “HU” and “HUNAME” which are the id number and name of larger watersheds.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>watersheds_df &lt;-<span class="st"> </span>yose_watersheds <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_drop_geometry</span>()</span>
-<span id="cb29-2"><a href="#cb29-2"></a>hu_df &lt;-<span class="st"> </span>watersheds_df <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="st">  </span><span class="kw">group_by</span>(HU) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb29-4"><a href="#cb29-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">HUNAME =</span> <span class="kw">first</span>(HUNAME), </span>
-<span id="cb29-5"><a href="#cb29-5"></a>            <span class="dt">NUM_WATERSHEDS =</span> <span class="kw">n</span>(),</span>
-<span id="cb29-6"><a href="#cb29-6"></a>            <span class="dt">AVG_ACRES =</span> <span class="kw">mean</span>(ACRES))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw">glimpse</span>(hu_df)</span></code></pre></div>
-<pre><code>## Rows: 6
-## Columns: 4
-## $ HU             &lt;int&gt; 1, 30, 31, 36, 37, 40
-## $ HUNAME         &lt;chr&gt; &quot;MONO&quot;, &quot;EAST WALKER RIVER&quot;, &quot;WEST WALKER RIVER&quot;, &quot;TUOLUMNE RIVER&quot;, &quot;ME...
-## $ NUM_WATERSHEDS &lt;int&gt; 7, 5, 2, 60, 47, 6
-## $ AVG_ACRES      &lt;dbl&gt; 9311.916, 9385.448, 6426.835, 8128.559, 8399.112, 8911.178</code></pre>
-<p>The exact same dplyr functions can be used with sf dataframes. The result is another sf object where the groups of features have been unioned together.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>hu_sf &lt;-<span class="st"> </span>yose_watersheds <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb33-2"><a href="#cb33-2"></a><span class="st">  </span><span class="kw">group_by</span>(HU) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb33-3"><a href="#cb33-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">HUNAME =</span> <span class="kw">first</span>(HUNAME), </span>
-<span id="cb33-4"><a href="#cb33-4"></a>            <span class="dt">NUM_WATERSHEDS =</span> <span class="kw">n</span>(),</span>
-<span id="cb33-5"><a href="#cb33-5"></a>            <span class="dt">AVG_ACRES =</span> <span class="kw">mean</span>(ACRES))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>hu_sf</span>
-<span id="cb35-2"><a href="#cb35-2"></a></span>
-<span id="cb35-3"><a href="#cb35-3"></a><span class="co">## Plot</span></span>
-<span id="cb35-4"><a href="#cb35-4"></a><span class="kw">tm_shape</span>(hu_sf) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb35-5"><a href="#cb35-5"></a><span class="st">  </span><span class="kw">tm_polygons</span>(<span class="dt">col=</span><span class="st">&quot;HUNAME&quot;</span>, <span class="dt">title=</span><span class="st">&quot;HU Watershed&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb35-6"><a href="#cb35-6"></a><span class="kw">tm_shape</span>(yose_watersheds) <span class="op">+</span></span>
-<span id="cb35-7"><a href="#cb35-7"></a><span class="st">  </span><span class="kw">tm_borders</span>(<span class="dt">col=</span><span class="st">&quot;gray60&quot;</span>, <span class="dt">lwd=</span><span class="fl">0.8</span>) <span class="op">+</span></span>
-<span id="cb35-8"><a href="#cb35-8"></a><span class="kw">tm_layout</span>(<span class="dt">legend.outside =</span> T)</span></code></pre></div>
-<pre><code>## Simple feature collection with 6 features and 4 fields
-## geometry type:  POLYGON
-## dimension:      XY
-## bbox:           xmin: 1383.82 ymin: -61442.93 xmax: 81596.71 ymax: 26405.66
-## projected CRS:  unnamed
-## # A tibble: 6 x 5
-##      HU HUNAME      NUM_WATERSHEDS AVG_ACRES                                                   geom
-##   &lt;int&gt; &lt;chr&gt;                &lt;int&gt;     &lt;dbl&gt;                                          &lt;POLYGON [m]&gt;
-## 1     1 MONO                     7     9312. ((70700.98 -24430.75, 70666.71 -24495.98, 70613.55 -2~
-## 2    30 EAST WALKE~              5     9385. ((66834.96 17741.56, 66825.24 17805.2, 66826.29 17825~
-## 3    31 WEST WALKE~              2     6427. ((41178.45 21036.4, 41216.82 21006.26, 41275.41 20974~
-## 4    36 TUOLUMNE R~             60     8129. ((68820.02 -21749.66, 68896.44 -21833.4, 68921.03 -21~
-## 5    37 MERCED RIV~             47     8399. ((48429.44 -54808.23, 48423.19 -54850.16, 48483.12 -5~
-## 6    40 SAN JOAQUI~              6     8911. ((55601.21 -53432.85, 55668.08 -53493.33, 55704.49 -5~</code></pre>
-<p><img src="geoprocessing_files/figure-slidy/watershed_summarise_union_klippy-1.png" width="768" /></p>
-</div>
-<div id="example-buffer-clip-the-roads" class="slide section level1">
-<h1>Example: Buffer &amp; Clip the Roads</h1>
-<p>In this example, we’ll create a 500m buffer around the roads within the park (representing a disturbance zone for sensitive species, or drive transect detection area). Then we’ll compute the total area of the buffered area. This task will require us to <strong>buffer</strong>, <strong>intersect</strong>, and <strong>union</strong>.</p>
-<p>First, create the buffer:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co">## Create the buffer</span></span>
-<span id="cb37-2"><a href="#cb37-2"></a>yose_roads_buff &lt;-<span class="st"> </span>yose_roads <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_buffer</span>(<span class="dt">dist=</span><span class="dv">500</span>)</span>
-<span id="cb37-3"><a href="#cb37-3"></a></span>
-<span id="cb37-4"><a href="#cb37-4"></a><span class="co">## Plot the results</span></span>
-<span id="cb37-5"><a href="#cb37-5"></a><span class="kw">tm_shape</span>(yose_roads_buff) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb37-6"><a href="#cb37-6"></a><span class="kw">tm_shape</span>(yose_bnd_utm) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>(<span class="dt">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="geoprocessing_files/figure-slidy/buff_roads_klippy-1.png" width="768" /></p>
-<p>There are two problems here:</p>
-<ol style="list-style-type: lower-roman">
-<li>the roads extend <strong>outside the park</strong></li>
-<li>the buffered line segments <strong>overlap each other</strong> (so we can’t add up the areas)</li>
-</ol>
-<p>We can fix these by taking the <strong>intersection</strong> of the road buffer with the park boundary, and <strong>unioning</strong> the individual polygons together.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co">## Clip to park boundary</span></span>
-<span id="cb38-2"><a href="#cb38-2"></a>yose_roads_inpark_buff &lt;-<span class="st"> </span>yose_roads_buff <span class="op">%&gt;%</span></span>
-<span id="cb38-3"><a href="#cb38-3"></a><span class="st">  </span><span class="kw">st_intersection</span>(yose_bnd_utm) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb38-4"><a href="#cb38-4"></a><span class="st">  </span><span class="kw">st_union</span>()</span>
-<span id="cb38-5"><a href="#cb38-5"></a></span>
-<span id="cb38-6"><a href="#cb38-6"></a><span class="co">## Plot the results</span></span>
-<span id="cb38-7"><a href="#cb38-7"></a><span class="kw">tm_shape</span>(yose_bnd_utm) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb38-8"><a href="#cb38-8"></a><span class="st">  </span><span class="kw">tm_borders</span>(<span class="dt">lwd=</span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb38-9"><a href="#cb38-9"></a><span class="kw">tm_shape</span>(yose_roads_inpark_buff) <span class="op">+</span></span>
-<span id="cb38-10"><a href="#cb38-10"></a><span class="st">  </span><span class="kw">tm_polygons</span>(<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="geoprocessing_files/figure-slidy/buff_roads_clip_klippy-1.png" width="768" /></p>
-<p>What is the total area of the buffer?</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>road_area &lt;-<span class="st"> </span>yose_roads_inpark_buff <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb39-2"><a href="#cb39-2"></a><span class="st">  </span><span class="kw">st_area</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb39-3"><a href="#cb39-3"></a><span class="st">  </span><span class="kw">sum</span>()</span>
-<span id="cb39-4"><a href="#cb39-4"></a>road_area <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">set_units</span>(ha)</span></code></pre></div>
-<pre><code>## 23879.94 [ha]</code></pre>
-<div class="tryit">
-<p>How big is the buffered roads as a percentage of the total park area?</p>
-<p>[<span id="soln_qcdvno" class="showhidesoln" onclick="showHide(&#39;qcdvno&#39;);return false;">Solution</span>]</p>
-<div id="qcdvno" class="hint">
-<div class="sourceCode" id="cb41"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>road_area <span class="op">/</span><span class="st"> </span>(yose_bnd_utm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_area</span>())</span></code></pre></div>
-<pre><code>## 0.07907479 [1]</code></pre>
-<p>⇒ Almost 8%</p>
-</div>
-<!--- soln_qcdvno --->
-</div>
-<!--- TryIt --->
-</div>
-<div id="example-voronoi-tesselation" class="slide section level1">
-<h1>Example: Voronoi tesselation</h1>
-<p>For a given a set of points, Voronoi tesselation computes a network of polygons, such that each polygon contains exactly one point and everywhere within a polygon is closest to the enclosed point.</p>
-<p><img src="images/voronoi-diagram_220x220.png" /></p>
-<p>Let’s build Voronoi polygons for the campgrounds. These polygons could be thought of as the ‘catchment area’ of each campgrounds, if campgrounds were like magnets trying to attract campers.</p>
-<p>We can create a Voronoi tessellation using <tt><strong>st_voronoi()</strong></tt>. Note <tt>st_voronoi()</tt> expects a single multipart point feature, which you can create from a point layer using <tt><strong>st_union()</strong></tt>.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="co">## Compute Voronoi polygons</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a>v &lt;-<span class="st"> </span><span class="kw">st_voronoi</span>(<span class="kw">st_union</span>(yose_campgrnds_utm))</span>
-<span id="cb43-3"><a href="#cb43-3"></a></span>
-<span id="cb43-4"><a href="#cb43-4"></a><span class="co">## Construct polygon sf</span></span>
-<span id="cb43-5"><a href="#cb43-5"></a>v_sf &lt;-<span class="st">  </span><span class="kw">st_sf</span>(v) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_cast</span>()</span>
-<span id="cb43-6"><a href="#cb43-6"></a></span>
-<span id="cb43-7"><a href="#cb43-7"></a><span class="co">## Plot</span></span>
-<span id="cb43-8"><a href="#cb43-8"></a><span class="kw">plot</span>(v_sf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_geometry</span>() , <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border=</span><span class="st">&quot;gray70&quot;</span>)</span>
-<span id="cb43-9"><a href="#cb43-9"></a><span class="kw">plot</span>(yose_bnd_utm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_geometry</span>(), <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">col=</span><span class="ot">NA</span>, <span class="dt">border=</span><span class="st">&quot;darkblue&quot;</span>)</span>
-<span id="cb43-10"><a href="#cb43-10"></a><span class="kw">plot</span>(yose_campgrnds_utm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_geometry</span>(), <span class="dt">col=</span><span class="st">&quot;darkgreen&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pch=</span><span class="dv">17</span>, <span class="dt">add=</span>T)</span></code></pre></div>
-<p><img src="geoprocessing_files/figure-slidy/voronoi_polys_klippy-1.png" width="768" /></p>
-<div class="tryit">
-<p>Modify the above so the Voronoi polygons are clipped to the park boundary.</p>
-<p>[<span id="soln_kfzqvh" class="showhidesoln" onclick="showHide(&#39;kfzqvh&#39;);return false;">Solution</span>]</p>
-<div id="kfzqvh" class="hint">
-<div class="sourceCode" id="cb44"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="co">## Clip to the park boundary</span></span>
-<span id="cb44-2"><a href="#cb44-2"></a>v_clipped &lt;-<span class="st"> </span>v_sf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_intersection</span>(yose_bnd_utm)</span>
-<span id="cb44-3"><a href="#cb44-3"></a></span>
-<span id="cb44-4"><a href="#cb44-4"></a><span class="kw">plot</span>(v_clipped <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_geometry</span>() , <span class="dt">col =</span> <span class="ot">NA</span>, <span class="dt">border=</span><span class="st">&quot;gray70&quot;</span>)</span>
-<span id="cb44-5"><a href="#cb44-5"></a><span class="kw">plot</span>(yose_bnd_utm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_geometry</span>(), <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">col=</span><span class="ot">NA</span>, <span class="dt">border=</span><span class="st">&quot;darkblue&quot;</span>)</span>
-<span id="cb44-6"><a href="#cb44-6"></a><span class="kw">plot</span>(yose_campgrnds_utm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_geometry</span>(), <span class="dt">col=</span><span class="st">&quot;darkgreen&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pch=</span><span class="dv">17</span>, <span class="dt">add=</span>T)</span></code></pre></div>
-<p><img src="geoprocessing_files/figure-slidy/voronoi_clipped_klippy-1.png" width="768" /></p>
-</div>
-<!--- soln_kfzqvh --->
-</div>
-<!--- TryIt --->
-<div class="challenge">
-<p>Create Voronoi polygons for the cell tower infrastructure</p>
-</div>
-<!--- challenge --->
-</div>
 <div id="summary" class="slide section level1">
 <h1>Summary</h1>
 <p>Today we saw how to:</p>
@@ -801,12 +670,10 @@ symmetric difference (xor)
 <li>create new geometries based on existing ones, such as centroids and buffers<br />
 </li>
 <li>use logical operators like union and intersection that combine two or more inputs</li>
-<li>dissolve boundaries based on a common attribute value</li>
 </ul>
 </div>
 <ul>
 <li>convert results using the <strong>units</strong> package</li>
-<li>combine geoprocessing functions for specific tasks</li>
 </ul>
 </div>
 <div class="infobox">
@@ -818,7 +685,7 @@ symmetric difference (xor)
 <p>
 <br/>
 <hr/>
-<strong>Next: </strong> <a href="../exercises/geoprocessing.html">Geoprocessing Review</a>
+<strong>Next: </strong> <a href="geoprocessing2.html">Geoprocessing 2</a>
 </p>
 </div>
 

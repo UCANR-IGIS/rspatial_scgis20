@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <meta name="author" content="Review and Practice  " />
+  <meta name="author" content="Welcome and Review  " />
   <meta name="copyright" content="<span class='footer-right'><a href='../acknowledgements.html'>Acknowledgements</a></span><span class='footer-right'><a href=' https://etherpad.wikimedia.org/p/rspatial-scgis2020 ' target='_blank'>Forum</a></span><span class='footer-right'><a href=' https://ucanr-igis.github.io/rspatial_scgis20/ '> https://ucanr-igis.github.io/rspatial_scgis20/ </a></span><span class='footer-right'><a href='../index.html'>Home</a></span><span class='footer-subtitle'> Spatial Data Analysis with R </span>"/>
   <meta name="font-size-adjustment" content="2"/>
   <title>Spatial Data Analysis with R  Society for Conservation GIS, July 2020</title>
@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="slide titlepage">
   <h1 class="title"><span class="course-title">Spatial Data Analysis with R </span><br/><span class="course-subtitle">Society for Conservation GIS, July 2020</span></h1>
   <p class="author">
-Review and Practice <br/><img src='images/puzzle_400x364x256.png'/>
+Welcome and Review <br/><img src='images/puzzle_400x364x256.png'/>
   </p>
 </div>
 <div id="learning-strategy" class="slide section level1">
@@ -192,9 +192,8 @@ img.vertcent {
 <div class="indented2">
 <ul>
 <li><p><code>plot(ca_counties %&gt;% st_geometry() )</code> <span class="fundesc">– just the geometry please!</span></p></li>
-<li><p><code>plot(ca_counties["POP2015"])</code> <span class="fundesc">– symbolize based on an attribute</span><br />
-</p></li>
-<li><p><em>many</em> optional arguments for <code>plot()</code></p></li>
+<li><p><code>plot(ca_counties["POP2015"])</code> <span class="fundesc">– symbolize based on an attribute</span></p></li>
+<li><p><em>many</em> other optional arguments for <code>plot()</code></p></li>
 </ul>
 <div class="compact">
 <ul>
@@ -236,7 +235,7 @@ img.vertcent {
 </div>
 <p><br />
 </p>
-<h2 id="leaflet---unlocks-all-the-power">leaflet - unlocks all the power</h2>
+<h2 id="leaflet---unlocks-all-the-power-of-leaflet.js"><code>leaflet</code> - unlocks all the power of leaflet.js</h2>
 <div class="indented2">
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(leaflet)</span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
@@ -252,7 +251,7 @@ img.vertcent {
 <ul>
 <li><p>data frames and matrices</p></li>
 <li><p>bundled datasets</p></li>
-<li><p><code>read.csv()</code> &amp; <code>readr::read_csv()</code> <span class="fundesc">– import csv files</span></p></li>
+<li><p><code>read.csv()</code>, <code>readr::read_csv()</code>, RStudio Import Dataset ‘wizard’ <span class="fundesc">– import csv files</span></p></li>
 <li><p><code>glimpse()</code>, <code>View()</code>, <code>names()</code>, <code>nrow()</code>, <code>ncol()</code>, <code>summary()</code> <span class="fundesc">– explore contents of a data frame</span></p></li>
 <li><p>common data munging tasks:</p></li>
 </ul>
@@ -282,10 +281,11 @@ img.vertcent {
 <ul>
 <li><code>filter()</code> &amp; <code>slice()</code> <span class="fundesc">– for by <strong>row</strong> (i.e., attribute queries)</span><br />
 </li>
-<li><code>mutate()</code> <span class="fundesc">– add new columns to the attribute table</span><br />
+<li><code>mutate()</code> <span class="fundesc">– add <strong>new column(s)</strong></span><br />
 </li>
-<li><code>group_by()</code>, <code>summarise()</code>, <code>count()</code>, <code>top_n()</code>, etc. <span class="fundesc">– analysis of the attribute table</span><br />
+<li><code>group_by()</code>, <code>summarise()</code>, <code>count()</code>, <code>top_n()</code>, etc. <span class="fundesc">– analysis of rows</span><br />
 </li>
+<li><a href="../extras/data-transformation.pdf" target="_blank" rel="noopener">dplyr cheatsheet</a> <span class="fundesc">– find the function you need</span></li>
 </ul>
 </div>
 <p><br />
@@ -295,17 +295,16 @@ img.vertcent {
 <ul>
 <li><code>st_read()</code> <span class="fundesc">– import all manner of spatial data</span><br />
 </li>
-<li><code>st_crs(epsg_num)</code> <span class="fundesc">– view (or assign) a crs to a <code>sf</code> object</span><br />
+<li><code>st_write()</code> <span class="fundesc">– export <code>sf</code> objects to all manner of formats</span><br />
+</li>
+<li><code>st_as_sf()</code> <span class="fundesc">– turn a data frame with xy columns into a <code>sf</code> - <tt>st_crs(<em>epsg_num</em>)</tt> <span class="fundesc">– view (or assign) a crs to a <code>sf</code> object</span><br />
 </li>
 <li><code>st_transform()</code> <span class="fundesc">– project (or unproject) <code>sf</code> objects</span><br />
-</li>
-<li><code>st_as_sf()</code> <span class="fundesc">– turn a data frame with xy columns into a <code>sf</code> data frame</span><br />
+data frame</span><br />
 </li>
 <li><code>st_geometry()</code> <span class="fundesc">– return just the geometry (i.e., for plotting)</span><br />
 </li>
 <li><code>st_drop_geometry()</code> <span class="fundesc">– throw away the geometry (i.e., for analysis of the attribute table)</span><br />
-</li>
-<li><code>st_write()</code> <span class="fundesc">– export <code>sf</code> objects to all manner of formats</span><br />
 </li>
 </ul>
 </div>
@@ -344,13 +343,54 @@ img.vertcent {
 <div class="indented1">
 <p><img src="images/lady-bug_230x200.jpg" /> <img src="images/jelly_fish_134x200.jpg" /> <img src="images/earthworm_200x200.jpg" /> <img src="images/tarantula_220x200.jpg" /></p>
 </div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">## Display the map</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>show_wrkshp_map_url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/UCANR-IGIS/rspatial_data/master/scripts/wrkshp-map_display.R&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">source</span>(show_wrkshp_map_url)</span></code></pre></div>
+</div>
+<div id="todays-outline" class="slide section level1">
+<h1>Today’s Outline</h1>
+<div class="compact">
+<ul>
+<li>Geoprocessing 1 - classic geoprocessing functions<br />
+</li>
+<li>Geoprocessing 2 - Dissolving boundaries, geoprocessing chains, Voronoi polygons<br />
+</li>
+<li>Spatial Queries and Joins<br />
+</li>
+<li>Automation<br />
+</li>
+<li>Group Photo<br />
+</li>
+<li>Evaluation<br />
+</li>
+</ul>
+</div>
+<p><br />
+</p>
+<p>Bonus slide deck:</p>
+<div class="compact">
+<ul>
+<li><a href="raster1-import-plot.html" target="_blank" rel="noopener">Importing Raster Data</a></li>
+</ul>
+</div>
+</div>
+<div id="r-notebooks" class="slide section level1">
+<h1>R Notebooks</h1>
+<p>Today’s slides are accompanied by R Notebook. <strong>No more copy-paste into RStudio!</strong></p>
+<p>To download the R Notebooks, run the following:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r klippy copyme"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## Download R Notebook Rmd file(s) into the current working directory</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>nb_url &lt;-<span class="st"> &quot;https://github.com/UCANR-IGIS/rspatial_data/raw/master/notebooks.zip&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>temp_fn &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="kw">download.file</span>(nb_url, <span class="dt">destfile=</span>temp_fn, <span class="dt">mode=</span><span class="st">&quot;wb&quot;</span>)</span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="kw">unzip</span>(temp_fn)</span></code></pre></div>
+<p>Or you can clone the workshop <a href="" target="_blank" rel="noopener"><strong>RStudio Cloud Project</strong></a> again.</p>
 </div>
 <div id="next" class="slide section level1">
 <h1>Next</h1>
 <p>
 <br/>
 <hr/>
-<strong>Next: </strong> <a href="geoprocessing.html">Geoprocessing</a>
+<strong>Next: </strong> <a href="geoprocessing1.html">Geoprocessing 1</a>
 </p>
 </div>
 
