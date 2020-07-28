@@ -11,6 +11,70 @@
   <meta name="font-size-adjustment" content="2"/>
   <title>Spatial Data Analysis with R  Society for Conservation GIS, July 2020</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
   <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACkUlEQVQ4jX2SW0jTcRTHTzNyeZlh6lqmm3POdNPC6SxSEzaqafkykOFoIxTDWpKRFV6iQMNLFyMSsQvUW0WORc2WWBmGKEGZXUyz0NrmNmfa1PYgfHsQ1v5oHjgvX875/M45vy/R8mDJ9caxrFIL5CUWJB00Q9n+7Q+l1BetUMuMTL3JpTB0QVnejd1Hu9DQ60G5eQbqB7PIvj0L2bUZ0KZzghWbs0o7Fx3Tc/B6vStm6+g0wrQvIKh2gKKyUxnNSZoO685SC1YDeL1e9Ll+Ia7WCd5pJ4hojQ8g1nViezETYBqZx93BOdwa9jAgsdUT4J6ZQqC6f4GIiLYU9/RzNWYIdU9hd/8rLjN7UGT8DbWROVVMlQsBBWas142DiIikdfbFMF0POIVm2NzM1zwLS+mvcSsnEajpBSv/8RIgucGJ1EYXEs+NwjrlWfUGMee/Y2PFJIJLrFibex8kOsahhCYnUlpnIL1kh9X9/yMKG2yIOOlAsPYnAveZsE75EEQUQLwTwy5Rsxvx9UxApKEPEYY+BiSizA623oaggkdgq4xLKwRLq7i8sy6EFlpg8wNEVwyAd3wAbZ8cPu3CazeCC/sRojYjaL8Jvm8MPWLDBm03A8CveQ9+7RBia4cYU4QfeokwzTOwc6/4OzKXHap/C5ufD0RNo0i4OAZR81dcnnD69Mp3PxBe9GRkuZdFKk7sqTcQ132EpGUMydetSLnpgOSGHVtbxpHU9AX8mkFEG55/ZrjQL1h82V6esPLVh8Sr40i940J6xzzS7s1C0m6HqHEEiTnatgT5gcPijHxltFwhjpRIQpZjBAJ2lFTBFW5TiOPT8mXx6apdcRl5OaJM1Q6hLC9ls3RPTLgok0NELCKiv02kPqt/O1MZAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
   <script language="javascript" type="text/javascript">
   function TriShowHide(shID) {
@@ -99,10 +163,15 @@
 Review and Practice <br/><img src='images/puzzle_400x364x256.png'/>
   </p>
 </div>
-<div id="highlights-from-last-time" class="slide section level1">
-<h1>Highlights from Last Time</h1>
+<div id="learning-strategy" class="slide section level1">
+<h1>Learning Strategy</h1>
 <script language="javascript" type="text/javascript">w3c_slidy.mouse_click_enabled = false;</script>
 <style type="text/css">
+img.vertcent {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
 .fundesc {
   color: DimGray;
   font-style: italic;
@@ -111,14 +180,122 @@ Review and Practice <br/><img src='images/puzzle_400x364x256.png'/>
 <script>
   addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
 </script>
-<h2 id="sf-functions"><code>sf</code> functions</h2>
+<div style="vertical-align:middle">
+<p><img src="images/learning_strategy_venn_diagram_450x450x256.png" style="height:360px;" class="vertcent"/> <img src="images/green-arrow-right_98x42x256.png" style="padding:0 2em;" class="vertcent"/> <img src="images/cookbook_cover_300x360x256.png" class="vertcent"/></p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="highlights-from-part-ii" class="slide section level1">
+<h1>Highlights from Part II</h1>
+<h2 id="doing-more-with-plot">Doing more with <code>plot()</code></h2>
+<div class="indented2">
+<ul>
+<li><p><code>plot(ca_counties %&gt;% st_geometry() )</code> <span class="fundesc">– just the geometry please!</span></p></li>
+<li><p><code>plot(ca_counties["POP2015"])</code> <span class="fundesc">– symbolize based on an attribute</span><br />
+</p></li>
+<li><p><em>many</em> optional arguments for <code>plot()</code></p></li>
+</ul>
+<div class="compact">
+<ul>
+<li><code>axes</code><br />
+</li>
+<li><code>nbreaks</code><br />
+</li>
+<li><code>breaks</code><br />
+</li>
+<li><code>pal</code><br />
+</li>
+<li><code>graticule</code><br />
+</li>
+<li><code>key.pos</code></li>
+<li><em>etc.</em><br />
+</li>
+</ul>
+</div>
+</div>
+<p><br />
+</p>
+<h2 id="doing-a-whole-lot-more-with-tmap">Doing a <em>whole</em> lot more with <code>tmap</code></h2>
+<div class="indented2">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">tm_shape</span>(yose_bnd_ll) <span class="op">+</span><span class="st">                             </span><span class="co">## Specify data source</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="st">  </span><span class="kw">tm_polygons</span>() <span class="op">+</span><span class="st">                                   </span><span class="co">## Display function </span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">tm_shape</span>(yose_hp) <span class="op">+</span><span class="st">                                 </span><span class="co">## Specify (another) data source</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="st">  </span><span class="kw">tm_symbols</span>(<span class="dt">size=</span><span class="fl">0.5</span>, <span class="dt">col=</span><span class="st">&quot;navy&quot;</span>) <span class="op">+</span><span class="st">                </span><span class="co">## Display function </span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">tm_shape</span>(yose_roads) <span class="op">+</span><span class="st">                              </span><span class="co">## Specify (another) data source</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="st">  </span><span class="kw">tm_lines</span>(<span class="dt">col=</span><span class="st">&quot;gray60&quot;</span>, <span class="dt">lwd=</span><span class="fl">1.5</span>, <span class="dt">lty=</span><span class="st">&quot;dotted&quot;</span>) <span class="op">+</span><span class="st">   </span><span class="co">## Display function </span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="kw">tm_scale_bar</span>(<span class="dt">position=</span><span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st">       </span><span class="co">## Global element - scale bar</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="kw">tm_compass</span>(<span class="dt">position=</span><span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st">          </span><span class="co">## Global element - north arrow</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="kw">tm_style</span>(<span class="st">&quot;cobalt&quot;</span>)                                  <span class="co">## Global style preset (default colors)</span></span></code></pre></div>
+</div>
+<div class="indented2">
+<ul>
+<li><code>tmap_mode()</code> <span class="fundesc">– static or interactive</span><br />
+</li>
+</ul>
+</div>
+<p><br />
+</p>
+<h2 id="leaflet---unlocks-all-the-power">leaflet - unlocks all the power</h2>
+<div class="indented2">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(leaflet)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">## Create the map definition with piping syntax</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>myleaf_map &lt;-<span class="st"> </span><span class="kw">leaflet</span>(yose_bnd_ll) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">addTiles</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="st">                      </span><span class="kw">addPolygons</span>(<span class="dt">data=</span>yose_bnd_ll, <span class="dt">fillOpacity=</span><span class="fl">0.1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="st">                      </span><span class="kw">addCircles</span>(<span class="dt">data=</span>yose_hp, <span class="dt">popup=</span><span class="op">~</span>Name)</span></code></pre></div>
+</div>
+<p><br />
+</p>
+<h2 id="working-with-tabular-data">Working with tabular data</h2>
+<div class="indented2">
+<ul>
+<li><p>data frames and matrices</p></li>
+<li><p>bundled datasets</p></li>
+<li><p><code>read.csv()</code> &amp; <code>readr::read_csv()</code> <span class="fundesc">– import csv files</span></p></li>
+<li><p><code>glimpse()</code>, <code>View()</code>, <code>names()</code>, <code>nrow()</code>, <code>ncol()</code>, <code>summary()</code> <span class="fundesc">– explore contents of a data frame</span></p></li>
+<li><p>common data munging tasks:</p></li>
+</ul>
+<div class="indented1 compact">
+<ul>
+<li>subset rows &amp; columns<br />
+</li>
+<li>sort &amp; reorder rows<br />
+</li>
+<li>create new columns<br />
+</li>
+<li>group rows<br />
+</li>
+<li>join tables<br />
+</li>
+</ul>
+</div>
+<ul>
+<li><p><tt>my_dataframe[<em>rows</em>, <em>columns</em>]</tt> <span class="fundesc">– base R</span></p></li>
+<li><p><code>my_dataframe %&gt;% fun_a() %&gt;% fun_b() %&gt;% fun_c() %&gt;% ...</code> <span class="fundesc">– dplyr</span></p></li>
+</ul>
+</div>
+<p><br />
+</p>
+<h2 id="dplyr"><code>dplyr</code></h2>
+<div class="indented2">
+<ul>
+<li><code>filter()</code> &amp; <code>slice()</code> <span class="fundesc">– for by <strong>row</strong> (i.e., attribute queries)</span><br />
+</li>
+<li><code>mutate()</code> <span class="fundesc">– add new columns to the attribute table</span><br />
+</li>
+<li><code>group_by()</code>, <code>summarise()</code>, <code>count()</code>, <code>top_n()</code>, etc. <span class="fundesc">– analysis of the attribute table</span><br />
+</li>
+</ul>
+</div>
+<p><br />
+</p>
+<h2 id="manipulating-sf-objects">Manipulating <code>sf</code> objects</h2>
 <div class="indented2">
 <ul>
 <li><code>st_read()</code> <span class="fundesc">– import all manner of spatial data</span><br />
 </li>
-<li><code>st_crs()</code> <span class="fundesc">– view (or assign) a crs to a <code>sf</code> object</span><br />
-</li>
-<li>EPSG numbers <span class="fundesc">– big catalog of coordinate reference systems</span><br />
+<li><code>st_crs(epsg_num)</code> <span class="fundesc">– view (or assign) a crs to a <code>sf</code> object</span><br />
 </li>
 <li><code>st_transform()</code> <span class="fundesc">– project (or unproject) <code>sf</code> objects</span><br />
 </li>
@@ -132,17 +309,8 @@ Review and Practice <br/><img src='images/puzzle_400x364x256.png'/>
 </li>
 </ul>
 </div>
-<h2 id="dplyr-functions"><code>dplyr</code> functions</h2>
-<div class="indented2">
-<ul>
-<li><code>filter()</code> &amp; <code>slice()</code> <span class="fundesc">– for attribute queries</span><br />
-</li>
-<li><code>mutate()</code> <span class="fundesc">– add new columns to the attribute table</span><br />
-</li>
-<li><code>group_by()</code>, <code>summarise()</code>, <code>count()</code>, <code>top_n()</code>, etc. <span class="fundesc">– analysis of the attribute table</span><br />
-</li>
-</ul>
-</div>
+<p><br />
+</p>
 </div>
 <div id="quiz" class="slide section level1 incremental">
 <h1 class="incremental">Quiz</h1>
@@ -157,11 +325,28 @@ Review and Practice <br/><img src='images/puzzle_400x364x256.png'/>
 <p>The <code>leaflet</code> package requires layers to be in geographic coordinates.</p>
 <p>Geographic coordinates are inappropriate for many types of spatial analysis.</p>
 </div>
-<p><strong>3. Bonus:is the EPSG code for geographic coordinates in the <em>NAD83</em> datum? Why is this important?</strong></p>
+<p><strong>3. Bonus: What is the EPSG code for geographic coordinates in the <em>NAD83</em> datum? Why is this important?</strong></p>
 <div class="indented1">
 <p>Ans. 4269</p>
 <p>NAD83 is a common datum for many data providers (e.g., the National Park Service). You may encounter data that is unprojected (i.e., long-lat) in NAD83, as well as projected (e.g., UTM) in NAD83.</p>
 </div>
+</div>
+<div id="get-on-the-map" class="slide section level1">
+<h1>Get on the Map!</h1>
+<p><strong>Participants from Part 1&amp;2</strong></p>
+<div class="indented1">
+<iframe src="../workshop-map_pt1-2.html" style="width:800px; height:600px; border:1px solid dimgray;">
+</iframe>
+</div>
+<p>What <strong>city</strong> are you from, and what is your <strong>favorite invertebrate</strong>?</p>
+<p>Complete this form for our Geocoding Exercise:</p>
+<p><strong><a href="https://forms.gle/SAbmxXmMdpihGvkQ9" target="_blank" rel="noopener">https://forms.gle/SAbmxXmMdpihGvkQ9</a></strong></p>
+<div class="indented1">
+<p><img src="images/lady-bug_230x200.jpg" /> <img src="images/jelly_fish_134x200.jpg" /> <img src="images/earthworm_200x200.jpg" /> <img src="images/tarantula_220x200.jpg" /></p>
+</div>
+</div>
+<div id="next" class="slide section level1">
+<h1>Next</h1>
 <p>
 <br/>
 <hr/>
